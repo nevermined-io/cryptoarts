@@ -1,0 +1,30 @@
+@import '../../styles/variables';
+
+.message {
+    margin-bottom: $spacer;
+    color: $brand-grey;
+    position: relative;
+    padding-top: $spacer / 2;
+    text-align: left;
+    font-size: $font-size-small;
+}
+
+.account {
+    margin-bottom: $spacer / 2;
+    background: $brand-white;
+    border-radius: $border-radius;
+    border: 1px solid $brand-grey-lighter;
+    padding: $spacer / 2;
+}
+
+.text {
+    padding-left: $spacer * 1.5;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.status {
+    margin-left: -($spacer / 1.2);
+    margin-right: $spacer / 2.5;
+    padding: 0;
+}

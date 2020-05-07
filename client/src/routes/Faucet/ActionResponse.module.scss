@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+.success {
+    color: $green;
+    margin-top: $spacer / 2;
+
+    strong {
+        display: block;
+    }
+
+    code {
+        overflow-wrap: break-word;
+        display: inline;
+    }
+
+    a:hover,
+    a:focus {
+        code {
+            color: inherit;
+        }
+    }
+}
+
+.error {
+    &,
+    p {
+        color: $red;
+    }
+}

@@ -1,0 +1,78 @@
+{
+  "name": "nevermined-marketplace",
+  "description": "Nevermined marketplace to explore, download, and publish open data sets.",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "scripts": {
+    "install": "./scripts/install.sh",
+    "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "build": "./scripts/build.sh",
+    "test": "npm run lint && scripts/test.sh && npm run test:e2e",
+    "test:e2e": "start-test start http-get://localhost:3000 cypress:run",
+    "test:watch": "npm run lint && concurrently \"cd client && npm run test:watch\" \"cd server && npm run test:watch\"",
+    "format:js": "prettier --parser typescript --write '**/*.{js,jsx,ts,tsx}'",
+    "format:css": "prettier-stylelint --ignore-path .gitignore --write --quiet '**/*.{css,scss}'",
+    "format": "npm run format:js && npm run format:css",
+    "lint:css": "stylelint --ignore-path .gitignore './**/*.{css,scss}'",
+    "lint:js": "eslint --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint": "npm run lint:js && npm run lint:css",
+    "release": "release-it --non-interactive",
+    "changelog": "auto-changelog -p",
+    "cypress:run": "cypress run --browser chrome",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@release-it/bumper": "^1.0.5",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "auto-changelog": "^1.16.2",
+    "concurrently": "^5.0.0",
+    "cypress": "^3.7.0",
+    "cypress-log-to-output": "^1.0.7",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.19.1",
+    "prettier-stylelint": "^0.4.2",
+    "release-it": "^12.4.3",
+    "start-server-and-test": "^1.10.6",
+    "stylelint": "^12.0.0",
+    "stylelint-config-bigchaindb": "^1.2.2",
+    "stylelint-config-css-modules": "^2.1.0",
+    "stylelint-config-standard": "^19.0.0",
+    "typescript": "^3.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keyko-io/nevermined-marketplace"
+  },
+  "release-it": {
+    "hooks": {
+      "after:bump": "npm run changelog"
+    },
+    "plugins": {
+      "@release-it/bumper": {
+        "out": [
+          "package.json",
+          "package-lock.json",
+          "client/package.json",
+          "client/package-lock.json",
+          "server/package.json",
+          "server/package-lock.json"
+        ]
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    }
+  }
+}

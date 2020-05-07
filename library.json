@@ -1,0 +1,29 @@
+{
+  "name": "commons",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oceanprotocol/commons.git"
+  },
+  "dependencies": [
+    {
+      "name": "keeper-contracts",
+      "version": "~0.12.7"
+    },
+    {
+      "name": "brizo",
+      "version": "~0.7.2"
+    },
+    {
+      "name": "aquarius",
+      "version": "~1.0.5"
+    },
+    {
+      "name": "squid-js",
+      "version": "~1.0.0"
+    },
+    {
+      "name": "faucet",
+      "version": "~0.3.2"
+    }
+  ]
+}
