@@ -1,15 +1,15 @@
-[![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
+[![banner](https://raw.githubusercontent.com/keyko-io/assets/master/images/logo/small/keyko_logo@2x-100.jpg)](https://keyko.io)
 
 <h1 align="center">Commons: Server</h1>
 
 This folder contains server component written in TypeScript using [Express](https://expressjs.com). The server provides various microservices.
 
 - [Get Started](#get-started)
-- [✨ API Documentation](#-api-documentation)
+- [API Documentation](#-api-documentation)
   - [Url Checker](#url-checker)
   - [Report](#report)
-- [🎁 Contributing](#-contributing)
-- [🏛 License](#-license)
+- [Attribution](#-attribution)
+- [License](#-license)
 
 ## Get Started
 
@@ -20,7 +20,7 @@ npm install
 npm start
 ```
 
-## ✨ API Documentation
+## API Documentation
 
 ### Url Checker
 
@@ -32,7 +32,7 @@ Url Checker returns size and additional information about requested file. This s
 
 ```json
 {
-  "url": "https://oceanprotocol.com/tech-whitepaper.pdf"
+  "url": "https://test.com/raw.json"
 }
 ```
 
@@ -101,14 +101,17 @@ Report endpoints sends an email via SendGrid. Requires `SENDGRID_API_KEY` set as
 }
 ```
 
-## 🎁 Contributing
+## Attribution
 
-See the page titled "[Ways to Contribute](https://docs.oceanprotocol.com/concepts/contributing/)" in the Ocean Protocol documentation.
+This library is based in the [Ocean Protocol](https://oceanprotocol.com) [Commons](https://github.com/oceanprotocol/commons)
+It keeps the same Apache v2 License and adds some improvements. See [NOTICE file](NOTICE).
 
-## 🏛 License
+## License
 
-```text
-Copyright 2019 Ocean Protocol Foundation Ltd.
+```
+Copyright 2020 Keyko GmbH
+This product includes software developed at
+BigchainDB GmbH and Ocean Protocol (https://www.oceanprotocol.com/)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
