@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 import queryString from 'query-string'
 import { History, Location } from 'history'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import Spinner from '../components/atoms/Spinner'
 import Route from '../components/templates/Route'
 import { User } from '../context'
@@ -68,7 +68,7 @@ class Search extends PureComponent<SearchProps, SearchState> {
     }
 
     private searchAssets = async () => {
-        const { ocean } = this.context
+        const { sdk } = this.context
         const { offset, currentPage, searchTerm, searchCategories } = this.state
 
         const queryValues =
@@ -90,7 +90,7 @@ class Search extends PureComponent<SearchProps, SearchState> {
         }
 
         try {
-            const search = await ocean.assets.query(searchQuery)
+            const search = await sdk.assets.query(searchQuery)
             this.setState({
                 results: search.results,
                 totalResults: search.totalResults,

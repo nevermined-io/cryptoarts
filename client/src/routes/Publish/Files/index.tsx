@@ -6,7 +6,7 @@ import React, {
     ChangeEvent
 } from 'react'
 import axios from 'axios'
-import { Logger, File } from '@keyko-io/nevermined-sdk-js'
+import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
 import shortid from 'shortid'
 import Button from '../../../components/atoms/Button'
 import Help from '../../../components/atoms/Form/Help'

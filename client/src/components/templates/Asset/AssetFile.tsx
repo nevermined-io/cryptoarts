@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Logger, DDO, File } from '@keyko-io/nevermined-sdk-js'
+import { Logger, DDO, File } from '@nevermined-io/nevermined-sdk-js'
 import filesize from 'filesize'
 import Button from '../../atoms/Button'
 import Spinner from '../../atoms/Spinner'
@@ -55,13 +55,13 @@ export default class AssetFile extends PureComponent<
             action: 'purchaseAsset-start ' + ddo.id
         })
 
-        const { ocean } = this.context
+        const { sdk } = this.context
 
         try {
-            const accounts = await ocean.accounts.list()
+            const accounts = await sdk.accounts.list()
             const service = ddo.findServiceByType('access')
 
-            const agreements = await ocean.keeper.conditions.accessSecretStoreCondition.getGrantedDidByConsumer(
+            const agreements = await sdk.keeper.conditions.accessSecretStoreCondition.getGrantedDidByConsumer(
                 accounts[0].id
             )
             const agreement = agreements.find((element: any) => {
@@ -73,7 +73,7 @@ export default class AssetFile extends PureComponent<
             if (agreement) {
                 ;({ agreementId } = agreement)
             } else {
-                agreementId = await ocean.assets
+                agreementId = await sdk.assets
                     .order(ddo.id, service.index, accounts[0])
                     .next((step: number) => this.setState({ step }))
             }
@@ -81,7 +81,7 @@ export default class AssetFile extends PureComponent<
             // manually add another step here for better UX
             this.setState({ step: 4 })
 
-            const path = await ocean.assets.consume(
+            const path = await sdk.assets.consume(
                 agreementId,
                 ddo.id,
                 service.index,

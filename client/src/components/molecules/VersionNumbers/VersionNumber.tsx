@@ -1,5 +1,5 @@
 import React from 'react'
-import { OceanPlatformTechStatus } from '@keyko-io/nevermined-sdk-js'
+import { PlatformTechStatus } from '@nevermined-io/nevermined-sdk-js'
 import slugify from '@sindresorhus/slugify'
 import Spinner from '../../atoms/Spinner'
 import styles from './VersionNumber.module.scss'
@@ -14,7 +14,7 @@ const VersionNumber = ({
     name: string
     version?: string
     network?: string
-    status?: OceanPlatformTechStatus
+    status?: PlatformTechStatus
     commit?: string
 }) =>
     version ? (
@@ -42,7 +42,7 @@ const VersionNumber = ({
         </>
     ) : (
         <span>
-            {status === OceanPlatformTechStatus.Loading ? (
+            {status === PlatformTechStatus.Loading ? (
                 <Spinner className={styles.spinner} small />
             ) : (
                 status || 'Could not get version'

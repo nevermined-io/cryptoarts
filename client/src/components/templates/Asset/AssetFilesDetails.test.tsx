@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { render } from '@testing-library/react'
-import { DDO } from '@keyko-io/nevermined-sdk-js'
+import { DDO } from '@nevermined-io/nevermined-sdk-js'
 import AssetFilesDetails from './AssetFilesDetails'
 
 describe('AssetFilesDetails', () => {

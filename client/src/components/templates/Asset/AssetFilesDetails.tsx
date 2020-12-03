@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { DDO, File } from '@keyko-io/nevermined-sdk-js'
+import { DDO, File } from '@nevermined-io/nevermined-sdk-js'
 import AssetFile from './AssetFile'
 import { User } from '../../../context'
 import Web3message from '../../organisms/Web3message'

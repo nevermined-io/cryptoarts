@@ -1,6 +1,6 @@
 import React from 'react'
 import Moment from 'react-moment'
-import { DDO, MetaData, File } from '@keyko-io/nevermined-sdk-js'
+import { DDO, MetaData, File } from '@nevermined-io/nevermined-sdk-js'
 import shortid from 'shortid'
 import Markdown from '../../atoms/Markdown'
 import CategoryLink from '../../atoms/CategoryLink'

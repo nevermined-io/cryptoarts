@@ -1,4 +1,4 @@
-import { MetaData } from '@keyko-io/nevermined-sdk-js'
+import { MetaData } from '@nevermined-io/nevermined-sdk-js'
 
 const AssetModel: MetaData = {
     // OEP-08 Attributes

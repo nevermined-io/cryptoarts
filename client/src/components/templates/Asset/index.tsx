@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DDO, MetaData, Logger } from '@keyko-io/nevermined-sdk-js'
+import { DDO, MetaData, Logger } from '@nevermined-io/nevermined-sdk-js'
 import Route from '../Route'
 import Spinner from '../../atoms/Spinner'
 import { User } from '../../../context'
@@ -42,8 +42,8 @@ class Asset extends Component<AssetProps, AssetState> {
 
     private async getData() {
         try {
-            const { ocean } = this.context
-            const ddo = await ocean.assets.resolve(this.props.match.params.did)
+            const { sdk } = this.context
+            const ddo = await sdk.assets.resolve(this.props.match.params.did)
             const { attributes } = ddo.findServiceByType('metadata')
             this.setState({
                 ddo,

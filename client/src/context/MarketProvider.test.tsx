@@ -8,7 +8,7 @@ describe('MarketProvider', () => {
     it('renders without crashing', () => {
         const { getByTestId } = render(
             <User.Provider value={userMockConnected}>
-                <MarketProvider ocean={userMockConnected.ocean as any}>
+                <MarketProvider nevermined={userMockConnected.sdk as any}>
                     <Market.Consumer>
                         {market => (
                             <div data-testid="hello">{market.network}</div>

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import {
-    OceanPlatformVersions,
-    OceanPlatformTechStatus,
+    PlatformVersions,
+    PlatformTechStatus,
     Logger
-} from '@keyko-io/nevermined-sdk-js'
+} from '@nevermined-io/nevermined-sdk-js'
 import axios from 'axios'
 import { version } from '../../../../package.json'
 import styles from './index.module.scss'
@@ -19,7 +19,7 @@ interface VersionNumbersProps {
     account: string
 }
 
-export interface VersionNumbersState extends OceanPlatformVersions {
+export interface VersionNumbersState extends PlatformVersions {
     commons: {
         name: string
         version: string
@@ -29,7 +29,7 @@ export interface VersionNumbersState extends OceanPlatformVersions {
         name: string
         version: string
         network: string
-        status: OceanPlatformTechStatus
+        status: PlatformTechStatus
     }
 }
 
@@ -54,23 +54,23 @@ export default class VersionNumbers extends PureComponent<
             network: this.commonsNetwork,
             version: this.commonsVersion
         },
-        squid: {
-            name: 'Squid-js',
-            status: OceanPlatformTechStatus.Loading
+        sdk: {
+            name: 'sdk-js',
+            status: PlatformTechStatus.Loading
         },
-        aquarius: {
+        metadata: {
             name: 'Aquarius',
-            status: OceanPlatformTechStatus.Loading
+            status: PlatformTechStatus.Loading
         },
-        brizo: {
+        gateway: {
             name: 'Brizo',
-            status: OceanPlatformTechStatus.Loading
+            status: PlatformTechStatus.Loading
         },
         faucet: {
             name: 'Faucet',
             version: '',
             network: '',
-            status: OceanPlatformTechStatus.Loading
+            status: PlatformTechStatus.Loading
         },
         status: {
             ok: false,
@@ -101,18 +101,20 @@ export default class VersionNumbers extends PureComponent<
     }
 
     private async getOceanVersions() {
-        const { ocean } = this.context
-        // wait until ocean object is properly populated
-        if (ocean.versions === undefined) return
+        const { sdk } = this.context
+        // wait until sdk object is properly populated
+        if (sdk.versions === undefined) return
 
-        const response = await ocean.versions.get()
-        const { squid, brizo, aquarius, status } = response
+            console.log(sdk)
+
+        const response = await sdk.versions.get()
+        const { sdk: _sdk, gateway, metadata, status } = response
 
         this.setState({
             ...this.state,
-            squid,
-            brizo,
-            aquarius,
+            sdk: _sdk,
+            gateway,
+            metadata,
             status
         })
     }
@@ -135,7 +137,7 @@ export default class VersionNumbers extends PureComponent<
                     ...this.state.faucet,
                     version,
                     network,
-                    status: OceanPlatformTechStatus.Working
+                    status: PlatformTechStatus.Working
                 }
             })
         } catch (error) {
@@ -144,14 +146,14 @@ export default class VersionNumbers extends PureComponent<
     }
 
     private MinimalOutput = () => {
-        const { commons, squid, brizo, aquarius } = this.state
+        const { commons, sdk, gateway, metadata } = this.state
 
         return (
             <Market.Consumer>
                 {market => (
                     <p className={styles.versionsMinimal}>
                         <a
-                            title={`${squid.name} v${squid.version}\n${brizo.name} v${brizo.version}\n${aquarius.name} v${aquarius.version}`}
+                            title={`${sdk.name} v${sdk.version}\n${gateway.name} v${gateway.version}\n${metadata.name} v${metadata.version}`}
                             href="/about"
                         >
                             v{commons.version}{' '}
@@ -170,7 +172,7 @@ export default class VersionNumbers extends PureComponent<
             <this.MinimalOutput />
         ) : (
             <>
-                <h2 className={styles.versionsTitle} id="#oceanversions">
+                <h2 className={styles.versionsTitle} id="#neverminedversions">
                     Ocean Components Status
                 </h2>
                 <VersionStatus status={this.state.status} />

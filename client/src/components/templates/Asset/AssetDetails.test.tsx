@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { DDO, MetaData } from '@keyko-io/nevermined-sdk-js'
+import { DDO, MetaData } from '@nevermined-io/nevermined-sdk-js'
 import { BrowserRouter as Router } from 'react-router-dom'
 import AssetDetails, { datafilesLine } from './AssetDetails'
 

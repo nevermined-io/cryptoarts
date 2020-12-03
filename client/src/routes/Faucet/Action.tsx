@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { FaucetResponse } from '../../ocean'
+import { FaucetResponse } from '../../nevermined'
 import Button from '../../components/atoms/Button'
 import Spinner from '../../components/atoms/Spinner'
 import { User } from '../../context'
 
 import styles from './Action.module.scss'
-import { Ocean } from '@keyko-io/nevermined-sdk-js'
+import { Nevermined } from '@nevermined-io/nevermined-sdk-js'
 import { ActionError, ActionSuccess } from './ActionResponse'
 
 const ActionMarkup = ({
@@ -38,20 +38,20 @@ const ActionMarkup = ({
 }
 
 export default function Action({ token }: { token: string }) {
-    const { ocean, requestFromFaucet } = useContext(User)
+    const { sdk, requestFromFaucet } = useContext(User)
     const [isLoading, setIsLoading] = useState(false)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
     const [trxHash, setTrxHash] = useState('')
 
-    async function getOcean(oceanInstance: Ocean) {
-        const accounts = await oceanInstance.accounts.list()
+    async function getNevermined(sdkInstance: Nevermined) {
+        const accounts = await sdkInstance.accounts.list()
         const account = accounts[0]
-        const success = await oceanInstance.accounts.requestTokens(account, 100)
+        const success = await sdkInstance.accounts.requestTokens(account, 100)
 
         success
-            ? setSuccess('Received 100 Ocean Tokens.')
-            : setError('Failed getting Ocean Tokens.')
+            ? setSuccess('Received 100 Nevermined Tokens.')
+            : setError('Failed getting Nevermined Tokens.')
     }
 
     async function getEther(requestFromFaucet: () => Promise<FaucetResponse>) {
@@ -76,7 +76,7 @@ export default function Action({ token }: { token: string }) {
         setIsLoading(true)
 
         token === 'OCEAN'
-            ? await getOcean(ocean as Ocean)
+            ? await getNevermined(sdk as Nevermined)
             : await getEther(requestFromFaucet as () => Promise<FaucetResponse>)
 
         setIsLoading(false)

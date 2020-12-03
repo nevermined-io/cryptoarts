@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import { DDO } from '@keyko-io/nevermined-sdk-js'
+import { DDO } from '@nevermined-io/nevermined-sdk-js'
 import { StateMock } from '@react-mock/state'
 import ReactGA from 'react-ga'
 import { User, Market } from '../../../context'

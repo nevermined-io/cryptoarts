@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import Web3 from 'web3'
-import { Ocean, Account } from '@keyko-io/nevermined-sdk-js'
+import { Nevermined, Account } from '@nevermined-io/nevermined-sdk-js'
 import { User } from '.'
-import { provideOcean, requestFromFaucet, FaucetResponse } from '../ocean'
+import { provideNevermined, requestFromFaucet, FaucetResponse } from '../nevermined'
 import { nodeUri } from '../config'
 import MarketProvider from './MarketProvider'
 import { MetamaskProvider } from './MetamaskProvider'
@@ -24,7 +24,7 @@ interface UserProviderState {
     }
     network: string
     web3: Web3
-    ocean: Ocean
+    sdk: Nevermined
     requestFromFaucet(account: string): Promise<FaucetResponse>
     loginMetamask(): Promise<any>
     loginBurnerWallet(): Promise<any>
@@ -44,7 +44,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
                 web3
             },
             () => {
-                this.loadOcean()
+                this.loadNevermined()
             }
         )
     }
@@ -60,7 +60,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
                 web3
             },
             () => {
-                this.loadOcean()
+                this.loadNevermined()
             }
         )
     }
@@ -82,12 +82,12 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
         network: '',
         web3: DEFAULT_WEB3,
         account: '',
-        ocean: {} as any,
+        sdk: {} as any,
         requestFromFaucet: () => requestFromFaucet(''),
         loginMetamask: () => this.loginMetamask(),
         loginBurnerWallet: () => this.loginBurnerWallet(),
         logoutBurnerWallet: () => this.logoutBurnerWallet(),
-        message: 'Connecting to Ocean...'
+        message: 'Connecting to Nevermined...'
     }
 
     private accountsInterval: any = null
@@ -121,14 +121,14 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
                 web3: DEFAULT_WEB3
             },
             () => {
-                this.loadOcean()
+                this.loadNevermined()
             }
         )
     }
 
-    private loadOcean = async () => {
-        const { ocean } = await provideOcean(this.state.web3)
-        this.setState({ ocean, isLoading: false }, () => {
+    private loadNevermined = async () => {
+        const { sdk } = await provideNevermined(this.state.web3)
+        this.setState({ sdk, isLoading: false }, () => {
             this.initNetworkPoll()
             this.initAccountsPoll()
             this.fetchNetwork()
@@ -153,7 +153,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
                             web3
                         },
                         () => {
-                            this.loadOcean()
+                            this.loadNevermined()
                         }
                     )
                 } else {
@@ -170,7 +170,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
     }
 
     private fetchAccounts = async () => {
-        const { ocean, isLogged } = this.state
+        const { sdk, isLogged } = this.state
 
         if (isLogged) {
             let accounts
@@ -185,7 +185,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
                 // await this.unlockAccounts()
             }
 
-            accounts = await ocean.accounts.list()
+            accounts = await sdk.accounts.list()
 
             if (accounts.length > 0) {
                 const account = await accounts[0].getId()
@@ -214,10 +214,10 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
     }
 
     private fetchNetwork = async () => {
-        const { ocean } = this.state
+        const { sdk } = this.state
         let network = 'Unknown'
-        if (ocean.keeper) {
-            network = await ocean.keeper.getNetworkName()
+        if (sdk.keeper) {
+            network = await sdk.keeper.getNetworkName()
         }
         network !== this.state.network && this.setState({ network })
     }
@@ -225,7 +225,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
     public render() {
         return (
             <User.Provider value={this.state}>
-                <MarketProvider ocean={this.state.ocean}>
+                <MarketProvider nevermined={this.state.sdk}>
                     {this.props.children}
                 </MarketProvider>
             </User.Provider>

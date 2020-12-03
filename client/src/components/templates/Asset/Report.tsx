@@ -1,6 +1,6 @@
 import React, { PureComponent, ChangeEvent } from 'react'
 import axios from 'axios'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import Modal from '../../atoms/Modal'
 import styles from './Report.module.scss'
 import Button from '../../atoms/Button'

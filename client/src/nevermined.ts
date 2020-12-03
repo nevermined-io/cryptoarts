@@ -1,28 +1,28 @@
-import { Ocean, Logger } from '@keyko-io/nevermined-sdk-js'
+import { Nevermined, Logger } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 
 import {
-    aquariusUri,
-    brizoUri,
-    brizoAddress,
+    metadataUri,
+    gatewayUri,
+    gatewayAddress,
     faucetUri,
     nodeUri,
     secretStoreUri,
     verbose
 } from './config'
 
-export async function provideOcean(web3Provider: Web3) {
+export async function provideNevermined(web3Provider: Web3) {
     const config = {
         web3Provider,
         nodeUri,
-        aquariusUri,
-        brizoUri,
-        brizoAddress,
+        metadataUri,
+        gatewayUri,
+        gatewayAddress,
         secretStoreUri,
         verbose
     }
-    const ocean: any = await Ocean.getInstance(config)
-    return { ocean }
+    const sdk: any = await Nevermined.getInstance(config)
+    return { sdk }
 }
 
 //

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File } from '@keyko-io/nevermined-sdk-js'
+import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 import Route from '../../components/templates/Route'
 import Form from '../../components/atoms/Form/Form'
@@ -267,8 +267,8 @@ class Publish extends Component<{}, PublishState> {
             publishingStep: 0
         })
 
-        const { ocean } = this.context
-        const account = await ocean.accounts.list()
+        const { sdk } = this.context
+        const account = await sdk.accounts.list()
 
         // remove `found` attribute from all File objects
         // in a new array
@@ -279,7 +279,7 @@ class Publish extends Component<{}, PublishState> {
 
         const newAsset = {
             // OEP-08 Attributes
-            // https://github.com/oceanprotocol/OEPs/tree/master/8
+            // https://github.com/sdkprotocol/OEPs/tree/master/8
             main: Object.assign(AssetModel.main, {
                 type: this.state.type,
                 name: this.state.name,
@@ -305,7 +305,8 @@ class Publish extends Component<{}, PublishState> {
         }
 
         try {
-            const asset = await this.context.ocean.assets
+            console.log(this.context, newAsset, account)
+            const asset = await this.context.sdk.assets
                 .create(newAsset, account[0])
                 .next((publishingStep: number) =>
                     this.setState({ publishingStep })

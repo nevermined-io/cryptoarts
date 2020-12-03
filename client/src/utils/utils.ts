@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 
 export function formatBytes(a: number, b: number) {
     if (a === 0) return '0 Bytes'

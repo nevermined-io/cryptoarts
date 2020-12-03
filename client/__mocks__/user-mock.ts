@@ -1,4 +1,4 @@
-import oceanMock from './ocean-mock'
+import sdkMock from './sdk-mock'
 
 const userMock = {
     isLogged: false,
@@ -7,7 +7,7 @@ const userMock = {
     isWeb3Capable: false,
     account: '',
     web3: {},
-    ...oceanMock,
+    ...sdkMock,
     balance: { eth: 0, ocn: 0 },
     network: '',
     requestFromFaucet: jest.fn(),
@@ -23,7 +23,7 @@ const userMockConnected = {
     isWeb3Capable: true,
     account: '0xxxxxx',
     web3: {},
-    ...oceanMock,
+    ...sdkMock,
     balance: { eth: 0, ocn: 0 },
     network: '',
     requestFromFaucet: jest.fn(),

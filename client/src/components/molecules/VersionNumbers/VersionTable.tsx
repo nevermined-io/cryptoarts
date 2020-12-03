@@ -7,9 +7,9 @@ import VersionNumber from './VersionNumber'
 import {
     serviceUri,
     nodeUri,
-    aquariusUri,
-    brizoUri,
-    brizoAddress,
+    metadataUri,
+    gatewayUri,
+    gatewayAddress,
     secretStoreUri,
     faucetUri
 } from '../../../config'
@@ -17,9 +17,9 @@ import {
 const commonsConfig = {
     serviceUri,
     nodeUri,
-    aquariusUri,
-    brizoUri,
-    brizoAddress,
+    metadataUri,
+    gatewayUri,
+    gatewayAddress,
     secretStoreUri,
     faucetUri
 }

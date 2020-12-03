@@ -7,7 +7,7 @@ export const User = React.createContext({
     isLoading: false,
     account: '',
     web3: {},
-    ocean: {},
+    sdk: {},
     balance: {
         eth: 0,
         ocn: 0

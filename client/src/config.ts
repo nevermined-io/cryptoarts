@@ -5,21 +5,27 @@ export const serviceUri =
     process.env.REACT_APP_SERVICE_URI || 'http://localhost:4000'
 
 //
-// OCEAN REMOTE CONNECTIONS
+// NEVERMINED REMOTE CONNECTIONS
 //
-export const aquariusUri = process.env.REACT_APP_AQUARIUS_URI || "http://aquarius:5000"
-export const brizoAddress = process.env.REACT_APP_BRIZO_ADDRESS || "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
-export const brizoUri = process.env.REACT_APP_BRIZO_URI || "http://localhost:8030"
-export const faucetUri = process.env.REACT_APP_FAUCET_URI || "http://localhost:3001"
-export const nodeUri = process.env.REACT_APP_NODE_URI || "http://localhost:8545"
-export const secretStoreUri = process.env.REACT_APP_SECRET_STORE_URI || "http://localhost:12001"
+export const metadataUri =
+    process.env.REACT_APP_AQUARIUS_URI || "http://aquarius:5000"
+export const gatewayAddress =
+    process.env.REACT_APP_BRIZO_ADDRESS || "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
+export const gatewayUri =
+    process.env.REACT_APP_BRIZO_URI || "http://localhost:8030"
+export const faucetUri =
+    process.env.REACT_APP_FAUCET_URI || "http://localhost:3001"
+export const nodeUri =
+    process.env.REACT_APP_NODE_URI || "http://localhost:8545"
+export const secretStoreUri =
+    process.env.REACT_APP_SECRET_STORE_URI || "http://localhost:12001"
 
 //
 // APP CONFIG
 //
 export const verbose = true
 export const analyticsId =
-    process.env.REACT_APP_ANALYTICS_ID || 'UA-157167513-2'
+    process.env.REACT_APP_ANALYTICS_ID || '---'
 
 export const showChannels =
     process.env.REACT_APP_SHOW_CHANNELS === 'true' || false

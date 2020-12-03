@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import AssetTeaser from '../molecules/AssetTeaser'
@@ -26,10 +26,10 @@ export default class AssetsUser extends PureComponent<
     }
 
     private async searchOcean() {
-        const { account, ocean } = this.context
+        const { account, sdk } = this.context
 
         if (account) {
-            ocean.keeper.didRegistry.contract.getPastEvents(
+            sdk.keeper.didRegistry.contract.getPastEvents(
                 'DIDAttributeRegistered',
                 {
                     filter: { _owner: account },
@@ -43,7 +43,7 @@ export default class AssetsUser extends PureComponent<
                     } else {
                         const results = []
                         for (const event of events) {
-                            const ddo = await ocean.assets.resolve(
+                            const ddo = await sdk.assets.resolve(
                                 `did:nv:${event.returnValues._did.substring(2)}`
                             )
                             results.push(ddo)

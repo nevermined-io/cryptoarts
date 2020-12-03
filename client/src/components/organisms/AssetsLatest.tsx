@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import AssetTeaser from '../molecules/AssetTeaser'
@@ -25,7 +25,7 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
     }
 
     private getLatestAssets = async () => {
-        const { ocean } = this.context
+        const { sdk } = this.context
 
         const searchQuery = {
             offset: 15,
@@ -37,7 +37,7 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
         }
 
         try {
-            const search = await ocean.assets.query(searchQuery)
+            const search = await sdk.assets.query(searchQuery)
             this.setState({
                 latestAssets: search.results,
                 isLoadingLatest: false

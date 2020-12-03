@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Logger, Ocean } from '@keyko-io/nevermined-sdk-js'
+import { Logger, Nevermined } from '@nevermined-io/nevermined-sdk-js'
 import { Market, User } from '.'
 import formPublish from '../data/form-publish.json'
 
@@ -10,7 +10,7 @@ const categories =
     []
 
 interface MarketProviderProps {
-    ocean: Ocean
+    nevermined: Nevermined
 }
 
 interface MarketProviderState {
@@ -38,9 +38,9 @@ export default class MarketProvider extends PureComponent<
     }
 
     public async componentDidUpdate(prevProps: any) {
-        // Using ocean prop instead of getting it from context to be able to compare.
+        // Using nevermined prop instead of getting it from context to be able to compare.
         // Cause there is no `prevContext`.
-        if (prevProps.ocean !== this.props.ocean) {
+        if (prevProps.nevermined !== this.props.nevermined) {
             await this.getTotalAssets()
             await this.getMarketNetwork()
             await this.checkCorrectUserNetwork()
@@ -58,8 +58,8 @@ export default class MarketProvider extends PureComponent<
         }
 
         try {
-            const { ocean } = this.props
-            const search = await ocean.assets.query(searchQuery)
+            const { nevermined } = this.props
+            const search = await nevermined.assets.query(searchQuery)
             this.setState({ totalAssets: search.totalResults })
         } catch (error) {
             Logger.error('Error', error.message)
@@ -68,9 +68,9 @@ export default class MarketProvider extends PureComponent<
 
     private getMarketNetwork = async () => {
         try {
-            const { ocean } = this.props
+            const { nevermined } = this.props
             // Set desired network to whatever Brizo is running in
-            const brizo = await ocean.brizo.getVersionInfo()
+            const brizo = await nevermined.gateway.getVersionInfo()
             const network =
                 brizo.network.charAt(0).toUpperCase() + brizo.network.slice(1)
             this.setState({ network })

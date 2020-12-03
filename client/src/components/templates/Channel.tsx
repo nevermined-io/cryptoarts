@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import { History } from 'history'
 import Spinner from '../../components/atoms/Spinner'
 import Route from '../../components/templates/Route'
@@ -53,7 +53,7 @@ export default class Channel extends PureComponent<ChannelProps, ChannelState> {
     }
 
     private getChannelAssets = async () => {
-        const { ocean } = this.context
+        const { sdk } = this.context
         const { offset, currentPage } = this.state
 
         const searchQuery = {
@@ -68,7 +68,7 @@ export default class Channel extends PureComponent<ChannelProps, ChannelState> {
         }
 
         try {
-            const search = await ocean.assets.query(searchQuery)
+            const search = await sdk.assets.query(searchQuery)
             this.setState({
                 results: search.results,
                 totalResults: search.totalResults,

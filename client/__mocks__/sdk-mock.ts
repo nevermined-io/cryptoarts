@@ -1,5 +1,5 @@
-const oceanMock = {
-    ocean: {
+const sdkMock = {
+    sdk: {
         accounts: {
             list: () => ['xxx', 'xxx']
         },
@@ -73,4 +73,4 @@ const oceanMock = {
     }
 }
 
-export default oceanMock
+export default sdkMock

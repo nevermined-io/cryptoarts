@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../context'
-import { Logger } from '@keyko-io/nevermined-sdk-js'
+import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import Spinner from '../atoms/Spinner'
 import AssetTeaser from '../molecules/AssetTeaser'
 import styles from './ChannelTeaser.module.scss'
@@ -38,7 +38,7 @@ export default class ChannelTeaser extends Component<
     }
 
     private getChannelAssets = async () => {
-        const { ocean } = this.context
+        const { sdk } = this.context
 
         const searchQuery = {
             offset: 2,
@@ -52,7 +52,7 @@ export default class ChannelTeaser extends Component<
         }
 
         try {
-            const search = await ocean.assets.query(searchQuery)
+            const search = await sdk.assets.query(searchQuery)
             this.setState({
                 channelAssets: search.results,
                 isLoadingChannel: false
