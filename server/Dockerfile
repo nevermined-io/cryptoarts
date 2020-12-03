@@ -1,5 +1,5 @@
 FROM node:11-alpine
-LABEL maintainer="Ocean Protocol <devops@oceanprotocol.com>"
+LABEL maintainer="Nevermined <root@nevermined.io>"
 
 WORKDIR /app/backend/
 
@@ -9,4 +9,3 @@ RUN npm install && \
     npm run build
 
 ENTRYPOINT ["npm", "run", "serve"]
-

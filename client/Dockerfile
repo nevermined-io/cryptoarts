@@ -1,5 +1,5 @@
 FROM node:11-alpine
-LABEL maintainer="Ocean Protocol <devops@oceanprotocol.com>"
+LABEL maintainer="Nevermined <root@nevermined.io>"
 
 RUN apk add --no-cache --update \
     bash \
@@ -25,4 +25,3 @@ ENV LISTEN_ADDRESS='0.0.0.0'
 ENV LISTEN_PORT='3000'
 
 ENTRYPOINT ["/app/frontend/scripts/docker-entrypoint.sh"]
-

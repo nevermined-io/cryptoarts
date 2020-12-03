@@ -1,8 +1,10 @@
-[![banner](https://raw.githubusercontent.com/keyko-io/assets/master/images/logo/small/keyko_logo@2x-100.jpg)](https://keyko.io)
+[![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
 
-<h1 align="center">Commons</h1>
+# Nevermined Marketplace
 
-> Marketplace front-end and backend server to explore, download, and publish open data sets.
+> Marketplace application explore, download, and publish data with access and compute services
+
+> [nevermined.io](https://nevermined.io)
 
 ---
 
@@ -29,7 +31,7 @@ If you're a developer and want to contribute to, or want to utilize this marketp
 
 This repo contains a client and a server, both written in TypeScript:
 
-- **client**: React app setup with [Nevermined SDK js](https://github.com/keyko-io/nevermined-sdk-js), bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+- **client**: React app setup with [Nevermined SDK JS](https://github.com/nevermined-io/sdk-js), bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 - **server**: Node.js app, utilizing [Express](https://expressjs.com). The server provides various microservices, like remote file checking. The endpoints are documented in [server Readme](server/).
 
 To spin up both, the client and the server in a watch mode for local development, execute:
@@ -43,14 +45,14 @@ Open [http://localhost:3000](http://localhost:3000) to view the client in the br
 
 ### Use with Nevermined Tools
 
-If you prefer to connect to locally running components instead of remote connections to Ocean's Nile network, you can spin up [`Nevermined Tools`](https://github.com/keyko-io/nevermined-tools) and use a local Spree network:
+If you prefer to run locally all the Nevermined stack, you can spin up [`Nevermined Tools`](https://github.com/nevermined-io/tools) and use a local network (named `Spree`):
 
 ```bash
-git clone git@github.com:keyko-io/nevermined-tools.git
+git clone git@github.com:nevermined-io/tools.git nevermined-tools
 cd nevermined-tools
 
 # startup with local Spree node
-./start_nevermined.sh  --no-commons
+./start_nevermined.sh
 ```
 
 Then set [environment variables](#️-environment-variables) to use those local connections.
@@ -61,9 +63,9 @@ Finally, you need to copy the generated contract artifacts out of the Docker con
 ./scripts/keeper.sh
 ```
 
-The script will wait for all contracts to be generated in the `keeper-contracts` Docker container, then will copy the artifacts in place.
+The script will wait for all contracts to be generated in the `nevermined-contracts` Docker container, then will copy the artifacts in place.
 
-If you are on macOS, you need to additionally tweak your `/etc/hosts` file so Brizo can connect to Aquarius. This is only required on macOS and is a [known limitation of Docker for Mac](https://docs.docker.com/docker-for-mac/networking/#known-limitations-use-cases-and-workarounds):
+If you are on macOS, you need to additionally tweak your `/etc/hosts` file so Gateway can connect to the Metadata api. This is only required on macOS and is a [known limitation of Docker for Mac](https://docs.docker.com/docker-for-mac/networking/#known-limitations-use-cases-and-workarounds):
 
 ```bash
 sudo vi /etc/hosts
@@ -72,10 +74,10 @@ sudo vi /etc/hosts
 127.0.0.1    metadata
 ```
 
-Then use this host for the local Aquarius url in the client config:
+Then use this host for the local Metadata url in the client config:
 
 ```bash
-REACT_APP_AQUARIUS_URI="http://metadata:5000"
+REACT_APP_METADATA_URI="http://metadata:5000"
 ```
 
 ### Environment Variables
@@ -218,7 +220,7 @@ See the [CHANGELOG.md](./CHANGELOG.md) file. This file is auto-generated during 
 
 ## Attribution
 
-This library is based in the [Ocean Protocol](https://oceanprotocol.com) [Commons](https://github.com/oceanprotocol/commons)
+This application is based in the [Ocean Protocol](https://oceanprotocol.com) [Commons](https://github.com/oceanprotocol/commons)
 It keeps the same Apache v2 License and adds some improvements. See [NOTICE file](NOTICE).
 
 ## License
