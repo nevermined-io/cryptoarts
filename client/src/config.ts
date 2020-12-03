@@ -8,7 +8,7 @@ export const serviceUri =
 // NEVERMINED REMOTE CONNECTIONS
 //
 export const metadataUri =
-    process.env.REACT_APP_AQUARIUS_URI || "http://aquarius:5000"
+    process.env.REACT_APP_AQUARIUS_URI || "http://metadata:5000"
 export const gatewayAddress =
     process.env.REACT_APP_BRIZO_ADDRESS || "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
 export const gatewayUri =

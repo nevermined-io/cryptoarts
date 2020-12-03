@@ -305,7 +305,6 @@ class Publish extends Component<{}, PublishState> {
         }
 
         try {
-            console.log(this.context, newAsset, account)
             const asset = await this.context.sdk.assets
                 .create(newAsset, account[0])
                 .next((publishingStep: number) =>
