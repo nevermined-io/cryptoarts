@@ -16,18 +16,7 @@ export default function Footer() {
             <aside className={styles.stats}>
                 <Content wide>
                     <p>
-                        Online since March 2019.
-                        {market.totalAssets > 0 &&
-                            ` With a total of ${market.totalAssets} registered assets.`}
-                    </p>
-                    <p className={styles.aicommons}>
-                        Proud supporter of{' '}
-                        <a
-                            href="https://aicommons.com/?utm_source=commons.oceanprotocol.com"
-                            title="AI Commons"
-                        >
-                            <AiCommons />
-                        </a>
+                        {market.totalAssets > 0 && `Nevermined has ${market.totalAssets} registered assets.`}
                     </p>
                     <VersionNumbers account={user.account} minimal />
                 </Content>

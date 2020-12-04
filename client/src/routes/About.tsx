@@ -19,7 +19,7 @@ const About = () => {
             <Content>
                 <p>
                     Commons allows you to access thousands of datasets for free
-                    that have been registered on the Ocean Protocol{' '}
+                    that have been registered on the Nevermined{' '}
                     <a href="https://docs.oceanprotocol.com/concepts/pacific-network/">
                         {market.network} Network
                     </a>{' '}
@@ -33,18 +33,8 @@ const About = () => {
 
                 <ul>
                     <li>
-                        <a href="https://blog.oceanprotocol.com/the-commons-marketplace-in-pacific-network-4bcf2f595721">
-                            Blog: The Commons Marketplace in Pacific Network →
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://blog.oceanprotocol.com/the-commons-data-marketplace-c57a44288314">
-                            Blog: The Commons Marketplace →
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/oceanprotocol/commons">
-                            Check out <code>oceanprotocol/commons</code> on
+                        <a href="https://github.com/nevermined-io/marketplace">
+                            Check out <code>nevermined-io/marketplace</code> on
                             GitHub →
                         </a>
                     </li>
