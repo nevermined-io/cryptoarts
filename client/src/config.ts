@@ -29,8 +29,7 @@ export const analyticsId =
 
 export const showChannels =
     process.env.REACT_APP_SHOW_CHANNELS === 'true' || false
-export const allowPricing =
-    process.env.REACT_APP_ALLOW_PRICING === 'true' || false
+export const allowPricing = true
 export const showRequestTokens =
     process.env.REACT_APP_SHOW_REQUEST_TOKENS_BUTTON === 'true' || false
 // https://ipfs.github.io/public-gateway-checker/

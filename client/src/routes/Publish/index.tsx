@@ -39,10 +39,10 @@ interface PublishState {
 if (allowPricing) {
     ;(steps as any)[0].fields.price = {
         label: 'Price',
-        placeholder: 'Price in Ocean tokens',
+        placeholder: 'Price in tokens',
         type: 'string',
         required: true,
-        help: 'Enter the price of assets in Ocean tokens.'
+        help: 'Enter the price of assets in tokens.'
     }
 }
 
