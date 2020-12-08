@@ -1,6 +1,6 @@
-[![banner](https://raw.githubusercontent.com/keyko-io/assets/master/images/logo/small/keyko_logo@2x-100.jpg)](https://keyko.io)
+[![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
 
-<h1 align="center">Commons: Server</h1>
+# Nevermined Marketplace Server
 
 This folder contains server component written in TypeScript using [Express](https://expressjs.com). The server provides various microservices.
 
