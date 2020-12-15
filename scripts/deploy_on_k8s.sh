@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -z "${TRAVIS_TAG}" ]; then
-  echo "Variable \$TRAVIS_TAG not set or empty. Skiping deploying new version on k8s"
+if [ -z "${TAG}" ]; then
+  echo "Variable \$TAG not set or empty. Skiping deploying new version on k8s"
   exit 0
 fi
-if ! [[ "${TRAVIS_TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-  echo "Variable \$TRAVIS_TAG does not match with vx.y.z format. Skiping deploying new version on k8s"
+if ! [[ "${TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "Variable \$TAG does not match with vx.y.z format. Skiping deploying new version on k8s"
   exit 0
 fi
 
@@ -38,7 +38,7 @@ EOF
 
 # Patch deployed versions in k8s cluster
 /tmp/kubectl patch deployment -n pacific-ocean marketplace-client-commons -p\
- "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"marketplace-commons\",\"image\":\"oceanprotocol/commons_client:${TRAVIS_TAG}\"}]}}}}"
+ "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"nevermined-marketplace-client\",\"image\":\"neverminedio/marketplace_client:${TRAVIS_TAG}\"}]}}}}"
 
 /tmp/kubectl patch deployment -n pacific-ocean marketplace-server-commons -p\
- "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"marketplace-server-commons\",\"image\":\"oceanprotocol/commons_server:${TRAVIS_TAG}\"}]}}}}"
+ "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"nevermined-marketplace-server\",\"image\":\"neverminedio/marketplace_server:${TRAVIS_TAG}\"}]}}}}"

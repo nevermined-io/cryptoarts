@@ -24,5 +24,4 @@ RUN npm run build
 ENV LISTEN_ADDRESS='0.0.0.0'
 ENV LISTEN_PORT='3000'
 
-#ENTRYPOINT ["/app/frontend/scripts/docker-entrypoint.sh"]
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["npm", "run", "start"]

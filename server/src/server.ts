@@ -56,9 +56,8 @@ app.use(compression())
 app.get('/', (req, res) => {
     res.send(
         `<strong><code>
-            🏄‍♀️ <br />
-            Ocean Protocol Commons Server v${pkg.version}<br />
-            <a href="https://github.com/oceanprotocol/commons" style="text-decoration:none;color:#f6388a">github.com/oceanprotocol/commons</a>
+            Nevermined Marketplace Server v${pkg.version}<br />
+            <a href="https://github.com/nevermined-io/marketplace" style="text-decoration:none;color:#190078">github.com/nevermined-io/marketplace</a>
         </code></strong>`
     )
 })

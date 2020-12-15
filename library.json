@@ -1,29 +1,29 @@
 {
-  "name": "commons",
+  "name": "marketplace",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oceanprotocol/commons.git"
+    "url": "https://github.com/nevermined-io/marketplace.git"
   },
   "dependencies": [
     {
-      "name": "keeper-contracts",
-      "version": "~0.12.7"
+      "name": "contracts",
+      "version": "~0.5.2"
     },
     {
-      "name": "brizo",
-      "version": "~0.7.2"
+      "name": "gateway",
+      "version": "~0.5.0"
     },
     {
-      "name": "aquarius",
-      "version": "~1.0.5"
+      "name": "metadata",
+      "version": "~0.2.1"
     },
     {
-      "name": "squid-js",
-      "version": "~1.0.0"
+      "name": "sdk-js",
+      "version": "~0.7.0"
     },
     {
       "name": "faucet",
-      "version": "~0.3.2"
+      "version": "~0.2.1"
     }
   ]
 }
