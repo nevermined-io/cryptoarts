@@ -59,11 +59,11 @@ export default class VersionNumbers extends PureComponent<
             status: PlatformTechStatus.Loading
         },
         metadata: {
-            name: 'Aquarius',
+            name: 'Metadata',
             status: PlatformTechStatus.Loading
         },
         gateway: {
-            name: 'Brizo',
+            name: 'Gateway',
             status: PlatformTechStatus.Loading
         },
         faucet: {
@@ -83,7 +83,7 @@ export default class VersionNumbers extends PureComponent<
     public signal = axios.CancelToken.source()
 
     public componentDidMount() {
-        this.getOceanVersions()
+        this.getNeverminedVersions()
         this.getFaucetVersion()
     }
 
@@ -91,7 +91,7 @@ export default class VersionNumbers extends PureComponent<
         // Workaround: Using account prop instead of getting it from
         // context to be able to compare. Cause there is no `prevContext`.
         if (prevProps.account !== this.props.account) {
-            this.getOceanVersions()
+            this.getNeverminedVersions()
             this.getFaucetVersion()
         }
     }
@@ -100,7 +100,7 @@ export default class VersionNumbers extends PureComponent<
         this.signal.cancel()
     }
 
-    private async getOceanVersions() {
+    private async getNeverminedVersions() {
         const { sdk } = this.context
         // wait until sdk object is properly populated
         if (sdk.versions === undefined) return
@@ -109,6 +109,8 @@ export default class VersionNumbers extends PureComponent<
 
         const response = await sdk.versions.get()
         const { sdk: _sdk, gateway, metadata, status } = response
+
+        
 
         this.setState({
             ...this.state,
@@ -173,7 +175,7 @@ export default class VersionNumbers extends PureComponent<
         ) : (
             <>
                 <h2 className={styles.versionsTitle} id="#neverminedversions">
-                    Ocean Components Status
+                    Nevermined Components Status
                 </h2>
                 <VersionStatus status={this.state.status} />
                 <VersionTable data={this.state} />

@@ -14,7 +14,7 @@ const About = () => {
     return (
         <Route
             title="About"
-            description={`A marketplace to find and publish open data sets in the Ocean ${market.network} Network.`}
+            description={`A marketplace to find and publish open data sets in the Nevermined ${market.network} Network.`}
         >
             <Content>
                 <p>

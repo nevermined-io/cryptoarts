@@ -20,12 +20,12 @@ const stateMockIncomplete = {
         name: 'Squid-js',
         version: undefined
     },
-    aquarius: {
-        name: 'Aquarius',
+    metadata: {
+        name: 'Metadata',
         version: undefined
     },
-    brizo: {
-        name: 'Brizo',
+    gateway: {
+        name: 'Gateway',
         version: undefined,
         contracts: undefined,
         network: undefined,
