@@ -27,8 +27,8 @@ export default class Header extends PureComponent {
                             <path fillRule="evenodd" clipRule="evenodd" d="M184.343 203.548L0 37.131V-131L184.315 35.391V-131L368.657 35.417L549.586 -131V37.131L368.657 203.548L184.343 37.157V203.548Z" fill="url(#paint0_linear)"/>
                             <defs>
                                 <linearGradient id="paint0_linear" x1="0" y1="-131" x2="560.817" y2="-110.973" gradientUnits="userSpaceOnUse">
-                                    <stop stopColor="#7834F9"/>
-                                    <stop offset="1" stopColor="#67CFF9"/>
+                                    <stop stopColor="#7834f9"/>
+                                    <stop offset="1" stopColor="#67cff9"/>
                                 </linearGradient>
                             </defs>
                         </svg>
