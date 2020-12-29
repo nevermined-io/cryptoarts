@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ReactComponent as Logo } from '@oceanprotocol/art/logo/logo.svg'
 import AccountStatus from '../molecules/AccountStatus'
 import styles from './Header.module.scss'
 

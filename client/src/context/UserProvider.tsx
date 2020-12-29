@@ -20,7 +20,7 @@ interface UserProviderState {
     account: string
     balance: {
         eth: number
-        ocn: number
+        nevermined: number
     }
     network: string
     web3: Web3
@@ -77,7 +77,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
         isLoading: true,
         balance: {
             eth: 0,
-            ocn: 0
+            nevermined: 0
         },
         network: '',
         web3: DEFAULT_WEB3,
@@ -207,9 +207,10 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
 
     private fetchBalance = async (account: Account) => {
         const balance = await account.getBalance()
-        const { eth, ocn } = balance
-        if (eth !== this.state.balance.eth || ocn !== this.state.balance.ocn) {
-            this.setState({ balance: { eth, ocn } })
+        console.log(balance)
+        const { eth, nevermined } = balance
+        if (eth !== this.state.balance.eth || nevermined !== this.state.balance.nevermined) {
+            this.setState({ balance: { eth, nevermined } })
         }
     }
 

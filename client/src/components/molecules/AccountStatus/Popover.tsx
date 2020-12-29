@@ -38,7 +38,7 @@ export default class Popover extends PureComponent<{
                                     ETH
                                 </span>
                                 <span className={styles.balance}>
-                                    <strong>{balance.ocn}</strong> NEVERMINED
+                                    <strong>{balance.nevermined}</strong> NEVERMINED
                                 </span>
                             </div>
                         )}

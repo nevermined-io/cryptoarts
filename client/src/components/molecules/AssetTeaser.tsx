@@ -63,7 +63,7 @@ const AssetTeaser = ({
                             <span>
                                 {Web3.utils.fromWei(main.price.toString())}
                             </span>{' '}
-                            NVM {/* NVM NEVERMINED */}
+                            NEVERMINED {/* NVM NEVERMINED */}
                         </div>
                     )}
                 </footer>

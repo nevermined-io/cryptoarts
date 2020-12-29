@@ -111,7 +111,6 @@ export default class VersionNumbers extends PureComponent<
         const { sdk: _sdk, gateway, metadata, status } = response
 
         
-
         this.setState({
             ...this.state,
             sdk: _sdk,

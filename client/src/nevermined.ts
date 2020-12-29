@@ -17,6 +17,7 @@ export async function provideNevermined(web3Provider: Web3) {
         nodeUri,
         metadataUri,
         gatewayUri,
+        faucetUri,
         gatewayAddress,
         secretStoreUri,
         verbose
