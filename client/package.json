@@ -13,7 +13,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
-    "@nevermined-io/nevermined-sdk-js": "^0.6.0",
+    "@nevermined-io/nevermined-sdk-js": "^0.7.1",
     "@oceanprotocol/art": "^2.2.0",
     "@oceanprotocol/typographies": "^0.1.0",
     "@sindresorhus/slugify": "^0.9.1",

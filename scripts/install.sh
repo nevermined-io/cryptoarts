@@ -10,3 +10,6 @@ do
     npm install
     cd ..
 done
+
+cp -r client/node_modules/jose/dist/browser/* client/node_modules/jose
+
