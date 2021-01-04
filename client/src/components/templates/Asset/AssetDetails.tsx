@@ -52,7 +52,7 @@ export default function AssetDetails({ metadata, ddo }: AssetDetailsProps) {
         },
         {
             name: 'Price',
-            value: `${price} OCEAN`,
+            value: `${price} NEVERMINED`,
             show: price !== '0'
         }
     ]

@@ -20,7 +20,7 @@ const VersionNumber = ({
     version ? (
         <>
             <a
-                href={`https://github.com/oceanprotocol/${slugify(
+                href={`https://github.com/nevermined-io/${slugify(
                     name
                 )}/releases/tag/v${version}`}
                 title="Go to release on GitHub"
@@ -29,7 +29,7 @@ const VersionNumber = ({
             </a>
             {commit && (
                 <a
-                    href={`https://github.com/oceanprotocol/${slugify(
+                    href={`https://github.com/nevermined-io/${slugify(
                         name
                     )}/commit/${commit}`}
                     className={styles.commit}

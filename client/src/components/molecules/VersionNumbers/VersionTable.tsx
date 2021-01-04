@@ -55,7 +55,7 @@ export const VersionTableContracts = ({
                     .map(key => {
                         const submarineLink = `https://submarine.${
                             network === 'pacific'
-                                ? 'oceanprotocol'
+                                ? 'nevermined-io'
                                 : `${network}.dev-ocean`
                         }.com/address/${contracts[key]}`
 

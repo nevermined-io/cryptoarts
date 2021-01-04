@@ -8,7 +8,7 @@ import content from '../../data/web3message.json'
 export default class Web3message extends PureComponent<{ extended?: boolean }> {
     public static contextType = Market
 
-    private messageOceanNetwork = () =>
+    private messageNeverminedNetwork = () =>
         this.context.network === 'Pacific'
             ? content.wrongNetworkPacific
             : this.context.network === 'Nile'
@@ -27,7 +27,7 @@ export default class Web3message extends PureComponent<{ extended?: boolean }> {
                         dangerouslySetInnerHTML={{
                             __html:
                                 !networkMatch && !user.isBurner
-                                    ? this.messageOceanNetwork()
+                                    ? this.messageNeverminedNetwork()
                                     : !user.isLogged
                                     ? content.noAccount
                                     : user.isBurner

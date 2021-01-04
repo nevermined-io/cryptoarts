@@ -31,7 +31,7 @@ const VersionTableRow = ({ value }: { value: any }) => {
                         </button>
                     )}
                     <a
-                        href={`https://github.com/oceanprotocol/${slugify(
+                        href={`https://github.com/nevermined-io/${slugify(
                             value.name || value.software
                         )}`}
                     >

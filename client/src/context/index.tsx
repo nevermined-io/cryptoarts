@@ -10,7 +10,7 @@ export const User = React.createContext({
     sdk: {},
     balance: {
         eth: 0,
-        ocn: 0
+        nevermined: 0
     },
     network: '',
     requestFromFaucet: () => {

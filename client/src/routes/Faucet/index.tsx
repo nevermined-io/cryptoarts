@@ -15,15 +15,15 @@ function Faucet() {
         <Route
             title="Faucet"
             description={`Shower yourself with some ETH ${
-                showRequestTokens ? 'or OCEAN' : ''
-            } for Ocean's ${network} network.`}
+                showRequestTokens ? 'or NEVERMINED' : ''
+            } for Nevermined's ${network} network.`}
         >
             <Content>
                 <Web3message />
 
                 <div className={styles.actions}>
                     <Action token="ETH" />
-                    {showRequestTokens && <Action token="OCEAN" />}
+                    {showRequestTokens && <Action token="NEVERMINED" />}
                 </div>
             </Content>
         </Route>

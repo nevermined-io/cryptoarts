@@ -69,10 +69,10 @@ export default class MarketProvider extends PureComponent<
     private getMarketNetwork = async () => {
         try {
             const { nevermined } = this.props
-            // Set desired network to whatever Brizo is running in
-            const brizo = await nevermined.gateway.getVersionInfo()
+            // Set desired network to whatever Gateway is running in
+            const gateway = await nevermined.gateway.getVersionInfo()
             const network =
-                brizo.network.charAt(0).toUpperCase() + brizo.network.slice(1)
+                gateway.network.charAt(0).toUpperCase() + gateway.network.slice(1)
             this.setState({ network })
         } catch (error) {
             Logger.error('Error', error.message)

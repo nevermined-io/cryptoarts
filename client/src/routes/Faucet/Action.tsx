@@ -75,7 +75,7 @@ export default function Action({ token }: { token: string }) {
     const handleAction = async () => {
         setIsLoading(true)
 
-        token === 'OCEAN'
+        token === 'NEVERMINED'
             ? await getNevermined(sdk as Nevermined)
             : await getEther(requestFromFaucet as () => Promise<FaucetResponse>)
 

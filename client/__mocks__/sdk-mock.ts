@@ -49,12 +49,12 @@ const sdkMock = {
                         name: 'Squid-js',
                         status: 'Working'
                     },
-                    aquarius: {
-                        name: 'Aquarius',
+                    metatada: {
+                        name: 'Metadata',
                         status: 'Working'
                     },
-                    brizo: {
-                        name: 'Brizo',
+                    gateway: {
+                        name: 'Gateway',
                         network: 'Nile',
                         status: 'Working',
                         contracts: {

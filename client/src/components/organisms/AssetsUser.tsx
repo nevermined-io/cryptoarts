@@ -18,14 +18,14 @@ export default class AssetsUser extends PureComponent<
 
     public componentDidMount() {
         this._isMounted = true
-        this._isMounted && this.searchOcean()
+        this._isMounted && this.searchNevermined()
     }
 
     public componentWillUnmount() {
         this._isMounted = false
     }
 
-    private async searchOcean() {
+    private async searchNevermined() {
         const { account, sdk } = this.context
 
         if (account) {

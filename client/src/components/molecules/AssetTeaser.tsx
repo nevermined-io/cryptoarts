@@ -28,7 +28,7 @@ const AssetTeaser = ({
                     className={styles.date}
                     title={`Published on ${main.datePublished}`}
                 >
-                    {moment(main.datePublished, 'YYYYMMDD').fromNow()}
+                    {moment(main.datePublished).fromNow()}
                 </div>
             </Link>
         </article>
@@ -39,12 +39,12 @@ const AssetTeaser = ({
             }
         >
             <Link to={`/asset/${asset.id}`}>
-                {additionalInformation.categories && !minimal && (
+                {/* {additionalInformation.categories && !minimal && (
                     <CategoryImage
                         dimmed
                         category={additionalInformation.categories[0]}
                     />
-                )}
+                )} */}
                 <h1>{main.name}</h1>
 
                 {!minimal && (
@@ -55,15 +55,15 @@ const AssetTeaser = ({
                     </div>
                 )}
                 <footer className={styles.assetFooter}>
-                    {additionalInformation.categories && (
+                    {/* {additionalInformation.categories && (
                         <div>{additionalInformation.categories[0]}</div>
-                    )}
+                    )} */}
                     {allowPricing && (
                         <div className={styles.price}>
                             <span>
                                 {Web3.utils.fromWei(main.price.toString())}
                             </span>{' '}
-                            OCEAN
+                            NEVERMINED {/* NVM NEVERMINED */}
                         </div>
                     )}
                 </footer>
