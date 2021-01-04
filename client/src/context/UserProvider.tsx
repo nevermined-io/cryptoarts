@@ -207,7 +207,6 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
 
     private fetchBalance = async (account: Account) => {
         const balance = await account.getBalance()
-        console.log(balance)
         const { eth, nevermined } = balance
         if (eth !== this.state.balance.eth || nevermined !== this.state.balance.nevermined) {
             this.setState({ balance: { eth, nevermined } })

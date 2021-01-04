@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Market, User } from '../../context'
 import Content from '../atoms/Content'
-import { ReactComponent as AiCommons } from '../../img/aicommons.svg'
 import styles from './Footer.module.scss'
 
 import meta from '../../data/meta.json'

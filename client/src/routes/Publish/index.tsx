@@ -283,6 +283,7 @@ class Publish extends Component<{}, PublishState> {
             main: Object.assign(AssetModel.main, {
                 type: this.state.type,
                 name: this.state.name,
+                datePublished: new Date().toISOString().split('.')[0] + 'Z',
                 dateCreated:
                     new Date(this.state.dateCreated)
                         .toISOString()
@@ -306,7 +307,7 @@ class Publish extends Component<{}, PublishState> {
 
         try {
             const asset = await this.context.sdk.assets
-                .create(newAsset, account[0])
+                .create(newAsset as any, account[0])
                 .next((publishingStep: number) =>
                     this.setState({ publishingStep })
                 )

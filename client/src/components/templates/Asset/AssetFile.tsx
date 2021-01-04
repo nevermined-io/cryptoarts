@@ -87,7 +87,8 @@ export default class AssetFile extends PureComponent<
                 service.index,
                 accounts[0],
                 '',
-                index
+                index,
+                false
             )
             Logger.log('path', path)
             ReactGA.event({
@@ -143,7 +144,7 @@ export default class AssetFile extends PureComponent<
                                 className={styles.buttonMain}
                                 // weird 0 hack so TypeScript is happy
                                 onClick={() =>
-                                    this.purchaseAsset(ddo, index || 0)
+                                    this.purchaseAsset(ddo, index || 3)
                                 }
                                 disabled={!isLogged || !market.networkMatch}
                                 name="Download"
