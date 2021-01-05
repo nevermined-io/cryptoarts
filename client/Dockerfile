@@ -1,4 +1,4 @@
-FROM node:11-alpine
+FROM node:12-alpine
 LABEL maintainer="Nevermined <root@nevermined.io>"
 
 RUN apk add --no-cache --update \
@@ -18,6 +18,8 @@ RUN npm install -g npm serve \
     && npm cache clean --force
 
 COPY . /app/frontend
+
+RUN cp -r /app/frontend/node_modules/jose/dist/browser/* /app/frontend/node_modules/jose
 RUN npm run build
 
 # Default ENV values
