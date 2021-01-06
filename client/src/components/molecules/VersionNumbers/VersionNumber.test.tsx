@@ -4,16 +4,16 @@ import VersionNumber from './VersionNumber'
 
 describe('VersionNumber', () => {
     it('renders without crashing', () => {
-        const { container } = render(<VersionNumber name="Commons" />)
+        const { container } = render(<VersionNumber name="Marketplace" />)
         expect(container.firstChild).toBeInTheDocument()
     })
 
     it('renders with all props set', () => {
         const { container } = render(
             <VersionNumber
-                name="Commons"
+                name="Marketplace"
                 version="6.6.6"
-                network="Nile"
+                network="Spree"
                 commit="xxxxxxxxxxx"
             />
         )

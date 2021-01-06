@@ -20,7 +20,7 @@ interface VersionNumbersProps {
 }
 
 export interface VersionNumbersState extends PlatformVersions {
-    commons: {
+    marketplace: {
         name: string
         version: string
         network: string
@@ -40,19 +40,19 @@ export default class VersionNumbers extends PureComponent<
     public static contextType = User
 
     // construct values which are not part of any response
-    public commonsVersion =
+    public marketplaceVersion =
         process.env.NODE_ENV === 'production' ? version : `${version}-dev`
 
-    public commonsNetwork = faucetUri.includes('localhost')
+    public marketplaceNetwork = faucetUri.includes('localhost')
         ? 'Spree'
         : new URL(nodeUri).hostname.split('.')[0]
 
     // define a minimal default state to fill UI
     public state: VersionNumbersState = {
-        commons: {
-            name: 'Commons',
-            network: this.commonsNetwork,
-            version: this.commonsVersion
+        marketplace: {
+            name: 'Marketplace',
+            network: this.marketplaceVersion,
+            version: this.marketplaceNetwork
         },
         sdk: {
             name: 'sdk-js',
@@ -147,7 +147,7 @@ export default class VersionNumbers extends PureComponent<
     }
 
     private MinimalOutput = () => {
-        const { commons, sdk, gateway, metadata } = this.state
+        const { marketplace, sdk, gateway, metadata } = this.state
 
         return (
             <Market.Consumer>
@@ -157,7 +157,7 @@ export default class VersionNumbers extends PureComponent<
                             title={`${sdk.name} v${sdk.version}\n${gateway.name} v${gateway.version}\n${metadata.name} v${metadata.version}`}
                             href="/about"
                         >
-                            v{commons.version}{' '}
+                            v{marketplace.version}{' '}
                             {market.network && `(${market.network})`}
                         </a>
                     </p>

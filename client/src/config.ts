@@ -1,5 +1,5 @@
 //
-// commons-server connection
+// marketplace-server connection
 //
 export const serviceUri =
     process.env.REACT_APP_SERVICE_URI || 'http://localhost:4000'

@@ -2,7 +2,7 @@ import React from 'react'
 import useCollapse from 'react-collapsed'
 import slugify from '@sindresorhus/slugify'
 import styles from './VersionTableRow.module.scss'
-import { VersionTableContracts, VersionTableCommons } from './VersionTable'
+import { VersionTableContracts, VersionTableMarketplace } from './VersionTable'
 import VersionNumber from './VersionNumber'
 import { ReactComponent as Caret } from '../../../img/caret.svg'
 
@@ -25,7 +25,7 @@ const VersionTableRow = ({ value }: { value: any }) => {
         <>
             <tr>
                 <td>
-                    {(value.name === 'Commons' || value.contracts) && (
+                    {(value.name === 'Marketplace' || value.contracts) && (
                         <button className={styles.handle} {...getToggleProps()}>
                             <Caret className={isOpen ? styles.open : ''} />
                         </button>
@@ -48,10 +48,10 @@ const VersionTableRow = ({ value }: { value: any }) => {
                     />
                 </td>
             </tr>
-            {value.name === 'Commons' && (
+            {value.name === 'Marketplace' && (
                 <tr {...getCollapseProps()}>
                     <td colSpan={2}>
-                        <VersionTableCommons />
+                        <VersionTableMarketplace />
                     </td>
                 </tr>
             )}
