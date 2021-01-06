@@ -39,11 +39,11 @@ export const VersionTableContracts = ({
         <tbody>
             <tr>
                 <td>
-                    <strong>Keeper Contracts</strong>
+                    <strong>Contracts</strong>
                 </td>
                 <td>
                     <VersionNumber
-                        name="Keeper Contracts"
+                        name="Contracts"
                         version={keeperVersion}
                     />
                 </td>
