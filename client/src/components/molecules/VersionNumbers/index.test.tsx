@@ -12,12 +12,12 @@ afterEach(() => {
 })
 
 const stateMockIncomplete = {
-    commons: {
-        name: 'Commons',
+    marketplace: {
+        name: 'Marketplace',
         version: undefined
     },
-    squid: {
-        name: 'Squid-js',
+    sdk: {
+        name: 'sdk-js',
         version: undefined
     },
     metadata: {

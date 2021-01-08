@@ -65,7 +65,7 @@ export default class Report extends PureComponent<
             to: process.env.REACT_APP_REPORT_EMAIL,
             from: 'info@nevermined.io',
             subject: `[Report] ${this.props.title}`,
-            html: `<p>The following data set was reported:</p><p><strong>${this.props.title}</strong><br /><a style="color:#ff4092;text-decoration:none" href="https://commons.oceanprotocol.com/asset/${this.props.did}"><code>${this.props.did}</code></a></p><blockquote><em>${this.state.comment}</em></blockquote>`
+            html: `<p>The following data set was reported:</p><p><strong>${this.props.title}</strong><br /><a style="color:#ff4092;text-decoration:none" href="https://marketplace.nevermined.com/asset/${this.props.did}"><code>${this.props.did}</code></a></p><blockquote><em>${this.state.comment}</em></blockquote>`
         }
 
         try {

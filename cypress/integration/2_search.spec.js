@@ -8,7 +8,7 @@ describe('Search', () => {
 
     it('should search for assets from homepage', () => {
         // Fill search phrase
-        cy.get('input#search').type('Commons Integration Test')
+        cy.get('input#search').type('Marketplace Integration Test')
         // Start search
         cy.get('button')
             .contains('Search')

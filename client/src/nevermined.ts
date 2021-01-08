@@ -46,7 +46,7 @@ export async function requestFromFaucet(account: string) {
             },
             body: JSON.stringify({
                 address: account,
-                agent: 'commons'
+                agent: 'marketplace'
             })
         })
         return response.json()

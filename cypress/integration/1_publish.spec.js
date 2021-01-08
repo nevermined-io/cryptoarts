@@ -11,7 +11,7 @@ describe('Publish', () => {
 
     it('should publish https:// file', () => {
         // Fill title
-        cy.get('input#name').type('Commons Integration Test')
+        cy.get('input#name').type('Marketplace Integration Test')
         // Open Add a file form
         cy.get('button')
             .contains('+ From URL')
@@ -79,7 +79,7 @@ describe('Publish', () => {
 
     it('should publish ipfs:// file', () => {
         // Fill title
-        cy.get('input#name').type('Commons Integration IPFS Test')
+        cy.get('input#name').type('Marketplace Integration IPFS Test')
         // Open Add a file form
         cy.get('button')
             .contains('+ From URL')

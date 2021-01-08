@@ -18,16 +18,16 @@ const About = () => {
         >
             <Content>
                 <p>
-                    Commons allows you to access thousands of datasets for free
+                    Marketplace allows you to access thousands of datasets for free
                     that have been registered on the Nevermined{' '}
                     <a href="https://docs.oceanprotocol.com/concepts/pacific-network/">
                         {market.network} Network
                     </a>{' '}
                     and it is targeted at enthusiastic data scientists with some
                     crypto experience. If you are looking for quality data, you
-                    can easily use the Commons to search for and find publicly
+                    can easily use the Marketplace to search for and find publicly
                     available datasets that are free of charge. If you are
-                    interested in sharing your data, you can use the Commons to
+                    interested in sharing your data, you can use the Marketplace to
                     publish data into the {market.network} Network.
                 </p>
 

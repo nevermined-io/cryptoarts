@@ -14,7 +14,7 @@ import {
     faucetUri
 } from '../../../config'
 
-const commonsConfig = {
+const marketplaceConfig = {
     serviceUri,
     nodeUri,
     metadataUri,
@@ -39,11 +39,11 @@ export const VersionTableContracts = ({
         <tbody>
             <tr>
                 <td>
-                    <strong>Keeper Contracts</strong>
+                    <strong>Contracts</strong>
                 </td>
                 <td>
                     <VersionNumber
-                        name="Keeper Contracts"
+                        name="Contracts"
                         version={keeperVersion}
                     />
                 </td>
@@ -76,10 +76,10 @@ export const VersionTableContracts = ({
     </table>
 )
 
-export const VersionTableCommons = () => (
+export const VersionTableMarketplace = () => (
     <table>
         <tbody>
-            {Object.entries(commonsConfig).map(([key, value]) => (
+            {Object.entries(marketplaceConfig).map(([key, value]) => (
                 <tr key={key}>
                     <td>
                         <code className={styles.label}>{key}</code>
