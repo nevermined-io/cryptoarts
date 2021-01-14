@@ -47,8 +47,8 @@ const sdkMock = {
         versions: {
             get: jest.fn(() =>
                 Promise.resolve({
-                    squid: {
-                        name: 'Squid-js',
+                    sdk: {
+                        name: 'sdk-js',
                         status: 'Working'
                     },
                     metatada: {

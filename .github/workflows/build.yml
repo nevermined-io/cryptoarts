@@ -22,9 +22,6 @@ jobs:
         sudo echo "127.0.0.1  nevermined-metadata" | sudo tee -a /etc/hosts
         git clone https://github.com/nevermined-io/tools nevermined-tools
         cd nevermined-tools
-        export METADATA_VERSION=latest
-        export GATEWAY_VERSION=latest
-        export KEEPER_VERSION=latest        
         export KEEPER_OWNER_ROLE_ADDRESS="0xe2DD09d719Da89e5a3D0F2549c7E24566e947260"
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
         sudo bash -x ./start_nevermined.sh  --no-marketplace --no-faucet --latest 2>&1 > start_nevermined.log &
@@ -44,7 +41,7 @@ jobs:
         IPFS_GATEWAY_URI: "https://ipfs.infura.io"
         FAUCET_TIMESPAN: 0
       run: |
-        ./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
+        ./scripts/nevermined-tools.sh
         ./scripts/test.sh
         ./scripts/build.sh
     - name: Run e2e test
