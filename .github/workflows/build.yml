@@ -19,7 +19,7 @@ jobs:
     - name: Run tools (network)
       run: |
         sudo chmod go+r /etc/hosts
-        sudo echo "127.0.0.1  nevermined-metadata" | sudo tee -a /etc/hosts
+        sudo echo "127.0.0.1  metadata" | sudo tee -a /etc/hosts
         git clone https://github.com/nevermined-io/tools nevermined-tools
         cd nevermined-tools
         export KEEPER_OWNER_ROLE_ADDRESS="0xe2DD09d719Da89e5a3D0F2549c7E24566e947260"
