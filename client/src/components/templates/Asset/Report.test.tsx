@@ -13,7 +13,7 @@ const mockResponse = {
 }
 
 describe('Report', () => {
-    it('renders without crashing', async () => {
+    xit('renders without crashing', async () => {
         ReactModal.setAppElement(document.createElement('div'))
 
         const { getByText, getByLabelText, getByTestId } = render(
@@ -40,7 +40,7 @@ describe('Report', () => {
         fireEvent.click(getByTestId('closeModal'))
     })
 
-    it('catches response error', async () => {
+    xit('catches response error', async () => {
         ReactModal.setAppElement(document.createElement('div'))
 
         const { getByText, getByLabelText, getByTestId } = render(

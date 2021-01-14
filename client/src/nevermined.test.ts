@@ -6,7 +6,7 @@ describe('nevermined', () => {
 
     it('provideNevermined can be called', async () => {
         const response = await provideNevermined(web3)
-        expect(response.nevermined).toBeTruthy()
+        expect(response.sdk).toBeTruthy()
     })
 
     it('requestFromFaucet can be called', async () => {

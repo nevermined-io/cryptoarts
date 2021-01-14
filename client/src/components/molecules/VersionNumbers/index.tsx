@@ -108,6 +108,7 @@ export default class VersionNumbers extends PureComponent<
             console.log(sdk)
 
         const response = await sdk.versions.get()
+        console.log(response    )
         const { sdk: _sdk, gateway, metadata, status } = response
 
         

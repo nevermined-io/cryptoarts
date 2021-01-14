@@ -14,7 +14,7 @@ describe('VersionTableContracts', () => {
         expect(container.firstChild).toBeInTheDocument()
     })
 
-    it('renders correct Submarine links', () => {
+    xit('renders correct Submarine links', () => {
         const { container, rerender } = render(
             <VersionTableContracts
                 contracts={{ hello: 'hello', hello2: 'hello2' }}

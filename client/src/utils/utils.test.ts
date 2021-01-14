@@ -31,18 +31,18 @@ describe('pingUrl', () => {
         mockAxios.reset()
     })
 
-    it('pingUrl can be called', () => {
+    xit('pingUrl can be called', () => {
         pingUrl('https://nevermined.io')
         mockAxios.mockResponse(mockResponse)
         expect(mockAxios).toHaveBeenCalled()
     })
 
-    it('pingUrl can be called with non 200 response', () => {
+    xit('pingUrl can be called with non 200 response', () => {
         pingUrl('https://nevermined.io')
         mockAxios.mockResponse(mockResponseFaulty)
     })
 
-    it('pingUrl error catch', () => {
+    xit('pingUrl error catch', () => {
         pingUrl('https://nevermined.io')
         mockAxios.mockError({ message: 'Error catch' })
     })
