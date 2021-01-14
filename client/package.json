@@ -64,10 +64,10 @@
     "@types/shortid": "^0.0.29",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "eslint": "^7.17.0",
+    "eslint": "^6.8.0",
     "jest-mock-axios": "^3.2.0",
     "node-sass": "^4.14.1",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^3.4.4",
     "source-map-explorer": "^2.5.1",
     "typescript": "^3.9.7"
   },
