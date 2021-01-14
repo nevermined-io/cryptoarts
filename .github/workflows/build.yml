@@ -56,7 +56,7 @@ jobs:
         REACT_APP_IPFS_NODE_URI: ${{ secrets.ipfsNodeUri }}
         IPFS_GATEWAY_URI: "https://ipfs.infura.io"
         FAUCET_TIMESPAN: 0
-      uses: cypress-io/github-action@v1
+      uses: cypress-io/github-action@v2
       with:
         start: npm start
         browser: chrome
