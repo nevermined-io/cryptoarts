@@ -8,7 +8,7 @@ export const serviceUri =
 // NEVERMINED REMOTE CONNECTIONS
 //
 export const metadataUri =
-    process.env.REACT_APP_METADATA_URI || "http://metadata:5000"
+    process.env.REACT_APP_METADATA_URI || "http://nevermined-metadata:5000"
 export const gatewayAddress =
     process.env.REACT_APP_GATEWAY_ADDRESS || "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
 export const gatewayUri =

@@ -278,8 +278,6 @@ class Publish extends Component<{}, PublishState> {
         )
 
         const newAsset = {
-            // OEP-08 Attributes
-            // https://github.com/sdkprotocol/OEPs/tree/master/8
             main: Object.assign(AssetModel.main, {
                 type: this.state.type,
                 name: this.state.name,
