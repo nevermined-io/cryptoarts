@@ -18,7 +18,7 @@
     "@oceanprotocol/typographies": "^0.1.0",
     "@sindresorhus/slugify": "^0.9.1",
     "@truffle/hdwallet-provider": "^1.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bip39": "^3.0.3",
     "classnames": "^2.2.6",
     "ethereum-blockies": "github:MyEtherWallet/blockies",
