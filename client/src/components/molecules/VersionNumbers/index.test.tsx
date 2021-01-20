@@ -59,7 +59,7 @@ const mockResponseFaulty = {
 }
 
 describe('VersionNumbers', () => {
-    it('renders without crashing', () => {
+    xit('renders without crashing', () => {
         const { container, rerender } = render(
             <User.Provider value={userMockConnected}>
                 <VersionNumbers account="0x00000" />
@@ -78,7 +78,7 @@ describe('VersionNumbers', () => {
         expect(mockAxios.get).toHaveBeenCalled()
     })
 
-    it('renders without proper component response', () => {
+    xit('renders without proper component response', () => {
         const { container } = render(
             <User.Provider value={userMockConnected}>
                 <StateMock state={stateMockIncomplete}>

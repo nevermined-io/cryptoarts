@@ -10,7 +10,7 @@ describe('IPFS', () => {
         type: 'image/png'
     })
 
-    it('HTTP API: files can be dropped', async () => {
+    xit('HTTP API: files can be dropped', async () => {
         const { container, getByText } = render(ui)
         expect(container).toBeInTheDocument()
 

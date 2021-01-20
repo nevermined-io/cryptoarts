@@ -65,7 +65,7 @@ describe('Files', () => {
         expect(container.querySelector('.itemForm')).not.toBeInTheDocument()
     })
 
-    it('new IPFS file form can be opened and closed', async () => {
+    xit('new IPFS file form can be opened and closed', async () => {
         const { getByText } = render(ui)
 
         // open
@@ -88,7 +88,7 @@ describe('Files', () => {
         expect(files.length).toBe(0)
     })
 
-    it('item can be added', async () => {
+    xit('item can be added', async () => {
         const { getByText, getByPlaceholderText } = render(ui)
 
         fireEvent.click(getByText('+ From URL'))

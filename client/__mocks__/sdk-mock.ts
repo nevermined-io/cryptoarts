@@ -1,9 +1,11 @@
 const sdkMock = {
-    sdk: {
+    sdk : {
         accounts: {
             list: () => ['xxx', 'xxx']
         },
-        aquarius: {
+        metadata: {
+            name: "metadata",
+            version: "0.1.0",
             queryMetadata: () => {
                 return {
                     results: [],
@@ -45,8 +47,8 @@ const sdkMock = {
         versions: {
             get: jest.fn(() =>
                 Promise.resolve({
-                    squid: {
-                        name: 'Squid-js',
+                    sdk: {
+                        name: 'sdk-js',
                         status: 'Working'
                     },
                     metatada: {

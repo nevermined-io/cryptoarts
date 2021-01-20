@@ -6,14 +6,14 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "CI=false react-scripts --max_old_space_size=4096 build",
-    "test": "react-scripts test --coverage --watchAll=false --silent",
-    "test:watch": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage --watchAll=false --silent --env=./test/custom-env.js",
+    "test:watch": "react-scripts test --coverage --env=./test/custom-env.js",
     "eject": "react-scripts eject",
     "coverage": "cat coverage/lcov.info | codacy-coverage --token 8801f827fe1144ffa85cd7da94f2bbf7",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "dependencies": {
-    "@nevermined-io/nevermined-sdk-js": "^0.7.1",
+    "@nevermined-io/nevermined-sdk-js": "^0.7.4",
     "@oceanprotocol/art": "^2.2.0",
     "@oceanprotocol/typographies": "^0.1.0",
     "@sindresorhus/slugify": "^0.9.1",
@@ -64,10 +64,10 @@
     "@types/shortid": "^0.0.29",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "jest-mock-axios": "^3.2.0",
     "node-sass": "^4.14.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.4.4",
     "source-map-explorer": "^2.5.1",
     "typescript": "^3.9.7"
   },
@@ -82,6 +82,9 @@
     "not op_mini all"
   ],
   "jest": {
+    "moduleNameMapper": {
+      "jose/(.*)": "<rootDir>/node_modules/jose/dist/node/cjs/$1"
+    },
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!src/serviceWorker.ts",

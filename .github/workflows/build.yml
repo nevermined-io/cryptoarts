@@ -20,21 +20,20 @@ jobs:
       run: |
         sudo chmod go+r /etc/hosts
         sudo echo "127.0.0.1  nevermined-metadata" | sudo tee -a /etc/hosts
+        sudo echo "127.0.0.1  metadata" | sudo tee -a /etc/hosts
+        echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
         git clone https://github.com/nevermined-io/tools nevermined-tools
         cd nevermined-tools
-        export METADATA_VERSION=latest
-        export GATEWAY_VERSION=latest
-        export KEEPER_VERSION=latest        
         export KEEPER_OWNER_ROLE_ADDRESS="0xe2DD09d719Da89e5a3D0F2549c7E24566e947260"
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
-        sudo bash -x ./start_nevermined.sh  --no-marketplace --no-faucet --latest 2>&1 > start_nevermined.log &
+        sudo bash -x ./start_nevermined.sh --no-marketplace --latest 2>&1 > start_nevermined.log &
         cd ..
     - name: Run linters
       run: npm run lint
     - name: Run tests
       env:
         REACT_APP_NODE_URI: "http://localhost:8545"
-        REACT_APP_METADATA_URI: "http://localhost:5000"
+        REACT_APP_METADATA_URI: "http://nevermined-metadata:5000"
         REACT_APP_GATEWAY_URI: "http://localhost:8030"
         REACT_APP_SECRET_STORE_URI: "http://localhost:12001"
         REACT_APP_FAUCET_URI: "http://localhost:3001"
@@ -44,13 +43,13 @@ jobs:
         IPFS_GATEWAY_URI: "https://ipfs.infura.io"
         FAUCET_TIMESPAN: 0
       run: |
-        ./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
+        ./scripts/nevermined-tools.sh
         ./scripts/test.sh
         ./scripts/build.sh
     - name: Run e2e test
       env:
         REACT_APP_NODE_URI: "http://localhost:8545"
-        REACT_APP_METADATA_URI: "http://localhost:5000"
+        REACT_APP_METADATA_URI: "http://nevermined-metadata:5000"
         REACT_APP_GATEWAY_URI: "http://localhost:8030"
         REACT_APP_SECRET_STORE_URI: "http://localhost:12001"
         REACT_APP_FAUCET_URI: "http://localhost:3001"
@@ -59,7 +58,7 @@ jobs:
         REACT_APP_IPFS_NODE_URI: ${{ secrets.ipfsNodeUri }}
         IPFS_GATEWAY_URI: "https://ipfs.infura.io"
         FAUCET_TIMESPAN: 0
-      uses: cypress-io/github-action@v1
+      uses: cypress-io/github-action@v2
       with:
         start: npm start
         browser: chrome

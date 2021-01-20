@@ -28,3 +28,5 @@ cypress/videos
 cypress/fixtures/did.txt
 cypress/fixtures/did-ipfs.txt
 artifacts
+
+client/.eslintcache
