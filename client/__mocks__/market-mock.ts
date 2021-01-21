@@ -1,7 +1,7 @@
 const marketMock = {
     totalAssets: 1000,
     categories: ['category'],
-    network: 'Pacific',
+    network: 'Rinkeby',
     networkMatch: true
 }
 

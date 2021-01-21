@@ -11,7 +11,7 @@ export const ActionSuccess = ({
 }) => {
     const { network } = useContext(User)
     const submarineLink = `https://submarine.${
-        network === 'pacific' ? 'oceanprotocol' : `${network}.dev-ocean`
+        network === 'rinkeby' ? 'oceanprotocol' : `${network}.dev-ocean`
     }.com/tx/${trxHash}`
 
     return (

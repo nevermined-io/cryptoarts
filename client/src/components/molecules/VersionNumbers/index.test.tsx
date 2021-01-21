@@ -48,7 +48,7 @@ const mockResponse = {
     data: {
         software: 'Faucet',
         version: '6.6.6',
-        network: 'Pacific'
+        network: 'Rinkeby'
     }
 }
 
