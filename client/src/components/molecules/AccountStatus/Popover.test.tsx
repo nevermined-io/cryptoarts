@@ -26,14 +26,14 @@ describe('Popover', () => {
 
     it('renders correct network', () => {
         const { container } = render(
-            <User.Provider value={{ ...userMockConnected, network: 'Pacific' }}>
+            <User.Provider value={{ ...userMockConnected, network: 'Rinkeby' }}>
                 <Market.Provider value={{ ...marketMock }}>
                     <Popover forwardedRef={() => null} style={{}} />
                 </Market.Provider>
             </User.Provider>
         )
         expect(container.firstChild).toBeInTheDocument()
-        expect(container.firstChild).toHaveTextContent('Connected to Pacific')
+        expect(container.firstChild).toHaveTextContent('Connected to Rinkeby')
     })
 
     it('renders with wrong network', () => {

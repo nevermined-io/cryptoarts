@@ -40,7 +40,7 @@ describe('VersionTableContracts', () => {
         rerender(
             <VersionTableContracts
                 contracts={{ hello: 'hello', hello2: 'hello2' }}
-                network="pacific"
+                network="rinkeby"
                 keeperVersion="6.6.6"
             />
         )

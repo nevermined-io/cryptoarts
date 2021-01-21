@@ -9,12 +9,8 @@ export default class Web3message extends PureComponent<{ extended?: boolean }> {
     public static contextType = Market
 
     private messageNeverminedNetwork = () =>
-        this.context.network === 'Pacific'
-            ? content.wrongNetworkPacific
-            : this.context.network === 'Nile'
-            ? content.wrongNetworkNile
-            : this.context.network === 'Duero'
-            ? content.wrongNetworkDuero
+        this.context.network === 'Rinkeby'
+            ? content.wrongNetworkRinkeby
             : content.wrongNetworkSpree
 
     private Message = () => {

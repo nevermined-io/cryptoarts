@@ -49,12 +49,8 @@ export default class Popover extends PureComponent<{
                                     {network && !market.networkMatch
                                         ? `Please connect to Custom RPC
                                            ${
-                                               market.network === 'Pacific'
-                                                   ? 'https://pacific.oceanprotocol.com'
-                                                   : market.network === 'Nile'
-                                                   ? 'https://nile.dev-ocean.com'
-                                                   : market.network === 'Duero'
-                                                   ? 'https://duero.dev-ocean.com'
+                                               market.network === 'Rinkeby'
+                                                   ?  process.env.REACT_APP_NODE_URI
                                                    : 'http://localhost:8545'
                                            }`
                                         : network &&

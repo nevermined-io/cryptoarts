@@ -19,10 +19,7 @@ const About = () => {
             <Content>
                 <p>
                     Marketplace allows you to access thousands of datasets for free
-                    that have been registered on the Nevermined{' '}
-                    <a href="https://docs.oceanprotocol.com/concepts/pacific-network/">
-                        {market.network} Network
-                    </a>{' '}
+                    that have been registered on the Nevermined{' '}{market.network} Network
                     and it is targeted at enthusiastic data scientists with some
                     crypto experience. If you are looking for quality data, you
                     can easily use the Marketplace to search for and find publicly

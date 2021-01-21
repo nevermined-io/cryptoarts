@@ -19,7 +19,7 @@ describe('Web3message', () => {
 
     it('renders with wrongNetwork message', () => {
         const { container } = render(
-            <User.Provider value={{ ...userMockConnected, network: 'Pacific' }}>
+            <User.Provider value={{ ...userMockConnected, network: 'Rinkeby' }}>
                 <Market.Provider
                     value={{
                         ...marketMock,

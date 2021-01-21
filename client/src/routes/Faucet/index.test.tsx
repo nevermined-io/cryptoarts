@@ -14,7 +14,7 @@ const setup = () => {
         <User.Provider value={userMockConnected}>
             <Market.Provider
                 value={{
-                    network: 'pacific',
+                    network: 'rinkeby',
                     totalAssets: 100,
                     categories: [''],
                     networkMatch: true

@@ -29,7 +29,7 @@ export default class MarketProvider extends PureComponent<
     public state = {
         totalAssets: 0,
         categories,
-        network: 'Pacific',
+        network: 'Rinkeby',
         networkMatch: false
     }
 
