@@ -10,9 +10,9 @@ export const ActionSuccess = ({
     trxHash: string
 }) => {
     const { network } = useContext(User)
-    const submarineLink = `https://submarine.${
-        network === 'rinkeby' ? 'oceanprotocol' : `${network}.dev-ocean`
-    }.com/tx/${trxHash}`
+    const submarineLink = `https://explorer.${
+        network === 'rinkeby' ? 'nevermined' : `${network}.nevermined`
+    }.io/tx/${trxHash}`
 
     return (
         <div className={styles.success}>

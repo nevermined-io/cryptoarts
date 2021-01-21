@@ -56,8 +56,8 @@ export const VersionTableContracts = ({
                         const submarineLink = `https://submarine.${
                             network === 'rinkeby'
                                 ? 'nevermined-io'
-                                : `${network}.dev-ocean`
-                        }.com/address/${contracts[key]}`
+                                : `${network}.nevermined`
+                        }.io/address/${contracts[key]}`
 
                         return (
                             <tr key={key}>

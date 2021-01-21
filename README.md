@@ -60,7 +60,7 @@ Then set [environment variables](#️-environment-variables) to use those local 
 Finally, you need to copy the generated contract artifacts out of the Docker container. To do this, execute this script in another terminal:
 
 ```bash
-./scripts/keeper.sh
+./scripts/nevermined-tools.sh
 ```
 
 The script will wait for all contracts to be generated in the `nevermined-contracts` Docker container, then will copy the artifacts in place.
@@ -84,9 +84,9 @@ REACT_APP_METADATA_URI="http://metadata:5000"
 
 #### Client
 
-The `./client/src/config.ts` file is setup to prioritize environment variables for setting each Ocean component endpoint.
+The `./client/src/config.ts` file is setup to prioritize environment variables for setting each Nevermined component endpoint.
 
-By setting environment variables, you can easily switch between Ocean networks the commons client connects to, without directly modifying `./client/src/config.ts`. This is helpful e.g. for local development so you don't accidentially commit changes to the config file.
+By setting environment variables, you can easily switch between Nevermined networks the commons client connects to, without directly modifying `./client/src/config.ts`. This is helpful e.g. for local development so you don't accidentially commit changes to the config file.
 
 For local development, you can use a `.env.local` file. There's an example file with the most common network configurations preconfigured:
 
@@ -114,8 +114,8 @@ Beside configuring the network endpopints, the client allows to activate some fe
 
 | Env Variable                           | Feature Description                                                                                                                                                      |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `REACT_APP_SHOW_CHANNELS`              | Show the channels feature which shows assets based on a certain tag in a prominent view. This is deeactivated by default and only activated in live Commons deployments. |
-| `REACT_APP_SHOW_REQUEST_TOKENS_BUTTON` | Shows a second button on the `/faucet` route to request Ocean Tokens in addition to Ether. Will only work in Ocean testnets.                                             |
+| `REACT_APP_SHOW_CHANNELS`              | Show the channels feature which shows assets based on a certain tag in a prominent view. This is deeactivated by default and only activated in some deployments. |
+| `REACT_APP_SHOW_REQUEST_TOKENS_BUTTON` | Shows a second button on the `/faucet` route to request Nevermined Tokens in addition to Ether. Will only work in testnets.                                             |
 | `REACT_APP_ALLOW_PRICING`              | Activate pricing feature. Will show a price input during publish flow, and output prices for each data asset.                                                            |
 
 #### More Settings

@@ -33,13 +33,13 @@ const MetaTags = ({
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@oceanprotocol" />
+        <meta name="twitter:creator" content="@nevermined_io" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
 
         {/* Prevent search engine indexing except for live */}
-        {window.location.hostname !== 'commons.oceanprotocol.com' && (
+        {window.location.hostname !== 'marketplace.nevermined.com' && (
             <meta name="robots" content="noindex,nofollow" />
         )}
     </Helmet>
