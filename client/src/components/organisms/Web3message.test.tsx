@@ -24,7 +24,7 @@ describe('Web3message', () => {
                     value={{
                         ...marketMock,
                         networkMatch: false,
-                        network: 'Nile'
+                        network: 'Spree'
                     }}
                 >
                     <Web3message extended />
@@ -32,7 +32,7 @@ describe('Web3message', () => {
             </User.Provider>
         )
         expect(container.firstChild).toHaveTextContent(
-            'Not connected to Nile network'
+            'Not connected to Spree network'
         )
     })
 
