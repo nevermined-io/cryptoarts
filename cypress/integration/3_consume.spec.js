@@ -30,7 +30,7 @@ describe('Consume', () => {
         // to prevent alert poping up
     })
 
-    it('should consume ipfs:// file', () => {
+    xit('should consume ipfs:// file', () => {
         cy.fixture('did-ipfs').then(did => {
             cy.visit(`/asset/${did}`)
         })
