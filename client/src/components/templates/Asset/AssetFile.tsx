@@ -86,7 +86,7 @@ export default class AssetFile extends PureComponent<
                 ddo.id,
                 service.index,
                 accounts[0],
-                '',
+                undefined,
                 index,
                 false
             )
@@ -115,6 +115,7 @@ export default class AssetFile extends PureComponent<
         const { isLogged } = this.context
         const { index, contentType, contentLength } = file
 
+
         return (
             <div className={styles.fileWrap}>
                 <ul key={index} className={styles.file}>
@@ -142,9 +143,8 @@ export default class AssetFile extends PureComponent<
                             <Button
                                 primary
                                 className={styles.buttonMain}
-                                // weird 0 hack so TypeScript is happy
                                 onClick={() =>
-                                    this.purchaseAsset(ddo, index || 3)
+                                    this.purchaseAsset(ddo, index ?? -1)
                                 }
                                 disabled={!isLogged || !market.networkMatch}
                                 name="Download"
