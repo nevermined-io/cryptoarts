@@ -143,7 +143,6 @@ export default class AssetFile extends PureComponent<
                             <Button
                                 primary
                                 className={styles.buttonMain}
-                                // weird 0 hack so TypeScript is happy
                                 onClick={() =>
                                     this.purchaseAsset(ddo, index ?? -1)
                                 }
