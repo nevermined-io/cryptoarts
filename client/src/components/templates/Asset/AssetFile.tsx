@@ -115,8 +115,6 @@ export default class AssetFile extends PureComponent<
         const { isLogged } = this.context
         const { index, contentType, contentLength } = file
 
-        console.log(file)
-        console.log(index)
 
         return (
             <div className={styles.fileWrap}>
