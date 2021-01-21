@@ -1,8 +1,8 @@
 import { MetaData } from '@nevermined-io/nevermined-sdk-js'
 
 const AssetModel: MetaData = {
-    // OEP-08 Attributes
-    // https://github.com/oceanprotocol/OEPs/tree/master/8
+    // Metadata Attributes
+    // https://docs.nevermined.io/architecture/specs/metadata/
     main: {
         type: 'dataset',
         name: '',

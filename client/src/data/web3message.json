@@ -1,6 +1,6 @@
 {
   "noAccount": "No wallet selected. For publishing and downloading an asset you need to use one.",
-  "hasBurnerWallet": "We created a temporary burner wallet for you, allowing you to use all Marketplace functionality without any setup on your side, and without a Web3-capable browser. This wallet will persist in your browser across sessions, but not across different browsers or devices. <strong>Never use this burner wallet to send or receive any tokens.</strong> To personalize your experience and improve your security, <a href='https://docs.oceanprotocol.com/tutorials/metamask-setup/'>migrate to MetaMask</a>.",
+  "hasBurnerWallet": "We created a temporary burner wallet for you, allowing you to use all Marketplace functionality without any setup on your side, and without a Web3-capable browser. This wallet will persist in your browser across sessions, but not across different browsers or devices. <strong>Never use this burner wallet to send or receive any tokens.</strong> To personalize your experience and improve your security migrate to MetaMask.",
   "hasMetaMaskWallet": "Connected with MetaMask to NETWORK. You're a Pro.",
   "wrongNetworkRinkeby": "Not connected to Rinkeby network. Please connect in MetaMask with Custom RPC <code>https://rinkeby.infura.io/v3/52b6d403f7de4757ab9ed23c3778a35b</code>",
   "wrongNetworkSpree": "Not connected to Spree network. Please connect in MetaMask with Custom RPC <code>http://localhost:8545</code>",

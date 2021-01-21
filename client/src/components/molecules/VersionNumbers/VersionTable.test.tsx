@@ -14,38 +14,38 @@ describe('VersionTableContracts', () => {
         expect(container.firstChild).toBeInTheDocument()
     })
 
-    xit('renders correct Submarine links', () => {
+    xit('renders correct explorer links', () => {
         const { container, rerender } = render(
             <VersionTableContracts
                 contracts={{ hello: 'hello', hello2: 'hello2' }}
-                network="duero"
-                keeperVersion="6.6.6"
+                network="rinkeby"
+                keeperVersion="0.6.1"
             />
         )
         expect(container.querySelector('tr:last-child a').href).toMatch(
-            /submarine.duero.dev-ocean/
+            /explorer.rinkeby.nevermined/
         )
 
         rerender(
             <VersionTableContracts
                 contracts={{ hello: 'hello', hello2: 'hello2' }}
-                network="nile"
-                keeperVersion="6.6.6"
+                network="integration"
+                keeperVersion="0.6.1"
             />
         )
         expect(container.querySelector('tr:last-child a').href).toMatch(
-            /submarine.nile.dev-ocean/
+            /explorer.integration.nevermined/
         )
 
         rerender(
             <VersionTableContracts
                 contracts={{ hello: 'hello', hello2: 'hello2' }}
                 network="rinkeby"
-                keeperVersion="6.6.6"
+                keeperVersion="0.6.1"
             />
         )
         expect(container.querySelector('tr:last-child a').href).toMatch(
-            /submarine.oceanprotocol/
+            /explorer.nevermined/
         )
     })
 })
