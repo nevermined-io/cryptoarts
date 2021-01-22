@@ -86,7 +86,7 @@ export default class ChannelTeaser extends Component<
                     ) : channelAssets && channelAssets.length ? (
                         <div className={styles.channelResults}>
                             {channelAssets.map((asset: any) => (
-                                <AssetTeaser key={asset.id} asset={asset} />
+                                <AssetTeaser key={asset.id} asset={asset} tokenSymbol={this.context.tokenSymbol}/>
                             ))}
                         </div>
                     ) : (

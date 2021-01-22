@@ -97,7 +97,7 @@ export default class Channel extends PureComponent<ChannelProps, ChannelState> {
         ) : this.state.results && this.state.results.length ? (
             <div className={styles.results}>
                 {this.state.results.map((asset: any) => (
-                    <AssetTeaser key={asset.id} asset={asset} />
+                    <AssetTeaser key={asset.id} asset={asset} tokenSymbol={this.context.tokenSymbol}/>
                 ))}
             </div>
         ) : (

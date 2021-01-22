@@ -50,6 +50,7 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
 
     public render() {
         const { latestAssets, isLoadingLatest } = this.state
+        console.log(this.context)
 
         return (
             <>
@@ -64,6 +65,7 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
                                     key={asset.id}
                                     asset={asset}
                                     minimal
+                                    tokenSymbol= {this.context.tokenSymbol}
                                 />
                             ))}
                         </div>

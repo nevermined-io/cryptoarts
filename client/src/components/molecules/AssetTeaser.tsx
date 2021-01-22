@@ -11,11 +11,13 @@ import Web3 from 'web3'
 const AssetTeaser = ({
     asset,
     list,
-    minimal
+    minimal,
+    tokenSymbol
 }: {
     asset: any
     list?: boolean
     minimal?: boolean
+    tokenSymbol?: string
 }) => {
     const { attributes } = asset.findServiceByType('metadata')
     const { main, additionalInformation } = attributes
@@ -63,7 +65,7 @@ const AssetTeaser = ({
                             <span>
                                 {Web3.utils.fromWei(main.price.toString())}
                             </span>{' '}
-                            NEVERMINED {/* NVM NEVERMINED */}
+                             {tokenSymbol}
                         </div>
                     )}
                 </footer>
