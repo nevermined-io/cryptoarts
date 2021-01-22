@@ -29,7 +29,8 @@ const userMockConnected = {
     requestFromFaucet: jest.fn(),
     loginMetamask: jest.fn(),
     loginBurnerWallet: jest.fn(),
-    message: ''
+    message: '',
+    tokenSymbol:'NVM'
 }
 
 export { userMock, userMockConnected }

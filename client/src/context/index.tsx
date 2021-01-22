@@ -22,7 +22,8 @@ export const User = React.createContext({
     loginBurnerWallet: () => {
         /* empty */
     },
-    message: ''
+    message: '',
+    tokenSymbol: ''
 })
 
 export const Market = React.createContext({

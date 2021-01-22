@@ -30,6 +30,7 @@ interface UserProviderState {
     loginBurnerWallet(): Promise<any>
     logoutBurnerWallet(): Promise<any>
     message: string
+    tokenSymbol: string
 }
 
 export default class UserProvider extends PureComponent<{}, UserProviderState> {
@@ -87,7 +88,8 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
         loginMetamask: () => this.loginMetamask(),
         loginBurnerWallet: () => this.loginBurnerWallet(),
         logoutBurnerWallet: () => this.logoutBurnerWallet(),
-        message: 'Connecting to Nevermined...'
+        message: 'Connecting to Nevermined...',
+        tokenSymbol: '',
     }
 
     private accountsInterval: any = null
@@ -126,6 +128,15 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
         )
     }
 
+    private fetchTokenSymbol = async () => {
+        const { sdk } = this.state
+        let tokenSymbol = 'Unknown'
+        if (sdk.keeper) {
+            tokenSymbol = await sdk.token.getSymbol()
+        }
+        tokenSymbol !== this.state.tokenSymbol && this.setState({ tokenSymbol })
+    }
+
     private loadNevermined = async () => {
         const { sdk } = await provideNevermined(this.state.web3)
         this.setState({ sdk, isLoading: false }, () => {
@@ -133,6 +144,7 @@ export default class UserProvider extends PureComponent<{}, UserProviderState> {
             this.initAccountsPoll()
             this.fetchNetwork()
             this.fetchAccounts()
+            this.fetchTokenSymbol()
         })
     }
 

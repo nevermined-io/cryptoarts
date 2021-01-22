@@ -85,6 +85,7 @@ export default class AssetsUser extends PureComponent<
                                     list={list}
                                     key={asset.id}
                                     asset={asset}
+                                    tokenSymbol={this.context.tokenSymbol}
                                 />
                             ))}
                         {recent && (

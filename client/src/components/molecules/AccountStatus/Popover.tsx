@@ -11,7 +11,6 @@ export default class Popover extends PureComponent<{
 
     public render() {
         const { account, balance, network } = this.context
-
         return (
             <div
                 className={styles.popover}
@@ -38,7 +37,7 @@ export default class Popover extends PureComponent<{
                                     ETH
                                 </span>
                                 <span className={styles.balance}>
-                                    <strong>{balance.nevermined}</strong> NEVERMINED
+                                    <strong>{balance.nevermined}</strong> {this.context.tokenSymbol}
                                 </span>
                             </div>
                         )}
