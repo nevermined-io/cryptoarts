@@ -1,16 +1,10 @@
 [![banner](https://raw.githubusercontent.com/nevermined-io/assets/main/images/logo/banner_logo.png)](https://nevermined.io)
 
-# Nevermined Marketplace
+# Nevermined Cryptoarts
 
-> Marketplace application explore, download, and publish data with access and compute services
+If you're a developer and want to contribute to, or want to utilize this code in your projects, then keep on reading.
 
-> [nevermined.io](https://nevermined.io)
-
----
-
-If you're a developer and want to contribute to, or want to utilize this marketplace's code in your projects, then keep on reading.
-
-- [Nevermined Marketplace](#nevermined-marketplace)
+- [Nevermined Cryptoarts](#nevermined-cryptoarts)
   - [Get Started](#get-started)
     - [Use with Nevermined Tools](#use-with-nevermined-tools)
     - [Environment Variables](#environment-variables)
@@ -137,7 +131,7 @@ To run all linting, unit and integration tests in one go, run:
 npm test
 ```
 
-The endpoints the integration tests run against are defined by your [Environment Variables](#️-Environment-Variables), and Cypress-specific variables in `cypress.json`.
+The endpoints the integration tests run against are defined by your [Environment Variables](#environment-variables), and Cypress-specific variables in `cypress.json`.
 
 ### Unit Tests
 
