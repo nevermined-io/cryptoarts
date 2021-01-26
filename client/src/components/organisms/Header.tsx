@@ -34,7 +34,7 @@ export default class Header extends PureComponent {
                         </svg>
 
 
-                        <h1 className={styles.headerTitle}>{meta.title}</h1>
+                        <h1 className={styles.headerTitle}>{meta.logoText}</h1>
                     </NavLink>
 
                     <nav className={styles.headerMenu}>
