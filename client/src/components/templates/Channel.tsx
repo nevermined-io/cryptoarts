@@ -4,7 +4,7 @@ import { History } from 'history'
 import Spinner from '../../components/atoms/Spinner'
 import Route from '../../components/templates/Route'
 import { User } from '../../context'
-import AssetTeaser from '../molecules/AssetTeaser'
+import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import Pagination from '../../components/molecules/Pagination'
 import styles from './Channel.module.scss'
 import Content from '../../components/atoms/Content'
@@ -97,7 +97,7 @@ export default class Channel extends PureComponent<ChannelProps, ChannelState> {
         ) : this.state.results && this.state.results.length ? (
             <div className={styles.results}>
                 {this.state.results.map((asset: any) => (
-                    <AssetTeaser key={asset.id} asset={asset} tokenSymbol={this.context.tokenSymbol}/>
+                    <ArtworkTeaser key={asset.id} artwork={asset} tokenSymbol={this.context.tokenSymbol}/>
                 ))}
             </div>
         ) : (

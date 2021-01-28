@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
-import AssetTeaser from '../molecules/AssetTeaser'
-import styles from './AssetsLatest.module.scss'
+import ArtworkTeaser from '../molecules/ArtworkTeaser'
+import styles from './ArtworksRecent.module.scss'
 
-interface AssetsLatestState {
-    latestAssets?: any[]
+interface ArtworksRecentState {
+    latestArtworks?: any[]
     isLoadingLatest?: boolean
 }
 
-export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
-    public state = { latestAssets: [], isLoadingLatest: true }
+export default class ArtworksRecent extends PureComponent<{}, ArtworksRecentState> {
+    public state = { latestArtworks: [], isLoadingLatest: true }
 
     public _isMounted = false
 
@@ -39,7 +39,7 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
         try {
             const search = await sdk.assets.query(searchQuery)
             this.setState({
-                latestAssets: search.results,
+                latestArtworks: search.results,
                 isLoadingLatest: false
             })
         } catch (error) {
@@ -49,28 +49,28 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
     }
 
     public render() {
-        const { latestAssets, isLoadingLatest } = this.state
+        const { latestArtworks: latestArtworks, isLoadingLatest } = this.state
         console.log(this.context)
 
         return (
             <>
-                <h2 className={styles.title}>Latest published assets</h2>
+                <h2 className={styles.title}>Recent Artwork</h2>
                 <div className={styles.latestAssetsWrap}>
                     {isLoadingLatest ? (
                         <Spinner message="Loading..." />
-                    ) : latestAssets && latestAssets.length ? (
+                    ) : latestArtworks && latestArtworks.length ? (
                         <div className={styles.latestAssets}>
-                            {latestAssets.map((asset: any) => (
-                                <AssetTeaser
+                            {latestArtworks.map((asset: any) => (
+                                <ArtworkTeaser
                                     key={asset.id}
-                                    asset={asset}
+                                    artwork={asset}
                                     minimal
                                     tokenSymbol= {this.context.tokenSymbol}
                                 />
                             ))}
                         </div>
                     ) : (
-                        <div>No data sets found.</div>
+                        <div>No artworks found.</div>
                     )}
                 </div>
             </>
@@ -78,4 +78,4 @@ export default class AssetsLatest extends PureComponent<{}, AssetsLatestState> {
     }
 }
 
-AssetsLatest.contextType = User
+ArtworksRecent.contextType = User

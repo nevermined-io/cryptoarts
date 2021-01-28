@@ -3,28 +3,30 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import Dotdotdot from 'react-dotdotdot'
 import cx from 'classnames'
-import styles from './AssetTeaser.module.scss'
-import CategoryImage from '../atoms/CategoryImage'
+import styles from './ArtworkTeaser.module.scss'
 import { allowPricing } from '../../config'
 import Web3 from 'web3'
+import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
 
-const AssetTeaser = ({
-    asset,
+import artworkImage from '../../img/artwork.png'
+
+const ArtworkTeaser = ({
+    artwork: artwork,
     list,
     minimal,
     tokenSymbol
 }: {
-    asset: any
+    artwork: any
     list?: boolean
     minimal?: boolean
     tokenSymbol?: string
 }) => {
-    const { attributes } = asset.findServiceByType('metadata')
+    const { attributes } = artwork.findServiceByType('metadata')
     const { main, additionalInformation } = attributes
 
     return list ? (
         <article className={styles.assetList}>
-            <Link to={`/asset/${asset.id}`}>
+            <Link to={`/asset/${artwork.id}`}>
                 <h1>{main.name}</h1>
                 <div
                     className={styles.date}
@@ -40,13 +42,13 @@ const AssetTeaser = ({
                 minimal ? cx(styles.asset, styles.minimal) : styles.asset
             }
         >
-            <Link to={`/asset/${asset.id}`}>
-                {/* {additionalInformation.categories && !minimal && (
-                    <CategoryImage
-                        dimmed
-                        category={additionalInformation.categories[0]}
-                    />
-                )} */}
+            <Link to={`/asset/${artwork.id}`}>
+                <ArtworkTeaserImage
+                            header
+                            dimmed
+                            image={artworkImage}
+                />
+
                 <h1>{main.name}</h1>
 
                 {!minimal && (
@@ -57,9 +59,6 @@ const AssetTeaser = ({
                     </div>
                 )}
                 <footer className={styles.assetFooter}>
-                    {/* {additionalInformation.categories && (
-                        <div>{additionalInformation.categories[0]}</div>
-                    )} */}
                     {allowPricing && (
                         <div className={styles.price}>
                             <span>
@@ -74,4 +73,4 @@ const AssetTeaser = ({
     )
 }
 
-export default AssetTeaser
+export default ArtworkTeaser

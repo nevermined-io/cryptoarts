@@ -1,33 +1,19 @@
 @import '../../styles/variables';
 
 .asset {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-all;
+    //position: absolute;
+    width: 304px;
+    height: 360px;
+    left: 0px;
+    top: 0px;
 
-    > a {
-        display: block;
-        height: 100%;
-        padding: $spacer;
-        border: 1px solid $brand-grey-lighter;
-        border-radius: $border-radius;
-        background: $brand-white;
-        color: inherit;
-        position: relative;
+    /* 3. Shade/White */
+    background: #FFFFFF;
 
-        &:hover,
-        &:focus {
-            color: inherit;
-            border-color: $brand-pink;
-            transform: none;
-
-            // category image
-            > div:first-child {
-                opacity: 1;
-                background-size: 105%;
-            }
-        }
-    }
+    /* 3. Shade/Gray */
+    border: 1px solid #A8B3BD;
+    box-sizing: border-box;
+    border-radius: 4px;
 
     h1 {
         font-size: $font-size-large;

@@ -8,7 +8,7 @@ import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
 import Content from '../../components/atoms/Content'
-import AssetsLatest from '../../components/organisms/AssetsLatest'
+import ArtworksRecent from '../../components/organisms/ArtworksRecent'
 import ChannelTeaser from '../../components/organisms/ChannelTeaser'
 import Search from './Search'
 import withTracker from '../../hoc/withTracker'
@@ -51,7 +51,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                             <ChannelTeaser channel="ai-for-good" />
                         </>
                     )}
-                    <AssetsLatest />
+                    <ArtworksRecent />
                 </Content>
 
                 <Content wide>

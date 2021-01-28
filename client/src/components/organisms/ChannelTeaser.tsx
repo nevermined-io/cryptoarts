@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { User } from '../../context'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import Spinner from '../atoms/Spinner'
-import AssetTeaser from '../molecules/AssetTeaser'
+import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ChannelTeaser.module.scss'
 import channels from '../../data/channels.json'
 import CategoryImage from '../atoms/CategoryImage'
@@ -86,7 +86,7 @@ export default class ChannelTeaser extends Component<
                     ) : channelAssets && channelAssets.length ? (
                         <div className={styles.channelResults}>
                             {channelAssets.map((asset: any) => (
-                                <AssetTeaser key={asset.id} asset={asset} tokenSymbol={this.context.tokenSymbol}/>
+                                <ArtworkTeaser key={asset.id} artwork={asset} tokenSymbol={this.context.tokenSymbol}/>
                             ))}
                         </div>
                     ) : (

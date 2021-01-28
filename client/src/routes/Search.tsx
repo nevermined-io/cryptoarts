@@ -6,7 +6,7 @@ import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import Spinner from '../components/atoms/Spinner'
 import Route from '../components/templates/Route'
 import { User } from '../context'
-import AssetTeaser from '../components/molecules/AssetTeaser'
+import ArtworkTeaser from '../components/molecules/ArtworkTeaser'
 import Pagination from '../components/molecules/Pagination'
 import styles from './Search.module.scss'
 import Content from '../components/atoms/Content'
@@ -122,7 +122,7 @@ class Search extends PureComponent<SearchProps, SearchState> {
         ) : this.state.results && this.state.results.length ? (
             <div className={styles.results}>
                 {this.state.results.map((asset: any) => (
-                    <AssetTeaser key={asset.id} asset={asset} tokenSymbol={this.context.tokenSymbol} />
+                    <ArtworkTeaser key={asset.id} artwork={asset} tokenSymbol={this.context.tokenSymbol} />
                 ))}
             </div>
         ) : (
