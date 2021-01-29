@@ -9,6 +9,7 @@ import Web3 from 'web3'
 import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
 
 import artworkImage from '../../img/artwork.png'
+import ArtworkTeaserDescription from '../atoms/ArtworkTeaserDescription'
 
 const ArtworkTeaser = ({
     artwork: artwork,
@@ -44,30 +45,14 @@ const ArtworkTeaser = ({
         >
             <Link to={`/asset/${artwork.id}`}>
                 <ArtworkTeaserImage
-                            header
-                            dimmed
-                            image={artworkImage}
+                    image={artworkImage}
                 />
 
-                <h1>{main.name}</h1>
-
-                {!minimal && (
-                    <div className={styles.description}>
-                        <Dotdotdot clamp={3}>
-                            {additionalInformation.description}
-                        </Dotdotdot>
-                    </div>
-                )}
-                <footer className={styles.assetFooter}>
-                    {allowPricing && (
-                        <div className={styles.price}>
-                            <span>
-                                {Web3.utils.fromWei(main.price.toString())}
-                            </span>{' '}
-                             {tokenSymbol}
-                        </div>
-                    )}
-                </footer>
+                <ArtworkTeaserDescription
+                    name={main.name}
+                    price={main.price}
+                    tokenSymbol={tokenSymbol}
+                />
             </Link>
         </article>
     )

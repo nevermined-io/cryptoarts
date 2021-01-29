@@ -15,11 +15,7 @@
     box-sizing: border-box;
     border-radius: 4px;
 
-    h1 {
-        font-size: $font-size-large;
-        margin-top: 0;
-        margin-bottom: $spacer / 4;
-    }
+
 }
 
 .minimal {
@@ -53,11 +49,23 @@
 }
 
 .description {
+    height: 164px;
+    width: 264px;
+    left: 20px;
+    top: 176px;
+    border: 1px solid #A8B3BD;
+
+
+    h1 {
+        font-size: $font-size-large;
+        margin-top: 0;
+        margin-bottom: $spacer / 4;
+    }
+
     &,
     p,
     strong,
     a,
-    h1,
     h2,
     h3,
     h4,
