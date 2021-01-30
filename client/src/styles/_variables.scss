@@ -6,6 +6,9 @@ $brand-purple: #7834f9;
 $brand-violet: #67cff9;
 $brand-blue: #67cff9;
 
+$brand-primary: #F67BA1;
+$brand-secondary: #2779C2;
+
 $brand-grey: #41474e;
 $brand-grey-light: #8b98a9;
 $brand-grey-dark: #303030;
@@ -21,8 +24,7 @@ $brand-gradient: linear-gradient(to right bottom, $brand-purple, $brand-pink);
 $body-background: darken($brand-white, 1%);
 
 // Fonts
-$font-family-base: 'Titillium Web'
-    Helvetica, Arial, sans-serif;
+$font-family-base: 'Titillium Web';
 $font-family-title: 'Sharp Sans Display', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Helvetica, Arial, sans-serif;
 $font-family-monospace: 'Fira Code', 'Fira Mono', Menlo, Monaco, Consolas,

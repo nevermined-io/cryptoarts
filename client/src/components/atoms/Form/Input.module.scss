@@ -2,9 +2,12 @@
 @import './InputDate.module.scss';
 
 .inputWrap {
-    background: $brand-gradient;
-    border-radius: $border-radius;
-    padding: 2px;
+    background: #FFFFFF;
+
+/* 2. Secondary/Bazaart.Main */
+    border: 2px solid $brand-secondary;
+    box-sizing: border-box;
+    border-radius: 4px;
     display: flex;
     position: relative;
 

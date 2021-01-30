@@ -8,12 +8,13 @@
 .latestAssets {
     width: 100%;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     display: grid;
     grid-gap: $spacer;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
     padding: $spacer / 2 $spacer;
     border-left: 1px solid $brand-grey-lighter;
 
