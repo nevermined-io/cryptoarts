@@ -37,9 +37,9 @@ body {
     position: relative;
     margin: 0;
 
-    @media screen and (min-width: $break-point--small) {
-        padding: $page-frame;
-    }
+    // @media screen and (min-width: $break-point--small) {
+    //     padding: $page-frame;
+    // }
 }
 
 a {
