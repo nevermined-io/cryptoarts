@@ -4,7 +4,6 @@
     display: inline-block;
     position: relative;
     cursor: help;
-    padding: .5rem;
 }
 
 /* default: red square */
@@ -13,6 +12,8 @@
     height: $font-size-small;
     display: block;
     background: $red;
+    height: 24px;
+    width: 24px;
 }
 
 /* yellow triangle */
