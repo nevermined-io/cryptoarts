@@ -1,41 +1,57 @@
 @import '../../styles/variables';
 
 .latestAssetsWrap {
-    // full width break out of container
-    margin-right: calc(-50vw + 50%);
+    position: absolute;
+    width: 1304px;
+    left: 64px;
+    top: 419px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    background: $brand-white;
+    border: 1px solid $brand-light;
+}
+
+.latestAssetsHeader {
+    height: 32px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.latestAssetsHeaderTitle {
+    padding-top: 4px;
+    font-family: Titillium Web;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+    color: $brand-dark;
 }
 
 .latestAssets {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     display: grid;
-    grid-gap: $spacer;
+    grid-gap: 16px 16px;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-flow: row;
-    padding: $spacer / 2 $spacer;
-    border-left: 1px solid $brand-grey-lighter;
 
     &::-webkit-scrollbar,
     &::-moz-scrollbar {
         display: none;
     }
-
-    > article {
-        min-width: calc(18rem + #{$spacer});
-    }
 }
 
 .title {
-    font-size: $font-size-h4;
-    text-align: center;
-    color: $brand-grey-light;
-    border-bottom: 1px solid $brand-grey-lighter;
-    padding-bottom: $spacer / 3;
-    margin-top: $spacer * 3;
-    margin-bottom: $spacer / 2;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+
+    /* 3. Shade/Bazaart.Dark */
+    color: $brand-dark;
 
     @media (min-width: $break-point--small) {
         text-align: left;

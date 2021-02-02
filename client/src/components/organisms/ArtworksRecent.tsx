@@ -54,8 +54,11 @@ export default class ArtworksRecent extends PureComponent<{}, ArtworksRecentStat
 
         return (
             <>
-                <h2 className={styles.title}>Recent Artwork</h2>
                 <div className={styles.latestAssetsWrap}>
+                    <div className={styles.latestAssetsHeader}>
+                        <div className={styles.latestAssetsHeaderTitle}>Recent Artwork</div>
+
+                    </div>
                     {isLoadingLatest ? (
                         <Spinner message="Loading..." />
                     ) : latestArtworks && latestArtworks.length ? (

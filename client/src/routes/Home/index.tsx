@@ -57,17 +57,11 @@ class Home extends PureComponent<HomeProps, HomeState> {
                     </div>
                 </div>
 
-                <Content wide>
-                    {showChannels && (
-                        <>
-                            <h2 className={styles.title}>Featured Channel</h2>
-                            <ChannelTeaser channel="ai-for-good" />
-                        </>
-                    )}
-                    <ArtworksRecent />
-                </Content>
 
-                <Content wide>
+                <ArtworksRecent />
+
+
+                {/* <Content wide>
                     <h2 className={styles.title}>Explore Categories</h2>
                     <div className={styles.categories}>
                         {this.context.categories
@@ -83,7 +77,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                                 </CategoryLink>
                             ))}
                     </div>
-                </Content>
+                </Content> */}
             </Route>
         )
     }
