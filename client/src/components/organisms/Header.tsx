@@ -23,18 +23,18 @@ export default class Header extends PureComponent {
     public render() {
         return (
             <header className={styles.header}>
-                <NavLink
-                    to="/"
-                    className={styles.headerContent}>
-                    <div
-                        className={styles.headerLogo}
-                        style={{ background: `url(${logo})` }}
-                    />
+                <NavLink to="/">
+                    <div className={styles.headerContent}>
+                        <div
+                            className={styles.headerLogo}
+                            style={{ background: `url(${logo})` }}
+                        />
 
-                    <div
-                        className={styles.headerTitle}
-                        style={{ background: `url(${logoText})`}}
-                    />
+                        <div
+                            className={styles.headerTitle}
+                            style={{ background: `url(${logoText})`}}
+                        />
+                    </div>
 
                     <div className={styles.headerNav}>
                         <nav className={styles.headerMenu}>

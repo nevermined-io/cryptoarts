@@ -4,35 +4,25 @@
     //position: absolute;
     width: 1440px;
     height: 80px;
-    left: 0px;
-    top: 0px;
+    //left: 0px;
+    //top: 0px;
 
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .headerContent {
-    // composes: wide from '../atoms/Content.module.scss';
-    // display: flex;
-    // align-items: center;
-    //position: absolute;
+    display: flex;
     width: 212px;
     height: 32px;
-    left: 64px;
-    top: 24px;
-
-
+    margin-left: 64px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .headerLogo {
-    position: absolute;
     width: 54px;
     height: 32px;
-    left: 64px;
-    top: 24px;
-    //background: url(../../img/logo.svg)
-    /* 0. Gradient/Bazaart */
-    //background: linear-gradient(91.25deg, $brand-secondary 0%, $brand-primary 100%);
 }
 
 .headerLogoImage {
@@ -43,11 +33,12 @@
 }
 
 .headerTitle {
-    position: absolute;
     width: 146px;
     height: 22px;
-    left: 130px;
-    top: 34px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: auto;
 
     @media (min-width: $break-point--medium) {
         display: inline-block;
