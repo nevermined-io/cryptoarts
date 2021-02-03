@@ -2,13 +2,11 @@
 
 .latestAssetsWrap {
     width: 1304px;
-
     margin: auto;
     margin-top: 339px;
-
     padding-left: 20px;
     padding-right: 20px;
-
+    padding-bottom: 20px;
     background: $brand-white;
     border: 1px solid $brand-light;
 }
@@ -21,9 +19,9 @@
 
 .latestAssetsHeaderTitle {
     padding-top: 4px;
-    font-family: Titillium Web;
+    font-family: $font-family-base;
     font-style: normal;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     font-size: 24px;
     line-height: 24px;
     color: $brand-dark;
@@ -46,7 +44,7 @@
 .title {
     font-family: $font-family-base;
     font-style: normal;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     font-size: 24px;
     line-height: 24px;
 

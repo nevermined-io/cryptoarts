@@ -9,14 +9,12 @@
     width: fit-content;
     height: fit-content;
     padding: $spacer / 4 $spacer;
-
-    font-family: Titillium Web;
+    font-family: $font-family-base;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
-    color: #DEDEDE;
-
+    color: #dedede;
     text-transform: uppercase;
     transition: .2s ease-out;
     background: $brand-grey-light;

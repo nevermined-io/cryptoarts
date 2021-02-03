@@ -24,7 +24,6 @@
     position: absolute;
     width: 1440px;
     height: 479px;
-    left: 0px;
     top: 80px;
     z-index: -1;
 }
@@ -38,26 +37,22 @@
 }
 
 .bannerText {
-    //position: absolute;
     width: 688px;
     height: 91px;
     left: 376px;
-
     font-family: $font-family-base;
     text-align: center;
 }
 
 .bannerTitle {
-
     font-style: normal;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     font-size: 40px;
     line-height: 61px;
     color: $brand-white
 }
 
 .bannerDescription {
-
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -69,7 +64,6 @@
     position: absolute;
     width: 688px;
     height: 48px;
-    bottom: 0px;
 }
 
 .title {
