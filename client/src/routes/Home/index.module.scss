@@ -20,6 +20,52 @@
     }
 }
 
+.banner {
+    position: absolute;
+    width: 1440px;
+    height: 479px;
+    top: 80px;
+    z-index: -1;
+}
+
+.bannerContent {
+    position: absolute;
+    width: 688px;
+    height: 179px;
+    left: 376px;
+    top: 80px;
+}
+
+.bannerText {
+    width: 688px;
+    height: 91px;
+    left: 376px;
+    font-family: $font-family-base;
+    text-align: center;
+}
+
+.bannerTitle {
+    font-style: normal;
+    font-weight: $font-weight-bold;
+    font-size: 40px;
+    line-height: 61px;
+    color: $brand-white
+}
+
+.bannerDescription {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-white;
+}
+
+.search {
+    position: absolute;
+    width: 688px;
+    height: 48px;
+}
+
 .title {
     font-size: $font-size-h4;
     text-align: center;

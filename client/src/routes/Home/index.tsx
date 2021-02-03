@@ -8,11 +8,12 @@ import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
 import Content from '../../components/atoms/Content'
-import AssetsLatest from '../../components/organisms/AssetsLatest'
+import ArtworksRecent from '../../components/organisms/ArtworksRecent'
 import ChannelTeaser from '../../components/organisms/ChannelTeaser'
 import Search from './Search'
 import withTracker from '../../hoc/withTracker'
 import { showChannels } from '../../config'
+import banner from '../../img/banner.svg'
 
 interface HomeProps {
     history: History
@@ -40,21 +41,27 @@ class Home extends PureComponent<HomeProps, HomeState> {
                 description={meta.description}
                 className={styles.home}
             >
-                <Content>
-                    <Search searchAssets={this.searchAssets} />
-                </Content>
+                <div className={styles.banner} style={{ backgroundImage: `url(${banner})` }}>
+                    <div className={styles.bannerContent}>
+                        <div className={styles.bannerText}>
+                            <div className={styles.bannerTitle}>
+                                {meta.title}
+                            </div>
+                            <div className={styles.bannerDescription}>
+                                {meta.description}
+                            </div>
+                        </div>
+                        <div className={styles.search}>
+                            <Search searchAssets={this.searchAssets} />
+                        </div>
+                    </div>
+                </div>
 
-                <Content wide>
-                    {showChannels && (
-                        <>
-                            <h2 className={styles.title}>Featured Channel</h2>
-                            <ChannelTeaser channel="ai-for-good" />
-                        </>
-                    )}
-                    <AssetsLatest />
-                </Content>
 
-                <Content wide>
+                <ArtworksRecent />
+
+
+                {/* <Content wide>
                     <h2 className={styles.title}>Explore Categories</h2>
                     <div className={styles.categories}>
                         {this.context.categories
@@ -70,7 +77,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                                 </CategoryLink>
                             ))}
                     </div>
-                </Content>
+                </Content> */}
             </Route>
         )
     }

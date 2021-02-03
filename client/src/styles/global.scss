@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'animations';
 @import '../../node_modules/@oceanprotocol/typographies/sass/ocean-typo.scss';
+@import '~@fontsource/titillium-web/index.css';
 
 *,
 *:before,
@@ -14,7 +15,8 @@
 html,
 body,
 #root {
-    height: 100%;
+    width: 1440px;
+    margin: auto;
 }
 
 /* stylelint-enable selector-max-id */
@@ -36,9 +38,9 @@ body {
     position: relative;
     margin: 0;
 
-    @media screen and (min-width: $break-point--small) {
-        padding: $page-frame;
-    }
+    // @media screen and (min-width: $break-point--small) {
+    //     padding: $page-frame;
+    // }
 }
 
 a {

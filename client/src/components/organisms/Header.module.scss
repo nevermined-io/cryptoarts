@@ -1,26 +1,26 @@
 @import '../../styles/variables';
 
 .header {
-    width: 100%;
-    padding: $spacer / 2 0;
+    width: 1440px;
+    height: 80px;
+    background: #fff;
+
+    /* stylelint-disable-next-line */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .headerContent {
-    composes: wide from '../atoms/Content.module.scss';
     display: flex;
-    align-items: center;
+    width: 212px;
+    height: 32px;
+    margin-left: 64px;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }
 
 .headerLogo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-
-    &:hover,
-    &:focus,
-    &:active {
-        transform: none;
-    }
+    width: 54px;
+    height: 32px;
 }
 
 .headerLogoImage {
@@ -31,28 +31,44 @@
 }
 
 .headerTitle {
-    font-size: $font-size-h3;
-    color: $brand-grey-light;
-    margin-left: $spacer / 2;
-    display: none;
+    width: 146px;
+    height: 22px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: auto;
 
     @media (min-width: $break-point--medium) {
         display: inline-block;
     }
 }
 
+.headerNav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    width: 488px;
+    height: 24px;
+    left: 888px;
+    top: 28px;
+}
+
 .headerMenu {
-    flex: 1;
-    justify-self: flex-end;
-    text-align: right;
-    white-space: nowrap;
-    overflow-y: hidden;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-right: -($spacer / 1.5);
-    padding-right: $spacer;
-    border-left: 1px solid $brand-grey-lighter;
-    margin-left: $spacer / 8;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: static;
+    width: 440px;
+    height: 24px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 24px;
 
     @media (min-width: $break-point--medium) {
         padding-right: 0;
@@ -75,10 +91,24 @@
 }
 
 .link {
-    display: inline-block;
-    margin: 0 $spacer / 2;
-    font-weight: $font-weight-bold;
-    color: $brand-grey;
+    position: static;
+    width: 80px;
+    height: 24px;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    align-items: center;
+    text-align: center;
+
+    /* 3. Shade/Bazaart.Dark */
+    color: $brand-dark;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 
     &:last-child {
         margin-right: 0;
@@ -87,17 +117,23 @@
     &:hover,
     &:focus,
     &:active {
-        color: $brand-pink;
+        color: $brand-primary;
     }
 }
 
 .linkActive {
     composes: link;
-    color: $brand-pink;
+    color: $brand-primary;
     pointer-events: none;
 }
 
 .accountStatus {
-    margin-left: $spacer / 2;
-    margin-bottom: -.5rem;
+    position: static;
+    width: 24px;
+    height: 24px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }

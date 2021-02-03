@@ -36,18 +36,7 @@ const Route = ({
 
             <article>
                 <header className={styles.header}>
-                    <Content wide={wide}>
-                        <h1 className={styles.title}>{titleSanitized}</h1>
 
-                        {image && image}
-
-                        {description && (
-                            <Markdown
-                                text={description}
-                                className={styles.description}
-                            />
-                        )}
-                    </Content>
                 </header>
 
                 {children}

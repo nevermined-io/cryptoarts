@@ -1,24 +1,25 @@
 {
-  "title": "Nevermined marketplace",
-  "description": "A marketplace to find and publish open data sets in the Nevermined Network.",
+  "logoText": "nevermined",
+  "title": "The Nevermined BazaART",
+  "description": "An open bazaar to find, publish, & trade artwork on the Nevermined network.",
   "company": "Keyko GmbH",
   "url": "",
   "social": [
     {
       "title": "Site",
-      "url": "https://keyko.io"
+      "url": "https://nevermined.io"
     },
     {
       "title": "Blog",
-      "url": "https://medium.com/keyko"
+      "url": "https://medium.com/nevermined-io"
     },
     {
       "title": "Twitter",
-      "url": "https://twitter.com/keyko_io"
+      "url": "https://twitter.com/Nevermined_io"
     },
     {
       "title": "GitHub",
-      "url": "https://github.com/keyko-io"
+      "url": "https://github.com/nevermined-io"
     }
   ]
 }

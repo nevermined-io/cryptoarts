@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
 import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
-import AssetTeaser from '../molecules/AssetTeaser'
+import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './AssetsUser.module.scss'
 
 export default class AssetsUser extends PureComponent<
@@ -81,10 +81,10 @@ export default class AssetsUser extends PureComponent<
                             .slice(0, recent || undefined)
                             .filter(asset => !!asset)
                             .map((asset: any) => (
-                                <AssetTeaser
+                                <ArtworkTeaser
                                     list={list}
                                     key={asset.id}
-                                    asset={asset}
+                                    artwork={asset}
                                     tokenSymbol={this.context.tokenSymbol}
                                 />
                             ))}

@@ -1,6 +1,10 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -26,8 +30,9 @@ jobs:
         cd nevermined-tools
         export KEEPER_OWNER_ROLE_ADDRESS="0xe2DD09d719Da89e5a3D0F2549c7E24566e947260"
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
-        sudo bash -x ./start_nevermined.sh --no-marketplace --latest 2>&1 > start_nevermined.log &
+        ./start_nevermined.sh --no-marketplace --latest &
         cd ..
+        ./scripts/nevermined-tools.sh
     - name: Run linters
       run: npm run lint
     - name: Run tests
@@ -43,7 +48,6 @@ jobs:
         IPFS_GATEWAY_URI: "https://ipfs.infura.io"
         FAUCET_TIMESPAN: 0
       run: |
-        ./scripts/nevermined-tools.sh
         ./scripts/test.sh
         ./scripts/build.sh
     - name: Run e2e test

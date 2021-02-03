@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-describe('Search', () => {
+describe.skip('Search', () => {
     before(() => {
         cy.visit('/')
         // Wait for end of loading
