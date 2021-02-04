@@ -50,7 +50,9 @@ const ArtworkTeaser = ({
 
                 <ArtworkTeaserDescription
                     name={main.name}
+                    description={additionalInformation.description}
                     price={main.price}
+                    date={moment(main.datePublished).fromNow()}
                     tokenSymbol={tokenSymbol}
                 />
             </Link>

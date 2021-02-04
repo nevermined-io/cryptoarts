@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useContext } from 'react'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
-import { User } from '../../context'
+import { Market, User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ArtworksRecent.module.scss'
@@ -10,7 +10,7 @@ interface ArtworksRecentState {
     isLoadingLatest?: boolean
 }
 
-export default class ArtworksRecent extends PureComponent<{}, ArtworksRecentState> {
+export default class ArtworksRecent extends PureComponent<{categories: string[]}, ArtworksRecentState> {
     public state = { latestArtworks: [], isLoadingLatest: true }
 
     public _isMounted = false
@@ -26,11 +26,12 @@ export default class ArtworksRecent extends PureComponent<{}, ArtworksRecentStat
 
     private getLatestAssets = async () => {
         const { sdk } = this.context
-
         const searchQuery = {
             offset: 15,
             page: 1,
-            query: {},
+            query: {
+                categories: this.props.categories
+            },
             sort: {
                 created: -1
             }

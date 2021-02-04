@@ -14,7 +14,7 @@ export default class ArtworkTeaserDescription extends PureComponent<{
             <div className={styles.artworkTeaserDescription}>
                 <div className={styles.text}>
                     <h1>{this.props.name}</h1>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus faucibus erat vel sem consequat, convallis fermentum ligula vulputate.
+                    {this.props.description}
                 </div>
 
                 <div className={styles.footer}>
@@ -22,7 +22,7 @@ export default class ArtworkTeaserDescription extends PureComponent<{
                         {Web3.utils.fromWei(this.props.price.toString())}{' '}{this.props.tokenSymbol}
                     </div>
                     <div className={styles.date}>
-                        2 months ago
+                        {this.props.date}
                     </div>
                 </div>
             </div>
