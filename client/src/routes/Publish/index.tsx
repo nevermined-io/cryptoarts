@@ -1,6 +1,7 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
 import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
+
 import Route from '../../components/templates/Route'
 import Form from '../../components/atoms/Form/Form'
 import AssetModel from '../../models/AssetModel'
@@ -12,6 +13,8 @@ import { allowPricing } from '../../config'
 import { steps } from '../../data/form-publish.json'
 import Content from '../../components/atoms/Content'
 import withTracker from '../../hoc/withTracker'
+import { serviceUri } from '../../config'
+import axios from 'axios'
 
 type AssetType = 'dataset' | 'algorithm' | 'container' | 'workflow' | 'other'
 
@@ -276,7 +279,6 @@ class Publish extends Component<{}, PublishState> {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             ({ found, ...keepAttrs }: { found: boolean }) => keepAttrs
         )
-
         const newAsset = {
             main: Object.assign(AssetModel.main, {
                 type: this.state.type,
@@ -318,6 +320,12 @@ class Publish extends Component<{}, PublishState> {
             ReactGA.event({
                 category: 'Publish',
                 action: `registerAsset-end ${asset.id}`
+            })
+            const response = await axios({
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                url: `${serviceUri}/api/v1/file`,
+                data: { url: (files as any)[0].url, did: asset.id, compression: (files as any)[0].compression},
             })
         } catch (error) {
             // make readable errors

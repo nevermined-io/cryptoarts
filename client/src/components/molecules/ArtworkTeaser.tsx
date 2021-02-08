@@ -8,8 +8,11 @@ import { allowPricing } from '../../config'
 import Web3 from 'web3'
 import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
 
+
 import artworkImage from '../../img/artwork.png'
 import ArtworkTeaserDescription from '../atoms/ArtworkTeaserDescription'
+import axios from 'axios'
+import { serviceUri } from '../../config'
 
 const ArtworkTeaser = ({
     artwork: artwork,
@@ -45,7 +48,7 @@ const ArtworkTeaser = ({
         >
             <Link to={`/asset/${artwork.id}`}>
                 <ArtworkTeaserImage
-                    image={artworkImage}
+                    url={artwork.url}
                 />
 
                 <ArtworkTeaserDescription

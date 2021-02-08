@@ -8,6 +8,7 @@ import pkg from '../package.json'
 // routes
 import UrlCheckRouter from './routes/UrlCheckRouter'
 import ReportRouter from './routes/ReportRouter'
+import FileStorageRouter from './routes/FileStorageRouter'
 
 // config
 import config from './config'
@@ -63,6 +64,7 @@ app.get('/', (req, res) => {
 })
 app.use('/api/v1/urlcheck', UrlCheckRouter)
 app.use('/api/v1/report', ReportRouter)
+app.use('/api/v1/file', FileStorageRouter)
 
 /// catch 404
 app.use((req, res) => {

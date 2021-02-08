@@ -4,6 +4,9 @@ import { Market, User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ArtworksRecent.module.scss'
+import axios from 'axios'
+import { serviceUri } from '../../config'
+
 
 interface ArtworksRecentState {
     latestArtworks?: any[]
@@ -42,6 +45,20 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
             this.setState({
                 latestArtworks: search.results,
                 isLoadingLatest: false
+            })
+
+            search.results.forEach( async (artwork: any) => {
+                const { attributes } = artwork.findServiceByType('metadata')
+                const { compression } = attributes.main.files[0]
+                const filename = `${artwork.id}.${compression}`
+                const response = await axios({
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    url: `${serviceUri}/api/v1/file/${filename}`,
+                })
+
+                console.log(response.data.url)
+                artwork.url = response.data.url
             })
         } catch (error) {
             Logger.error(error.message)
