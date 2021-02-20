@@ -11,7 +11,6 @@ import Progress from './Progress'
 import ReactGA from 'react-ga'
 import { allowPricing } from '../../config'
 import { steps } from '../../data/form-publish.json'
-import Content from '../../components/atoms/Content'
 import withTracker from '../../hoc/withTracker'
 import { serviceUri } from '../../config'
 import axios from 'axios'
@@ -351,7 +350,7 @@ class Publish extends Component<{}, PublishState> {
                         title="Publish"
                         description={`Publish a new data set into the Nevermined ${market.network} Network.`}
                     >
-                        <Content >
+                        <div className={styles.publish}>
                             <div className={styles.content}>
                                 <div className={styles.header}>
                                     <div className={styles.title}>
@@ -371,28 +370,30 @@ class Publish extends Component<{}, PublishState> {
 
                                 </div>
 
-                                <Form onSubmit={this.registerAsset}>
-                                    {steps.map((step: any, index: number) => (
-                                        <Step
-                                            key={index}
-                                            index={index}
-                                            title={step.title}
-                                            description={step.description}
-                                            currentStep={this.state.currentStep}
-                                            fields={step.fields}
-                                            inputChange={this.inputChange}
-                                            state={this.state}
-                                            next={this.next}
-                                            prev={this.prev}
-                                            totalSteps={steps.length}
-                                            tryAgain={this.tryAgain}
-                                            toStart={this.toStart}
-                                            content={step.content}
-                                        />
-                                    ))}
-                                </Form>
+                                <div className={styles.form}>
+                                    <Form onSubmit={this.registerAsset}>
+                                        {steps.map((step: any, index: number) => (
+                                            <Step
+                                                key={index}
+                                                index={index}
+                                                title={step.title}
+                                                description={step.description}
+                                                currentStep={this.state.currentStep}
+                                                fields={step.fields}
+                                                inputChange={this.inputChange}
+                                                state={this.state}
+                                                next={this.next}
+                                                prev={this.prev}
+                                                totalSteps={steps.length}
+                                                tryAgain={this.tryAgain}
+                                                toStart={this.toStart}
+                                                content={step.content}
+                                            />
+                                        ))}
+                                    </Form>
+                                </div>
                             </div>
-                        </Content>
+                        </div>
                     </Route>
                 )}
             </Market.Consumer>

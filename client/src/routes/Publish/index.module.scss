@@ -1,16 +1,22 @@
 @import '../../styles/variables';
 
+.publish {
+    background: linear-gradient(91.25deg, #2779C2 0%, #F67BA1 100%);
+    padding-bottom: 38px;
+    padding-top: 40px;
+}
+
 .content {
     width: 800px;
+    margin: auto;
+    background-color: $brand-white;
 }
 
 .header {
-    width: 688px;
-    height: 158px;
-    margin-top: 40px;
-    margin-bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 40px;
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-bottom: 40px;
 }
 
 .title {
@@ -35,9 +41,14 @@
 
 .progress {
     margin-top: 24px;
-    margin-bottom: 0px;
 
     > ul {
         margin: 0!important;
     }
+}
+
+.form {
+    padding-right: 56px;
+    padding-left: 56px;
+    padding-bottom: 40px;
 }
