@@ -6,6 +6,7 @@ If you're a developer and want to contribute to, or want to utilize this code in
 
 - [Nevermined Cryptoarts](#nevermined-cryptoarts)
   - [Get Started](#get-started)
+    - [Using minio locally](#using-minio-locally)
     - [Use with Nevermined Tools](#use-with-nevermined-tools)
     - [Environment Variables](#environment-variables)
       - [Client](#client)
@@ -37,6 +38,15 @@ npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser. The page will reload if you make edits to files in either `./client` or `./server`.
+
+### Using minio locally
+
+Start a minio instance with:
+```bash
+$ docker run -p 9000:9000 minio/minio server ./data
+```
+
+Restart the server (if already running) so that a new bucket is initialized.
 
 ### Use with Nevermined Tools
 

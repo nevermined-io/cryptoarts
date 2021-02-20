@@ -2,14 +2,14 @@
   "steps": [
     {
       "title": "Essentials",
-      "description": "Start by adding a title and URLs for your data set.",
+      "description": "Start by adding a title and URLs for your artwork",
       "fields": {
         "name": {
           "label": "Title",
-          "placeholder": "e.g. Shapes of Desert Plants",
+          "placeholder": "e.g. The next Mona Lisa",
           "type": "text",
           "required": true,
-          "help": "Enter a concise title. You will be able to enter a more thorough description in the next step."
+          "help": "Enter a unique title. You will be able to enter a more thorough description in the next step."
         },
         "files": {
           "label": "Files",
@@ -22,12 +22,12 @@
     },
     {
       "title": "Information",
-      "description": "Further describe and categorize your data set to help people discover it.",
+      "description": "Further describe and categorize your artwork to help people discover it.",
       "fields": {
         "description": {
           "label": "Description",
           "help": "Add a thorough description with as much detail as possible.",
-          "placeholder": "e.g. Shapes of 23 common desert plants.",
+          "placeholder": "e.g. This will be the Mona Lisa of the modern generation",
           "type": "textarea",
           "required": true,
           "rows": 5
@@ -38,39 +38,11 @@
           "type": "select",
           "required": true,
           "options": [
-            "Image Recognition",
-            "Dataset Of Datasets",
-            "Language",
-            "Performing Arts",
-            "Visual Arts & Design",
-            "Philosophy",
-            "History",
-            "Theology",
-            "Anthropology & Archeology",
-            "Sociology",
-            "Psychology",
-            "Politics",
-            "Interdisciplinary",
-            "Economics & Finance",
-            "Demography",
-            "Biology",
-            "Chemistry",
-            "Physics & Energy",
-            "Earth & Climate",
-            "Space & Astronomy",
-            "Mathematics",
-            "Computer Technology",
-            "Engineering",
-            "Agriculture & Bio Engineering",
-            "Transportation",
-            "Urban Planning",
-            "Health & Medicine",
-            "Business & Management",
-            "Sports & Recreation",
-            "Communication & Journalism",
-            "Deep Learning",
-            "Law",
-            "Other"
+            "Abstract",
+            "Animation",
+            "Fantasy",
+            "Gaming",
+            "Other Art"
           ]
         },
         "dateCreated": {
@@ -83,17 +55,17 @@
     },
     {
       "title": "Authorship",
-      "description": "Give proper attribution for your data set.",
+      "description": "Give proper attribution to your artwork",
       "fields": {
         "author": {
           "label": "Author",
-          "placeholder": "e.g. Jelly McJellyfish",
+          "placeholder": "e.g. Leonardo da Vinci",
           "type": "text",
           "required": true
         },
         "copyrightHolder": {
           "label": "Copyright Holder",
-          "placeholder": "e.g. Marine Institute of Jellyfish",
+          "placeholder": "e.g. Louvre Museum",
           "type": "text",
           "required": true
         },
@@ -121,8 +93,16 @@
     },
     {
       "title": "Register",
-      "description": "Splendid, we got all the data. Now let's register your data set.",
-      "content": "After clicking the button below you will be asked by your wallet to sign this request."
+      "description": "Splendid, you’re almost done, all that’s left is to register your artwork.",
+      "content": "After clicking the button below you will be asked by your wallet to sign this request.",
+      "fields": {
+        "price": {
+          "label": "Price",
+          "placeholder": "Price in tokens",
+          "type": "string",
+          "required": true
+        }
+      }
     }
   ]
 }

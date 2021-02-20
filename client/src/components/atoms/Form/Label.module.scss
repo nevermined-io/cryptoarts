@@ -1,12 +1,13 @@
 @import '../../../styles/variables';
 
 .label {
-    color: $brand-grey;
-    font-size: $font-size-base;
-    font-family: $font-family-title;
-    line-height: 1.2;
-    display: block;
-    margin-bottom: $spacer / 6;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    color: $brand-black;
+    margin-bottom: 8px;
 }
 
 .required {

@@ -12,14 +12,14 @@
     display: inline-block;
     width: 25%;
     text-align: center;
-    color: $brand-grey-light;
+    color: $brand-light;
 
     &:before {
         content: '';
         display: block;
         width: 60%;
         height: .1rem;
-        background: $brand-grey-lighter;
+        background: $brand-light;
         position: absolute;
         top: 20%;
         left: -30%;
@@ -39,10 +39,10 @@
 .active {
     composes: item;
     font-weight: $font-weight-bold;
-    color: $brand-black;
+    color: $brand-dark;
 
     .number {
-        background: $brand-black;
+        background: $brand-positive-green;
     }
 
     &:before {
@@ -68,7 +68,7 @@
     height: 1.6rem;
     margin: auto;
     border-radius: 50%;
-    background: $brand-grey-light;
+    background: $brand-gray;
     color: $brand-white;
     font-weight: $font-weight-bold;
 }

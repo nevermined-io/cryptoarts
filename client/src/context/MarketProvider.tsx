@@ -51,7 +51,9 @@ export default class MarketProvider extends PureComponent<
         const searchQuery = {
             offset: 1,
             page: 1,
-            query: {},
+            query: {
+                "categories": categories
+            },
             sort: {
                 value: 1
             }

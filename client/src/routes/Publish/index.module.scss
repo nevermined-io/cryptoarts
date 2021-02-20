@@ -1,0 +1,54 @@
+@import '../../styles/variables';
+
+.publish {
+    background: linear-gradient(91.25deg, #2779C2 0%, #F67BA1 100%);
+    padding-bottom: 38px;
+    padding-top: 40px;
+}
+
+.content {
+    width: 800px;
+    margin: auto;
+    background-color: $brand-white;
+}
+
+.header {
+    padding-top: 40px;
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-bottom: 40px;
+}
+
+.title {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 40px;
+    color: $brand-dark;
+}
+
+.subTitle {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-gray;
+    margin-top: 8px;
+    margin-bottom: 0px;;
+}
+
+.progress {
+    margin-top: 24px;
+
+    > ul {
+        margin: 0!important;
+    }
+}
+
+.form {
+    padding-right: 56px;
+    padding-left: 56px;
+    padding-bottom: 40px;
+}

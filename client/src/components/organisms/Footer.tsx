@@ -15,7 +15,7 @@ export default function Footer() {
             <aside className={styles.stats}>
                 <Content wide>
                     <p>
-                        {market.totalAssets > 0 && `Nevermined has ${market.totalAssets} registered assets.`}
+                        {`Nevermined has ${market.totalAssets} registered artworks.`}
                     </p>
                     <VersionNumbers account={user.account} minimal />
                 </Content>

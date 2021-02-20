@@ -1,3 +1,4 @@
+import S3 from 'aws-sdk/clients/s3'
 import { Router, Request, Response } from 'express'
 import request from 'request'
 import config from '../config'

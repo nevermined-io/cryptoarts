@@ -1,7 +1,4 @@
 import React from 'react'
-import Content from '../atoms/Content'
-import styles from './Route.module.scss'
-import Markdown from '../atoms/Markdown'
 import Seo from '../atoms/Seo'
 
 interface RouteProps {
@@ -35,10 +32,6 @@ const Route = ({
             />
 
             <article>
-                <header className={styles.header}>
-
-                </header>
-
                 {children}
             </article>
         </div>

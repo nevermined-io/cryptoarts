@@ -3,7 +3,7 @@
 
 .inputWrap {
     background: #fff;
-    border: 2px solid $brand-secondary;
+    border: 1px solid $brand-secondary;
     box-sizing: border-box;
     border-radius: 4px;
     display: flex;
@@ -50,7 +50,7 @@
     margin: 0;
     border-radius: $border-radius;
     transition: .2s ease-out;
-    min-height: 43px;
+    min-height: 48px;
     appearance: none;
 
     &:focus {
@@ -61,9 +61,11 @@
 
     &::placeholder {
         font-family: $font-family-base;
-        font-size: $font-size-base;
-        color: $brand-grey-light;
-        font-weight: $font-weight-base;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 20px;
+        color: $brand-gray;
         transition: .2s ease-out;
         opacity: .7;
     }
@@ -97,8 +99,8 @@
 
     // custom arrow
     // stylelint-disable
-    background-image: linear-gradient(45deg, transparent 50%, $brand-purple 50%),
-        linear-gradient(135deg, $brand-purple 50%, transparent 50%),
+    background-image: linear-gradient(45deg, transparent 50%, $brand-dark 50%),
+        linear-gradient(135deg, $brand-dark 50%, transparent 50%),
         linear-gradient(
             to right,
             $brand-pink 1px,

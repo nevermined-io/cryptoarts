@@ -58,7 +58,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                 </div>
 
 
-                <ArtworksRecent />
+                <ArtworksRecent categories={this.context.categories}/>
 
 
                 {/* <Content wide>
