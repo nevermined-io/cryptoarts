@@ -5,13 +5,22 @@
 }
 
 .title {
-    font-size: $font-size-h2;
-    margin: 0;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    color: $brand-dark;
 }
 
 .description {
-    margin-top: $spacer / 4;
-    margin-bottom: 0;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: $brand-dark;
+    margin-top: 16px;
 }
 
 .actions {

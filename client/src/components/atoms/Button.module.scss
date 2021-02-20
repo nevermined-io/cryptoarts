@@ -14,10 +14,11 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
-    color: #dedede;
+    color: $brand-white;
     text-transform: uppercase;
     transition: .2s ease-out;
-    background: $brand-grey-light;
+    background: $brand-gray;
+    border-radius: 4px;
     box-shadow: 0 9px 18px 0 rgba(0, 0, 0, .1);
     min-height: 45px;
     user-select: none;
@@ -66,10 +67,12 @@
     width: fit-content;
     background: 0;
     padding: 0;
-    color: $brand-pink;
-    font-size: $font-size-base;
-    font-weight: $font-weight-base;
-    font-family: inherit;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    color: $brand-secondary;
     box-shadow: none;
     cursor: pointer;
 }

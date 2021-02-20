@@ -72,7 +72,9 @@ export default class StepRegisterContent extends PureComponent<
                 ) : this.props.state.isPublished ? (
                     this.publishedState()
                 ) : (
-                    <p>{this.props.content}</p>
+                    <div className={styles.content}>
+                        {this.props.content}
+                    </div>
                 )}
             </>
         )

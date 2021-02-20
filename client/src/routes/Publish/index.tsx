@@ -15,6 +15,8 @@ import Content from '../../components/atoms/Content'
 import withTracker from '../../hoc/withTracker'
 import { serviceUri } from '../../config'
 import axios from 'axios'
+import styles from './index.module.scss'
+
 
 type AssetType = 'dataset' | 'algorithm' | 'container' | 'workflow' | 'other'
 
@@ -39,15 +41,15 @@ interface PublishState {
     validationStatus?: any
 }
 
-if (allowPricing) {
-    ;(steps as any)[0].fields.price = {
-        label: 'Price',
-        placeholder: 'Price in tokens',
-        type: 'string',
-        required: true,
-        help: 'Enter the price of assets in tokens.'
-    }
-}
+// if (allowPricing) {
+//     ;(steps as any)[0].fields.price = {
+//         label: 'Price',
+//         placeholder: 'Price in tokens',
+//         type: 'string',
+//         required: true,
+//         help: 'Enter the price of assets in tokens.'
+//     }
+// }
 
 class Publish extends Component<{}, PublishState> {
     public static contextType = User
@@ -349,32 +351,47 @@ class Publish extends Component<{}, PublishState> {
                         title="Publish"
                         description={`Publish a new data set into the Nevermined ${market.network} Network.`}
                     >
-                        <Content>
-                            <Progress
-                                steps={steps}
-                                currentStep={this.state.currentStep}
-                            />
+                        <Content >
+                            <div className={styles.content}>
+                                <div className={styles.header}>
+                                    <div className={styles.title}>
+                                        Publish
+                                    </div>
 
-                            <Form onSubmit={this.registerAsset}>
-                                {steps.map((step: any, index: number) => (
-                                    <Step
-                                        key={index}
-                                        index={index}
-                                        title={step.title}
-                                        description={step.description}
+                                    <div className={styles.subTitle}>
+                                        Publish a new artwork into the Nevermined Protocol
+                                    </div>
+
+                                    <div className={styles.progress}>
+                                        <Progress
+                                        steps={steps}
                                         currentStep={this.state.currentStep}
-                                        fields={step.fields}
-                                        inputChange={this.inputChange}
-                                        state={this.state}
-                                        next={this.next}
-                                        prev={this.prev}
-                                        totalSteps={steps.length}
-                                        tryAgain={this.tryAgain}
-                                        toStart={this.toStart}
-                                        content={step.content}
-                                    />
-                                ))}
-                            </Form>
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <Form onSubmit={this.registerAsset}>
+                                    {steps.map((step: any, index: number) => (
+                                        <Step
+                                            key={index}
+                                            index={index}
+                                            title={step.title}
+                                            description={step.description}
+                                            currentStep={this.state.currentStep}
+                                            fields={step.fields}
+                                            inputChange={this.inputChange}
+                                            state={this.state}
+                                            next={this.next}
+                                            prev={this.prev}
+                                            totalSteps={steps.length}
+                                            tryAgain={this.tryAgain}
+                                            toStart={this.toStart}
+                                            content={step.content}
+                                        />
+                                    ))}
+                                </Form>
+                            </div>
                         </Content>
                     </Route>
                 )}

@@ -1,7 +1,11 @@
 @import '../../../styles/variables';
 
 .help {
-    font-size: $font-size-small;
-    color: darken($brand-grey-light, 10%);
-    margin-top: $spacer / 4;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    color: $brand-gray;
+    margin-top: 8px;
 }

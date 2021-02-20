@@ -35,3 +35,12 @@
         margin-right: $spacer;
     }
 }
+
+.content {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: $brand-dark;
+}
