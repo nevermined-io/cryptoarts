@@ -4,6 +4,8 @@ import compression from 'compression'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import pkg from '../package.json'
+import S3 from 'aws-sdk/clients/s3';
+
 
 // routes
 import UrlCheckRouter from './routes/UrlCheckRouter'
@@ -17,6 +19,24 @@ import config from './config'
 const log = debug('server:index')
 
 const app = express()
+
+function initializeS3Bucket(): void {
+    const s3 = new S3({
+        accessKeyId: config.s3.accessKeyId,
+        secretAccessKey: config.s3.secretAccessKey,
+        endpoint: config.s3.endpoint,
+        s3ForcePathStyle: true,
+        signatureVersion: 'v4'
+    })
+
+    s3.createBucket({ Bucket: "bazaart" }, (err, data) => {
+        if (err) {
+            console.log('There was a problem connection to S3', err)
+        } else {
+            console.log(data)
+        }
+    })
+}
 
 function onListening(): void {
     log('Server thread started')
@@ -70,6 +90,10 @@ app.use('/api/v1/file', FileStorageRouter)
 app.use((req, res) => {
     res.status(404).send()
 })
+
+// initialize S3 bucket
+// This will try to create a bucket if one does not exist
+initializeS3Bucket()
 
 // listen
 const server = app.listen(config.app.port)
