@@ -56,16 +56,22 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.footerContent {
     font-family: $font-family-base;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     line-height: 30px;
     color: $brand-dark;
-    width: 800px;
-}
+    min-width: 400px;
 
-.footerTitle {
-    font-weight: 600;
-    width: 80px;
+    span {
+        font-weight: 600;
+        display: inline-block;
+        width: 80px;
+    }
 }

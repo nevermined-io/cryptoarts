@@ -9,6 +9,7 @@ import AssetFilesDetails from './AssetFilesDetails'
 import Report from './Report'
 import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
+import ArtworkFile from './ArtworkFile'
 
 interface ArtworkDetailsProps {
     metadata: MetaData
@@ -89,16 +90,24 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
             </div>
 
             <div className={styles.footer}>
-                <div className={styles.footerTitle}>License</div>
-                <div>{main.license}</div>
-                <div className={styles.footerTitle}>Price</div>
-                <div>{price}</div>
+                <div className={styles.footerContent}>
+                    <span>License</span>{main.license}
+                </div>
+                <div className={styles.footerContent}>
+                    <span>Price</span>{price}
+                </div>
             </div>
 
             <div className={styles.footer}>
-                <div className={styles.footerTitle}>DID</div>
-                <div>{ddo.id}</div>
+                <div className={styles.footerContent}>
+                    <span>DID</span>{ddo.id}
+                </div>
             </div>
+
+            <ArtworkFile
+                ddo={ddo}
+                file={file}
+            />
         </div>
     )
 }
