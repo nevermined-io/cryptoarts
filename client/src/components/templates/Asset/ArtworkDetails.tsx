@@ -35,6 +35,7 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
     const file = main.files[0]
+    const category = additionalInformation.categories[0]
 
     const metaFixed = [
         {
@@ -65,6 +66,39 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                 did={ddo.id}
                 file={file}
             />
+
+            <div className={styles.information}>
+                <div className={styles.title}>
+                    {main.name}
+                </div>
+
+                <div className={styles.authorship}>
+                    <span>{category}</span>
+                    <span>
+                        <Moment
+                            date={main.dateCreated}
+                            format="L"
+                            interval={0}
+                        />
+                    </span>
+                    <span>{main.author}</span>
+                    <span>{additionalInformation.copyrightHolder}</span>
+                </div>
+
+                <div className={styles.description}>{additionalInformation.description}</div>
+            </div>
+
+            <div className={styles.footer}>
+                <div className={styles.footerTitle}>License</div>
+                <div>{main.license}</div>
+                <div className={styles.footerTitle}>Price</div>
+                <div>{price}</div>
+            </div>
+
+            <div className={styles.footer}>
+                <div className={styles.footerTitle}>DID</div>
+                <div>{ddo.id}</div>
+            </div>
         </div>
     )
 }

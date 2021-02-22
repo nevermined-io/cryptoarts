@@ -3,5 +3,69 @@
 .main {
     border: 1px solid;
     width: 880px;
-    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 800px;
+}
+
+.title {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 40px;
+    color: $brand-dark;
+}
+
+.authorship {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+
+    span {
+        font-family: $font-family-base;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        color: $brand-dark;
+    }
+}
+
+.description {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-dark;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-dark;
+    width: 800px;
+}
+
+.footerTitle {
+    font-weight: 600;
+    width: 80px;
 }
