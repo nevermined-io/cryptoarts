@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Logger, DDO, File } from '@nevermined-io/nevermined-sdk-js'
-import filesize from 'filesize'
 import Button from '../../atoms/Button'
 import Spinner from '../../atoms/Spinner'
 import { User, Market } from '../../../context'
-import styles from './AssetFile.module.scss'
+import styles from './ArtworkFile.module.scss'
 import ReactGA from 'react-ga'
-import cleanupContentType from '../../../utils/cleanupContentType'
 
 export const messages: any = {
     99: 'Decrypting file URL...',
@@ -113,28 +111,11 @@ export default class ArtworkFile extends PureComponent<
         const { ddo, file } = this.props
         const { isLoading, error, step } = this.state
         const { isLogged } = this.context
-        const { index, contentType, contentLength } = file
+        const { index } = file
 
 
         return (
-            <div className={styles.fileWrap}>
-                <ul key={index} className={styles.file}>
-                    {contentType || contentLength ? (
-                        <>
-                            <li>{cleanupContentType(contentType)}</li>
-                            <li>
-                                {contentLength && contentLength !== '0'
-                                    ? filesize(contentLength)
-                                    : ''}
-                            </li>
-                            {/* <li>{encoding}</li> */}
-                            {/* <li>{compression}</li> */}
-                        </>
-                    ) : (
-                        <li className={styles.empty}>No file info available</li>
-                    )}
-                </ul>
-
+            <div>
                 {isLoading ? (
                     <Spinner message={messages[step]} />
                 ) : (
@@ -142,14 +123,14 @@ export default class ArtworkFile extends PureComponent<
                         {market => (
                             <Button
                                 primary
-                                className={styles.buttonMain}
+                                className={styles.button}
                                 onClick={() =>
                                     this.purchaseAsset(ddo, index ?? -1)
                                 }
                                 disabled={!isLogged || !market.networkMatch}
                                 name="Download"
                             >
-                                Get file
+                                Purchase
                             </Button>
                         )}
                     </Market.Consumer>

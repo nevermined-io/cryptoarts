@@ -1,12 +1,12 @@
 @import '../../../styles/variables';
 
 .main {
-    border: 1px solid;
     width: 880px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
+    padding-top: 40px;
 }
 
 .information {
@@ -57,7 +57,6 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    width: 800px;
 }
 
 .footerContent {
