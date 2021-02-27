@@ -10,6 +10,7 @@ import CategoryImage from '../../atoms/CategoryImage'
 import styles from './index.module.scss'
 import withTracker from '../../../hoc/withTracker'
 import Web3message from '../../organisms/Web3message'
+import ArtworkDetails from './ArtworkDetails'
 
 interface AssetProps {
     match: {
@@ -88,7 +89,7 @@ class Asset extends Component<AssetProps, AssetState> {
                 }
             >
                 <Content>
-                    <AssetDetails metadata={metadata} ddo={ddo} />
+                    <ArtworkDetails metadata={metadata} ddo={ddo} />
                 </Content>
             </Route>
         )

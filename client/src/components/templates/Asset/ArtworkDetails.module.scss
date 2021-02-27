@@ -1,0 +1,76 @@
+@import '../../../styles/variables';
+
+.main {
+    width: 880px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-top: 40px;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 800px;
+}
+
+.title {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 40px;
+    color: $brand-dark;
+}
+
+.authorship {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+
+    span {
+        font-family: $font-family-base;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 30px;
+        color: $brand-dark;
+    }
+}
+
+.description {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-dark;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.footerContent {
+    font-family: $font-family-base;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: $brand-dark;
+    min-width: 400px;
+
+    span {
+        font-weight: 600;
+        display: inline-block;
+        width: 80px;
+    }
+}
