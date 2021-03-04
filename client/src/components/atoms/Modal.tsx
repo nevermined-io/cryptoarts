@@ -12,6 +12,7 @@ const Modal = ({
     children,
     onAfterOpen,
     onRequestClose,
+    overrideButton = false,
     ...props
 }: {
     title: string
@@ -21,6 +22,7 @@ const Modal = ({
     children: any
     onAfterOpen?: () => void
     onRequestClose?: () => void
+    overrideButton?: boolean
 }) => {
     return (
         <ReactModal
@@ -32,13 +34,15 @@ const Modal = ({
             overlayClassName={styles.modalOverlay}
             {...props}
         >
-            <button
-                className={styles.close}
-                onClick={toggleModal}
-                data-testid="closeModal"
-            >
-                &times;
-            </button>
+           {!overrideButton &&
+                <button
+                    className={styles.close}
+                    onClick={toggleModal}
+                    data-testid="closeModal"
+                >
+                    &times;
+                </button>
+            }
 
             <header className={styles.header}>
                 <h2 className={styles.title}>{title}</h2>
