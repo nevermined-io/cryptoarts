@@ -5,6 +5,7 @@ import Spinner from '../../atoms/Spinner'
 import { User, Market } from '../../../context'
 import styles from './ArtworkFile.module.scss'
 import ReactGA from 'react-ga'
+import Modal from '../../atoms/Modal'
 
 export const messages: any = {
     99: 'Decrypting file URL...',
@@ -24,6 +25,7 @@ interface ArtworkFileState {
     isLoading: boolean
     error: string
     step: number
+    isModalOpen: boolean
 }
 
 export default class ArtworkFile extends PureComponent<
@@ -35,7 +37,17 @@ export default class ArtworkFile extends PureComponent<
     public state = {
         isLoading: false,
         error: '',
-        step: 99
+        step: 99,
+        isModalOpen: false
+    }
+
+    private handleToggleModal = (e?: Event) => {
+        this.setState({ isModalOpen: !this.state.isModalOpen })
+
+        const { ddo, file } = this.props
+        const { index } = file
+
+        this.purchaseAsset(ddo, index ?? -1)
     }
 
     private resetState = () =>
@@ -107,36 +119,95 @@ export default class ArtworkFile extends PureComponent<
         }
     }
 
-    public render() {
-        const { ddo, file } = this.props
-        const { isLoading, error, step } = this.state
-        const { isLogged } = this.context
-        const { index } = file
+    private renderSuccessful() {
+        return (
+            <div className={styles.modal}>
+                <div
+                    className={styles.iconSuccessful}
+                />
+                <div className={styles.text}>
+                    <span>Purchase Successful!</span>
+                    <p>Congratulations, you were able to sucessfully purchase this artwork</p>
+                </div>
+                <Button
+                    primary
+                    className={styles.buttonSuccessful}
+                    onClick={this.handleToggleModal}
+                >
+                    Complete
+                </Button>
+            </div>
+        )
+    }
 
+    private renderFailed() {
+        const { error } = this.state
+
+        return (
+            <div className={styles.modal}>
+                <div
+                    className={styles.iconFailed}
+                />
+                <div className={styles.text}>
+                    <span>Purchase Failed!</span>
+                    <p>{error}</p>
+                </div>
+                <Button
+                    primary
+                    className={styles.buttonFailed}
+                    onClick={this.handleToggleModal}
+                >
+                    Return
+                </Button>
+            </div>
+        )
+    }
+
+    private renderModalContent() {
+        const { error } = this.state
+
+        if (error !== '') {
+            return this.renderFailed()
+        } else {
+            return this.renderSuccessful()
+        }
+    }
+
+    public render() {
+        const { isLoading, step } = this.state
+        const { isLogged } = this.context
 
         return (
             <div>
-                {isLoading ? (
-                    <Spinner message={messages[step]} />
-                ) : (
-                    <Market.Consumer>
-                        {market => (
-                            <Button
-                                primary
-                                className={styles.button}
-                                onClick={() =>
-                                    this.purchaseAsset(ddo, index ?? -1)
-                                }
-                                disabled={!isLogged || !market.networkMatch}
-                                name="Download"
-                            >
-                                Purchase
-                            </Button>
-                        )}
-                    </Market.Consumer>
-                )}
+                <Market.Consumer>
+                    {market => (
+                        <Button
+                            primary
+                            className={styles.button}
+                            onClick={this.handleToggleModal}
+                            disabled={!isLogged || !market.networkMatch}
+                            name="Download"
+                        >
+                            Purchase
+                        </Button>
+                    )}
+                </Market.Consumer>
 
-                {error !== '' && <div className={styles.error}>{error}</div>}
+                <Modal
+                    title=''
+                    isOpen={this.state.isModalOpen}
+                    toggleModal={this.handleToggleModal}
+                    overrideButton={true}
+                >
+                    {isLoading ? (
+                        <Spinner message={messages[step]} />
+                        ) : (
+                            <>
+                                {this.renderModalContent()}
+                            </>
+                        )
+                    }
+                </Modal>
             </div>
         )
     }
