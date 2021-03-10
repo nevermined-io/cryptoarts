@@ -28,9 +28,9 @@ export class UrlCheckRouter {
 
         request(
             {
-                method: 'HEAD',
+                method: 'GET',
                 url,
-                headers: { Range: 'bytes=0-' }
+                headers: { Range: 'bytes=0-0' }
             },
             (error, response) => {
                 const { headers, statusCode } = response
