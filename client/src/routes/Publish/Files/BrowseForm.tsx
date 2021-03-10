@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import { serviceUri } from '../../../config'
 
+const acceptedTypes = [
+    'image/*',
+    'video/*'
+]
+
 interface BrowseFormProps {
     addFile(url: string): void
 }
@@ -27,7 +32,7 @@ export default class BrowseForm extends Component<
 
     public render() {
         return (
-            <Dropzone onDrop={this.onDrop} multiple={false}>
+            <Dropzone onDrop={this.onDrop} multiple={false} accept={acceptedTypes}>
                 {({getRootProps, getInputProps}) => (
                 <section className="container">
                     <div {...getRootProps({className: 'dropzone'})}>
