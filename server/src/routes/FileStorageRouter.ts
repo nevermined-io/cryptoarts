@@ -2,6 +2,8 @@ import { Router, Request, Response } from 'express'
 import request from 'request'
 import S3 from 'aws-sdk/clients/s3';
 import config from '../config'
+import fs from 'fs'
+import formidable from 'formidable'
 
 export class FileStorageRouter {
     public router: Router
@@ -75,12 +77,65 @@ export class FileStorageRouter {
         })
     }
 
+    public upload(req: Request, res: Response) {
+        const form = formidable()
+        form.parse(req, (err, fields, files) => {
+            if(err) {
+                return res.send({ status: 'error', message: err.message })
+            } else {
+                const file = files.file
+
+                if (!file) {
+                    return res.send({ status: 'error', message: 'missing file' })
+                }
+
+                const fileContent = fs.readFileSync(file.path)
+
+                const s3 = new S3({
+                    accessKeyId: config.s3.accessKeyId,
+                    secretAccessKey: config.s3.secretAccessKey,
+                    endpoint: config.s3.endpoint,
+                    s3ForcePathStyle: true,
+                    signatureVersion: 'v4'
+                })
+
+                s3.upload({
+                    Bucket: 'bazaart',
+                    Key: file.name,
+                    Body: fileContent
+                }, (error, data) => {
+                    if (error) {
+                        console.log(error)
+                        return res.send({ status: 'error', message: error.message })
+                    } else {
+                        console.log(data)
+                    }
+                })
+
+                s3.getSignedUrl('getObject',
+                {
+                    Bucket: 'bazaart',
+                    Key: file.name,
+                },
+                (error, s3Url) => {
+                    if (error) {
+                        console.log(error)
+                        return res.send({ status: 'error', message: error.message })
+                    } else {
+                        return res.send({ status: 'success', url: s3Url })
+                    }
+                })
+            }
+        })
+    }
+
     /**
      * Take each handler, and attach to one of the Express.Router's
      * endpoints.
      */
     public init() {
         this.router.post('/', this.saveFile)
+        this.router.post('/upload', this.upload)
         this.router.get('/:filename', this.getUrl)
     }
 }

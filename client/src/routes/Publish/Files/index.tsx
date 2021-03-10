@@ -17,6 +17,7 @@ import styles from './index.module.scss'
 import { serviceUri } from '../../../config'
 import cleanupContentType from '../../../utils/cleanupContentType'
 import Spinner from '../../../components/atoms/Spinner'
+import BrowseForm from './BrowseForm'
 
 const Ipfs = lazy(() => import('./Ipfs'))
 
@@ -39,11 +40,17 @@ interface FilesProps {
 }
 
 interface FilesStates {
+    isBrowseShown: boolean
     isFormShown: boolean
     isIpfsFormShown: boolean
 }
 
 const buttons = [
+    {
+        id: 'browse',
+        title: '+ Browse',
+        titleActive: '- Cancel'
+    },
     {
         id: 'url',
         title: '+ From URL',
@@ -58,6 +65,7 @@ const buttons = [
 
 export default class Files extends PureComponent<FilesProps, FilesStates> {
     public state: FilesStates = {
+        isBrowseShown: false,
         isFormShown: false,
         isIpfsFormShown: false
     }
@@ -73,6 +81,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         e.preventDefault()
 
         this.setState({
+            isBrowseShown: form === 'browse' ? !this.state.isBrowseShown : false,
             isFormShown: form === 'url' ? !this.state.isFormShown : false,
             isIpfsFormShown:
                 form === 'ipfs' ? !this.state.isIpfsFormShown : false
@@ -119,6 +128,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
 
         if (duplicateFiles.length > 0) {
             return this.setState({
+                isBrowseShown: false,
                 isFormShown: false,
                 isIpfsFormShown: false
             })
@@ -136,6 +146,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         this.props.onChange(event as any)
 
         this.setState({
+            isBrowseShown: false,
             isFormShown: false,
             isIpfsFormShown: false
         })
@@ -157,7 +168,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
 
     public render() {
         const { files, help, placeholder, name, onChange } = this.props
-        const { isFormShown, isIpfsFormShown } = this.state
+        const { isBrowseShown, isFormShown, isIpfsFormShown } = this.state
 
         return (
             <>
@@ -188,7 +199,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                     {buttons.map(button => {
                         const isActive =
                             (button.id === 'url' && isFormShown) ||
-                            (button.id === 'ipfs' && isIpfsFormShown)
+                            (button.id === 'ipfs' && isIpfsFormShown) ||
+                            (button.id === 'browse' && isBrowseShown)
 
                         return (
                             <Button
@@ -202,6 +214,10 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                             </Button>
                         )
                     })}
+
+                    {isBrowseShown && (
+                        <BrowseForm addFile={this.addFile} />
+                    )}
 
                     {isFormShown && (
                         <ItemForm
