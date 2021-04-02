@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
 import request from 'request'
-import S3 from 'aws-sdk/clients/s3';
+import S3 from 'aws-sdk/clients/s3'
 import config from '../config'
 import fs from 'fs'
 import formidable from 'formidable'
@@ -79,7 +79,7 @@ export class FileStorageRouter {
 
     public upload(req: Request, res: Response) {
         const form = formidable()
-        form.parse(req, (err, fields, files) => {
+        form.parse(req, async (err, fields, files) => {
             if(err) {
                 return res.send({ status: 'error', message: err.message })
             } else {
@@ -99,32 +99,25 @@ export class FileStorageRouter {
                     signatureVersion: 'v4'
                 })
 
-                s3.upload({
-                    Bucket: 'bazaart',
-                    Key: file.name,
-                    Body: fileContent
-                }, (error, data) => {
-                    if (error) {
-                        console.log(error)
-                        return res.send({ status: 'error', message: error.message })
-                    } else {
-                        console.log(data)
-                    }
-                })
+                try {
+                    const uploadResponse = await s3.upload({
+                        Bucket: 'bazaart',
+                        Key: file.name,
+                        Body: fileContent
+                    }).promise()
+                    console.log(uploadResponse)
 
-                s3.getSignedUrl('getObject',
-                {
-                    Bucket: 'bazaart',
-                    Key: file.name,
-                },
-                (error, s3Url) => {
-                    if (error) {
-                        console.log(error)
-                        return res.send({ status: 'error', message: error.message })
-                    } else {
-                        return res.send({ status: 'success', url: s3Url })
-                    }
-                })
+                    const s3Url = s3.getSignedUrl('getObject',
+                        {
+                            Bucket: 'bazaart',
+                            Key: file.name,
+                        })
+                    return res.send({ status: 'success', url: s3Url })
+
+                } catch (error) {
+                    console.log(error)
+                    return res.send({ status: 'error', message: error.message })
+                }
             }
         })
     }
