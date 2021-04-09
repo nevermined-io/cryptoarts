@@ -121,6 +121,7 @@ export class FileStorageRouter {
 
                 } catch (error) {
                     console.log(error)
+                    // shouldn't we throw here?
                     return res.send({ status: 'error', message: error.message })
                 }
             }
@@ -156,3 +157,13 @@ const resizeAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size:
 }
 
 export default fileStorageRoutes.router
+
+export const isGif = (fileContent: Buffer): boolean => {
+    const uint = new Uint8Array(fileContent)
+    let bytes = []
+    uint.forEach((byte) => {
+        bytes.push(byte.toString(16))
+    })
+    const fileMagicNumbers = bytes.slice(0, 6).join('')
+    return fileMagicNumbers === '474946383761' || fileMagicNumbers === '474946383961'
+}
