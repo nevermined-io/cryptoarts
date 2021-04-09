@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express'
 import request from 'request'
+import sharp from 'sharp'
 import S3 from 'aws-sdk/clients/s3'
 import config from '../config'
 import fs from 'fs'
@@ -100,12 +101,16 @@ export class FileStorageRouter {
                 })
 
                 try {
-                    const uploadResponse = await s3.upload({
+                    await s3.upload({
                         Bucket: 'bazaart',
                         Key: file.name,
                         Body: fileContent
                     }).promise()
-                    console.log(uploadResponse)
+
+                    const splitFileName = file.name.split('.')
+                    await resizeAndUpload(fileContent, s3, splitFileName, 300)
+                    await resizeAndUpload(fileContent, s3, splitFileName, 512)
+                    await resizeAndUpload(fileContent, s3, splitFileName, 2048)
 
                     const s3Url = s3.getSignedUrl('getObject',
                         {
@@ -136,5 +141,18 @@ export class FileStorageRouter {
 // Create the MeRouter, and export its configured Express.Router
 const fileStorageRoutes = new FileStorageRouter()
 fileStorageRoutes.init()
+
+const resizeAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size: number) => {
+    const resized = await sharp(fileContent)
+        .resize({ width: size })
+        .composite([{ input: `src/assets/nevermined_logo_black_${size}.png`, gravity: 'southeast' }])
+        .toBuffer()
+
+    await s3.upload({
+        Bucket: 'bazaart',
+        Key: `${splitFileName[0]}_${size}.${splitFileName[1]}`,
+        Body: resized
+    }).promise()
+}
 
 export default fileStorageRoutes.router

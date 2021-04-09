@@ -23,7 +23,8 @@
     "express-validator": "^6.3.0",
     "formidable": "^1.2.2",
     "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sharp": "^0.28.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
