@@ -3,8 +3,10 @@ import request from 'request'
 import sharp from 'sharp'
 import S3 from 'aws-sdk/clients/s3'
 import config from '../config'
-import fs from 'fs'
+import fs, { readdirSync } from 'fs'
 import formidable from 'formidable'
+import { execFile } from 'child_process'
+import gifsicle from 'gifsicle'
 
 export class FileStorageRouter {
     public router: Router
@@ -91,6 +93,7 @@ export class FileStorageRouter {
                 }
 
                 const fileContent = fs.readFileSync(file.path)
+                console.log(file.path)
 
                 const s3 = new S3({
                     accessKeyId: config.s3.accessKeyId,
@@ -108,9 +111,14 @@ export class FileStorageRouter {
                     }).promise()
 
                     const splitFileName = file.name.split('.')
-                    await resizeAndUpload(fileContent, s3, splitFileName, 300)
-                    await resizeAndUpload(fileContent, s3, splitFileName, 512)
-                    await resizeAndUpload(fileContent, s3, splitFileName, 2048)
+                    if (isGif(fileContent)){
+                        await resizeGifAndUpload(file.path, s3, splitFileName, 300)
+                        await resizeGifAndUpload(file.path, s3, splitFileName, 512)
+                    } else {
+                        await resizeImageAndUpload(fileContent, s3, splitFileName, 300)
+                        await resizeImageAndUpload(fileContent, s3, splitFileName, 512)
+                        await resizeImageAndUpload(fileContent, s3, splitFileName, 2048)
+                    }
 
                     const s3Url = s3.getSignedUrl('getObject',
                         {
@@ -143,7 +151,7 @@ export class FileStorageRouter {
 const fileStorageRoutes = new FileStorageRouter()
 fileStorageRoutes.init()
 
-const resizeAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size: number) => {
+const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size: number) => {
     const resized = await sharp(fileContent)
         .resize({ width: size })
         .composite([{ input: `src/assets/nevermined_logo_black_${size}.png`, gravity: 'southeast' }])
@@ -156,7 +164,18 @@ const resizeAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size:
     }).promise()
 }
 
-export default fileStorageRoutes.router
+const resizeGifAndUpload = async (path: string, s3: S3, splitFileName, size: number) => {
+    const Key = `${splitFileName[0]}_${size}.${splitFileName[1]}`
+    execFile(gifsicle, ['-o', `/tmp/${Key}`, '--resize-fit-width', size.toString(), path])
+    await new Promise(r => setTimeout(r, 500))
+    const gif = fs.readFileSync(`/tmp/${Key}`)
+
+    await s3.upload({
+        Bucket: 'bazaart',
+        Key,
+        Body: gif
+    }).promise()
+}
 
 export const isGif = (fileContent: Buffer): boolean => {
     const uint = new Uint8Array(fileContent)
@@ -167,3 +186,5 @@ export const isGif = (fileContent: Buffer): boolean => {
     const fileMagicNumbers = bytes.slice(0, 6).join('')
     return fileMagicNumbers === '474946383761' || fileMagicNumbers === '474946383961'
 }
+
+export default fileStorageRoutes.router
