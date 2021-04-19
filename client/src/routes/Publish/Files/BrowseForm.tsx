@@ -15,14 +15,37 @@ interface BrowseFormProps {
     addFile(url: string): void
 }
 
+interface BrowseFormState {
+    imageTooSmall: boolean
+}
+
 export default class BrowseForm extends Component<
     BrowseFormProps,
-    {}
+    BrowseFormState
 > {
-
+    public state = {
+        imageTooSmall: false
+    }
     private onDrop = async (files: File[]) => {
-        const formData = new FormData();
-        formData.append('file', files[0])
+        this.setState({ imageTooSmall: false })
+        if (files[0].type !== 'image/gif') {
+            const image = new Image()
+            image.addEventListener('load', async () => {
+                if (image.width < 2048) {
+                    this.setState({ imageTooSmall: true })
+                } else {
+                    await this.upload(files[0])
+                }
+            })
+            image.src = URL.createObjectURL(files[0])
+        } else {
+            await this.upload(files[0])
+        }
+    }
+
+    private async upload(file: File) {
+        const formData = new FormData()
+        formData.append('file', file)
         const response = await axios({
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
@@ -45,6 +68,7 @@ export default class BrowseForm extends Component<
                     <aside>
                     <h4>Files</h4>
                     </aside>
+                    {this.state.imageTooSmall && <h5>The width of the picture has to be bigger than 2048 pixels.</h5>}
                 </section>
                 )}
             </Dropzone>

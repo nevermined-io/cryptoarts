@@ -13,6 +13,7 @@ interface ItemFormStates {
     url: string
     hasError: boolean
     noUrl: boolean
+    imageTooSmall: boolean
 }
 
 export default class ItemForm extends PureComponent<
@@ -22,7 +23,8 @@ export default class ItemForm extends PureComponent<
     public state: ItemFormStates = {
         url: '',
         hasError: false,
-        noUrl: false
+        noUrl: false,
+        imageTooSmall: false
     }
 
     private handleSubmit = (e: Event) => {
@@ -42,7 +44,21 @@ export default class ItemForm extends PureComponent<
             return
         }
 
-        this.props.addFile(url)
+        const image = new Image()
+        image.addEventListener('load', async () => {
+            let fileType
+            // fetching the image twice isn't ideal but can't find a better way right now
+            await fetch(url).then(res => res.blob()).then(blob => {
+                fileType = blob.type
+            })
+            console.log(fileType)
+            if (image.width < 2048 && fileType !== 'image/gif') {
+                this.setState({ imageTooSmall: true })
+            } else {
+                this.props.addFile(url)
+            }
+        })
+        image.src = url
     }
 
     private onChangeUrl = (e: React.FormEvent<HTMLInputElement>) => {
@@ -56,7 +72,7 @@ export default class ItemForm extends PureComponent<
     }
 
     public render() {
-        const { url, hasError, noUrl } = this.state
+        const { url, hasError, noUrl, imageTooSmall } = this.state
 
         return (
             <div className={styles.itemForm}>
@@ -83,6 +99,11 @@ export default class ItemForm extends PureComponent<
                 {noUrl && (
                     <span className={styles.error}>
                         Please enter a valid URL.
+                    </span>
+                )}
+                {imageTooSmall && (
+                    <span className={styles.error}>
+                        The width of the picture has to be bigger than 2048 pixels.
                     </span>
                 )}
             </div>
