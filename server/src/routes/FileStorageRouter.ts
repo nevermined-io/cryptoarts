@@ -1,12 +1,12 @@
-import { Router, Request, Response } from 'express'
-import request from 'request'
+import { Request, Response, Router } from 'express'
 import sharp from 'sharp'
 import S3 from 'aws-sdk/clients/s3'
 import config from '../config'
-import fs, { readdirSync } from 'fs'
+import fs from 'fs'
 import formidable from 'formidable'
 import { execFile } from 'child_process'
 import gifsicle from 'gifsicle'
+import axios from 'axios'
 
 export class FileStorageRouter {
     public router: Router
@@ -18,7 +18,7 @@ export class FileStorageRouter {
         this.router = Router()
     }
 
-    public saveFile(req: Request, res: Response) {
+    public async saveFile(req: Request, res: Response) {
         const { url, did, compression } = req.body
         console.log("request to filestorage")
 
@@ -42,15 +42,30 @@ export class FileStorageRouter {
             signatureVersion: 'v4'
         })
 
-        s3.getSignedUrl('putObject',
-        {
-            Bucket: 'bazaart',
-            Key: `${did}.${compression}`,
-        },
-        (error, s3Url) => {
+        try {
+            const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
+            const fileContent = fileContentResponse.data
+            await s3.upload({
+                Bucket: 'bazaart',
+                Key: `${did}.${compression}`,
+                Body: fileContent
+            }).promise()
+
+            if (isGif(fileContent)) {
+                const filePath = `/tmp/${new Date().getTime()}.gif`
+                fs.writeFileSync(filePath, fileContent)
+                await new Promise(r => setTimeout(r, 500))
+                await resizeGifAndUpload(filePath, s3, `${did}_300.${compression}`, 300)
+                await resizeGifAndUpload(filePath, s3, `${did}_512.${compression}`, 512)
+            } else {
+                await resizeImageAndUpload(fileContent, s3, `${did}_300.${compression}`, 300)
+                await resizeImageAndUpload(fileContent, s3, `${did}_512.${compression}`, 512)
+                await resizeImageAndUpload(fileContent, s3, `${did}_2048.${compression}`, 2048)
+            }
+        } catch (error) {
             console.log(error)
-            request.get(url).pipe(request.put(s3Url))
-        })
+        }
+
         return res.send({ status: 'success' })
     }
 
@@ -70,20 +85,20 @@ export class FileStorageRouter {
         })
 
         s3.getSignedUrl('getObject',
-        {
-            Bucket: 'bazaart',
-            Key: filename,
-        },
-        (error, s3Url) => {
-            console.log(error)
-            return res.send({ status: 'success', url: s3Url })
-        })
+            {
+                Bucket: 'bazaart',
+                Key: filename,
+            },
+            (error, s3Url) => {
+                console.log(error)
+                return res.send({ status: 'success', url: s3Url })
+            })
     }
 
     public upload(req: Request, res: Response) {
         const form = formidable()
         form.parse(req, async (err, fields, files) => {
-            if(err) {
+            if (err) {
                 return res.send({ status: 'error', message: err.message })
             } else {
                 const file = files.file
@@ -109,16 +124,6 @@ export class FileStorageRouter {
                         Key: file.name,
                         Body: fileContent
                     }).promise()
-
-                    const splitFileName = file.name.split('.')
-                    if (isGif(fileContent)){
-                        await resizeGifAndUpload(file.path, s3, splitFileName, 300)
-                        await resizeGifAndUpload(file.path, s3, splitFileName, 512)
-                    } else {
-                        await resizeImageAndUpload(fileContent, s3, splitFileName, 300)
-                        await resizeImageAndUpload(fileContent, s3, splitFileName, 512)
-                        await resizeImageAndUpload(fileContent, s3, splitFileName, 2048)
-                    }
 
                     const s3Url = s3.getSignedUrl('getObject',
                         {
@@ -151,7 +156,7 @@ export class FileStorageRouter {
 const fileStorageRoutes = new FileStorageRouter()
 fileStorageRoutes.init()
 
-const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, size: number) => {
+const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, Key, size: number) => {
     const resized = await sharp(fileContent)
         .resize({ width: size })
         .composite([{ input: `src/assets/nevermined_logo_black_${size}.png`, gravity: 'southeast' }])
@@ -159,15 +164,14 @@ const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, splitFileName, 
 
     await s3.upload({
         Bucket: 'bazaart',
-        Key: `${splitFileName[0]}_${size}.${splitFileName[1]}`,
+        Key,
         Body: resized
     }).promise()
 }
 
-const resizeGifAndUpload = async (path: string, s3: S3, splitFileName, size: number) => {
-    const Key = `${splitFileName[0]}_${size}.${splitFileName[1]}`
+const resizeGifAndUpload = async (path: string, s3: S3, Key, size: number) => {
     execFile(gifsicle, ['-o', `/tmp/${Key}`, '--resize-fit-width', size.toString(), path])
-    await new Promise(r => setTimeout(r, 500))
+    await new Promise(r => setTimeout(r, 1000))
     const gif = fs.readFileSync(`/tmp/${Key}`)
 
     await s3.upload({
