@@ -15,6 +15,7 @@
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
     "aws-sdk": "^2.836.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "debug": "^4.1.1",
@@ -22,8 +23,10 @@
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
     "formidable": "^1.2.2",
+    "gifsicle": "^5.2.0",
     "morgan": "^1.9.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sharp": "^0.28.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
