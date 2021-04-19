@@ -4,8 +4,11 @@ import Dropzone from 'react-dropzone'
 import { serviceUri } from '../../../config'
 
 const acceptedTypes = [
-    'image/*',
-    'video/*'
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/tiff',
+    'image/gif',
 ]
 
 interface BrowseFormProps {
