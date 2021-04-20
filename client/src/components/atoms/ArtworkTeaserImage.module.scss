@@ -2,10 +2,9 @@
 
 .artworkTeaserImage {
     height: 160px;
-    background-size: 100%;
     background-position: center;
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: lightgray;
+    background-color: $brand-light;
 }

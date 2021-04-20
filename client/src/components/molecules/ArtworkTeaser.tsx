@@ -8,7 +8,7 @@ import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
 import ArtworkTeaserDescription from '../atoms/ArtworkTeaserDescription'
 
 const ArtworkTeaser = ({
-    artwork: artwork,
+    artwork,
     list,
     minimal,
     tokenSymbol

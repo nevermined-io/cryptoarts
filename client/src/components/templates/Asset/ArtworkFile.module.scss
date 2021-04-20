@@ -2,13 +2,13 @@
 
 .button {
     background: linear-gradient(91.25deg, $brand-secondary 0%, $brand-primary 100%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
     border-radius: 4px;
 }
 
 .buttonSuccessful {
     background: $brand-positive;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
     border-radius: 4px;
 }
 
@@ -16,7 +16,7 @@
     background: $brand-white;
     border: 1px solid $brand-negative;
     box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
     border-radius: 4px;
     color: $brand-negative;
 }
@@ -38,15 +38,14 @@
     text-align: center;
 
     span {
-        font-weight: bold;
+        font-weight: $font-weight-bold;
         font-size: 40px;
         line-height: 40px;
         color: $brand-dark;
     }
 
     p {
-
-        font-weight: 600;
+        font-weight: $font-weight-bold;
         font-size: 20px;
         line-height: 30px;
         color: $brand-gray;
