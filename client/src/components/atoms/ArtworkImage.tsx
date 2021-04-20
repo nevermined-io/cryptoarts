@@ -7,15 +7,15 @@ import styles from './ArtworkImage.module.scss'
 
 
 export default class ArtworkImage extends Component<{
-    did: string,
+    did: string
     file: File
 }, { url: string }> {
-    constructor(props: any) {
+    public constructor(props: any) {
         super(props)
         this.state = { url: '' }
     }
 
-    async componentDidMount() {
+    public async componentDidMount() {
         const { compression } = this.props.file
         const filename = `${this.props.did}.${compression}`
         const response = await axios({

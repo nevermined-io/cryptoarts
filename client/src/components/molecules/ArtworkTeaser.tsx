@@ -1,18 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import Dotdotdot from 'react-dotdotdot'
 import cx from 'classnames'
 import styles from './ArtworkTeaser.module.scss'
-import { allowPricing } from '../../config'
-import Web3 from 'web3'
 import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
 
-
-import artworkImage from '../../img/artwork.png'
 import ArtworkTeaserDescription from '../atoms/ArtworkTeaserDescription'
-import axios from 'axios'
-import { serviceUri } from '../../config'
 
 const ArtworkTeaser = ({
     artwork: artwork,

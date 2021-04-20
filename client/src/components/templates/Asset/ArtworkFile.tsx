@@ -41,7 +41,7 @@ export default class ArtworkFile extends PureComponent<
         isModalOpen: false
     }
 
-    private handleToggleModal = (e?: Event) => {
+    private handleToggleModal = () => {
         this.setState({ isModalOpen: !this.state.isModalOpen })
 
         const { ddo, file } = this.props
