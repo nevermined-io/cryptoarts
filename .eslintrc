@@ -14,7 +14,8 @@
         "prettier/react",
         "prettier/standard",
         "prettier/@typescript-eslint",
-        "plugin:cypress/recommended"
+        "plugin:cypress/recommended",
+        "plugin:react/recommended"
     ],
     "plugins": ["@typescript-eslint", "cypress"],
     "rules": {
