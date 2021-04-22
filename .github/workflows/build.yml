@@ -10,7 +10,10 @@ jobs:
   build:
 
     runs-on: ubuntu-16.04
-
+    env:
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+      S3_ENDPOINT: http://127.0.0.1:9000
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -34,6 +37,8 @@ jobs:
         ./start_nevermined.sh --no-marketplace &
         cd ..
         ./scripts/nevermined-tools.sh
+    - name: Run minio
+      run: docker run -d -p 9000:9000 minio/minio server ./data
     - name: Run linters
       run: npm run lint
     - name: Run tests
