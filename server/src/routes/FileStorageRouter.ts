@@ -43,7 +43,7 @@ export class FileStorageRouter {
 
         try {
             const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
-            const fileContent = fileContentResponse.data
+            const fileContent = Buffer.from(fileContentResponse.data)
             await s3.upload({
                 Bucket: 'bazaart',
                 Key: `${did}.${compression}`,

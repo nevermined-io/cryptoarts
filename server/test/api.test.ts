@@ -75,7 +75,7 @@ describe('POST /api/v1/report', () => {
     })
 })
 
-describe('POST /api/v1/file/upload', () => {
+describe('POST /api/v1/file/', () => {
     const s3 = new S3({
         accessKeyId: config.s3.accessKeyId,
         secretAccessKey: config.s3.secretAccessKey,
@@ -90,20 +90,33 @@ describe('POST /api/v1/file/upload', () => {
     })
 
     it('uploads 4 files to the bucket', async () => {
-        await request(server)
-            .post('/api/v1/file/upload')
-            .attach('file', './test/assets/goats.png')
+        const Key = 'goats.png'
+        const fileContent = fs.readFileSync('./test/assets/goats.png')
+        await s3.putObject({ Bucket: 'bazaart', Key, Body: fileContent }).promise()
+        const url = s3.getSignedUrl('getObject', { Bucket: 'bazaart', Key })
+        const objectsBeforeUpload = await s3.listObjects({ Bucket: 'bazaart' }).promise()
+        expect(objectsBeforeUpload.Contents.length).toBe(1)
 
-        const objectsToCount = await s3.listObjects({ Bucket: 'bazaart' }).promise()
-        expect(objectsToCount.Contents.length).toBe(4)
+        await request(server)
+            .post('/api/v1/file/')
+            .send({ url, did: new Date().getTime(), compression: 'png' })
+
+        const objectsAfterUpload = await s3.listObjects({ Bucket: 'bazaart' }).promise()
+        expect(objectsAfterUpload.Contents.length - objectsBeforeUpload.Contents.length).toBe(4)
     })
 
     it('correctly resizes and adds a watermark to pictures', async () => {
-        await request(server)
-            .post('/api/v1/file/upload')
-            .attach('file', './test/assets/goats.png')
+        const Key = 'goats.png'
+        const did = new Date().getTime()
+        const fileContent = fs.readFileSync('./test/assets/goats.png')
+        await s3.putObject({ Bucket: 'bazaart', Key, Body: fileContent }).promise()
+        const url = s3.getSignedUrl('getObject', { Bucket: 'bazaart', Key })
 
-        const goats512OnS3 = await s3.getObject({ Bucket: 'bazaart', Key: 'goats_512.png' }).promise()
+        await request(server)
+            .post('/api/v1/file/')
+            .send({ url, did, compression: 'png' })
+
+        const goats512OnS3 = await s3.getObject({ Bucket: 'bazaart', Key: `${did}_512.png` }).promise()
         const goats512Local = fs.readFileSync('./test/assets/goats_512.png')
         expect(goats512OnS3.Body).toEqual(goats512Local)
     })
