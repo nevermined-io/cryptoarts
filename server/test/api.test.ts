@@ -86,7 +86,7 @@ describe('POST /api/v1/file/', () => {
 
     beforeEach(async () => {
         const objectsToDelete = await s3.listObjects({ Bucket: 'bazaart' }).promise()
-        await s3.deleteObjects({ Bucket: 'bazaart', Delete: { Objects: objectsToDelete.Contents.map(obj => ({ Key: obj.Key })) } }).promise()
+        objectsToDelete.Contents.length !== 0 && await s3.deleteObjects({ Bucket: 'bazaart', Delete: { Objects: objectsToDelete.Contents.map(obj => ({ Key: obj.Key })) } }).promise()
     })
 
     it('uploads 4 files to the bucket', async () => {
