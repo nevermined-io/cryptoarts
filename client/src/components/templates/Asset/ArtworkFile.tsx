@@ -71,7 +71,7 @@ export default class ArtworkFile extends PureComponent<
             const accounts = await sdk.accounts.list()
             const service = ddo.findServiceByType('access')
 
-            const agreements = await sdk.keeper.conditions.accessSecretStoreCondition.getGrantedDidByConsumer(
+            const agreements = await sdk.keeper.conditions.accessCondition.getGrantedDidByConsumer(
                 accounts[0].id
             )
             const agreement = agreements.find((element: any) => {
