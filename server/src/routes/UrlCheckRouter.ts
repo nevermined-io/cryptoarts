@@ -1,7 +1,6 @@
-import S3 from 'aws-sdk/clients/s3'
 import { Router, Request, Response } from 'express'
-import request from 'request'
 import config from '../config'
+import axios from 'axios'
 
 export class UrlCheckRouter {
     public router: Router
@@ -13,7 +12,7 @@ export class UrlCheckRouter {
         this.router = Router()
     }
 
-    public checkUrl(req: Request, res: Response) {
+    public async checkUrl(req: Request, res: Response) {
         let { url } = req.body
 
         if (!url) {
@@ -31,56 +30,55 @@ export class UrlCheckRouter {
             return res.send({ status: 'success', result})
         }
 
-        request(
-            {
+        try {
+            const response = await axios.get(url, {
                 method: 'GET',
                 url,
                 headers: { Range: 'bytes=0-0' }
-            },
-            (error, response) => {
-                const { headers, statusCode } = response
-                const successResponses =
-                    statusCode.toString().startsWith('2') ||
-                    statusCode.toString().startsWith('416')
+            })
 
-                if (response && successResponses) {
-                    const result: any = {}
-                    result.found = true
+            const { headers, status } = response
+            const successResponses =
+                status.toString().startsWith('2') ||
+                status.toString().startsWith('416')
 
-                    if (headers['content-length']) {
-                        result.contentLength = headers['content-length']
-                    }
+            if (response && successResponses) {
+                const result: any = {}
+                result.found = true
 
-                    // sometimes servers send content-range header,
-                    // try to use it if content-length is not present
-                    if (
-                        headers['content-range'] &&
-                        !headers['content-length']
-                    ) {
-                        const size = headers['content-range'].split('/')[1]
-                        result.contentLength = size
-                    }
-
-                    if (headers['content-type']) {
-                        const typeAndCharset = headers['content-type'].split(
-                            ';'
-                        )
-
-                        /* eslint-disable prefer-destructuring */
-                        result.contentType = typeAndCharset[0]
-
-                        if (typeAndCharset[1]) {
-                            result.contentCharset = typeAndCharset[1].split(
-                                '='
-                            )[1]
-                        }
-                        /* eslint-enable prefer-destructuring */
-                    }
-                    return res.send({ status: 'success', result })
+                if (headers['content-length']) {
+                    result.contentLength = headers['content-length']
                 }
-                return res.send({ status: 'error', message: error })
+
+                // sometimes servers send content-range header,
+                // try to use it if content-length is not present
+                if (
+                    headers['content-range'] &&
+                    !headers['content-length']
+                ) {
+                    const size = headers['content-range'].split('/')[1]
+                    result.contentLength = size
+                }
+
+                if (headers['content-type']) {
+                    const typeAndCharset = headers['content-type'].split(
+                        ';'
+                    )
+
+                    /* eslint-disable prefer-destructuring */
+                    result.contentType = typeAndCharset[0]
+
+                    if (typeAndCharset[1]) {
+                        result.contentCharset = typeAndCharset[1].split(
+                            '='
+                        )[1]
+                    }
+                }
+                return res.send({ status: 'success', result })
             }
-        )
+        } catch (error) {
+            return res.send({ status: 'error', message: error })
+        }
     }
 
     /**

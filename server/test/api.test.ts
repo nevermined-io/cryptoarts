@@ -1,5 +1,8 @@
 import request from 'supertest'
 import server from '../src/server'
+import S3 from 'aws-sdk/clients/s3'
+import config from '../src/config'
+import fs from 'fs'
 
 afterAll(done => {
     server.close(done)
@@ -69,6 +72,40 @@ describe('POST /api/v1/report', () => {
         const response = await request(server).post('/api/v1/report')
         const text = await JSON.parse(response.text)
         expect(text.message).toBe('missing message')
+    })
+})
+
+describe('POST /api/v1/file/upload', () => {
+    const s3 = new S3({
+        accessKeyId: config.s3.accessKeyId,
+        secretAccessKey: config.s3.secretAccessKey,
+        endpoint: config.s3.endpoint,
+        s3ForcePathStyle: true,
+        signatureVersion: 'v4'
+    })
+
+    beforeEach(async () => {
+        const objectsToDelete = await s3.listObjects({ Bucket: 'bazaart' }).promise()
+        await s3.deleteObjects({ Bucket: 'bazaart', Delete: { Objects: objectsToDelete.Contents.map(obj => ({ Key: obj.Key })) } }).promise()
+    })
+
+    it('uploads 4 files to the bucket', async () => {
+        await request(server)
+            .post('/api/v1/file/upload')
+            .attach('file', './test/assets/goats.png')
+
+        const objectsToCount = await s3.listObjects({ Bucket: 'bazaart' }).promise()
+        expect(objectsToCount.Contents.length).toBe(4)
+    })
+
+    it('correctly resizes and adds a watermark to pictures', async () => {
+        await request(server)
+            .post('/api/v1/file/upload')
+            .attach('file', './test/assets/goats.png')
+
+        const goats512OnS3 = await s3.getObject({ Bucket: 'bazaart', Key: 'goats_512.png' }).promise()
+        const goats512Local = fs.readFileSync('./test/assets/goats_512.png')
+        expect(goats512OnS3.Body).toEqual(goats512Local)
     })
 })
 
