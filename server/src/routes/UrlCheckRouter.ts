@@ -26,6 +26,11 @@ export class UrlCheckRouter {
             url = `${config.ipfsGatewayUri}/ipfs/${cid}`
         }
 
+        if (url.includes('cid://')) {
+            const result = { found: true }
+            return res.send({ status: 'success', result})
+        }
+
         request(
             {
                 method: 'GET',

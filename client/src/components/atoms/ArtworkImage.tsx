@@ -7,7 +7,7 @@ import styles from './ArtworkImage.module.scss'
 
 
 export default class ArtworkImage extends Component<{
-    did: string,
+    did: string
     file: File
 }, { url: string }> {
     constructor(props: any) {

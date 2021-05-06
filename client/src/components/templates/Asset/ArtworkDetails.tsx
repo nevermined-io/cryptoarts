@@ -35,8 +35,8 @@ const MetaFixedItem = ({ name, value }: { name: string; value: string }) => (
 export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
-    const file = main.files[0]
-    const category = additionalInformation.categories[0]
+    const file = main.files![0]
+    const category = additionalInformation!.categories![0]
 
     const metaFixed = [
         {
@@ -83,10 +83,10 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                         />
                     </span>
                     <span>{main.author}</span>
-                    <span>{additionalInformation.copyrightHolder}</span>
+                    <span>{additionalInformation!.copyrightHolder}</span>
                 </div>
 
-                <div className={styles.description}>{additionalInformation.description}</div>
+                <div className={styles.description}>{additionalInformation!.description}</div>
             </div>
 
             <div className={styles.footer}>
