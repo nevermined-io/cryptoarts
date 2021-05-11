@@ -1,12 +1,11 @@
-import React, { PureComponent, useContext } from 'react'
+import React, { PureComponent } from 'react'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
-import { Market, User } from '../../context'
+import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ArtworksRecent.module.scss'
 import axios from 'axios'
 import { serviceUri } from '../../config'
-import { ButtonToggle, ToggleOption } from '../molecules/ButtonToggle'
 
 
 interface ArtworksRecentState {
@@ -69,39 +68,26 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
 
     public render() {
         const { latestArtworks: latestArtworks, isLoadingLatest } = this.state
-        const buttonToggleOptions: ToggleOption[] = [{
-            content: 'Recent',
-            onClick: () => alert('hey')
-        }, {
-            content: 'Categories',
-            onClick: () => alert('hey')
-        }]
         console.log(this.context)
 
         return (
             <>
-                <div className={styles.latestAssetsWrap}>
-                    <div className={styles.latestAssetsHeader}>
-                        <div className={styles.latestAssetsHeaderTitle}>Recent Artwork</div>
-                        <ButtonToggle options={buttonToggleOptions}/>
+                {isLoadingLatest ? (
+                    <Spinner message="Loading..." />
+                ) : latestArtworks && latestArtworks.length ? (
+                    <div className={styles.latestAssets}>
+                        {latestArtworks.map((asset: any) => (
+                            <ArtworkTeaser
+                                key={asset.id}
+                                artwork={asset}
+                                minimal
+                                tokenSymbol= {this.context.tokenSymbol}
+                            />
+                        ))}
                     </div>
-                    {isLoadingLatest ? (
-                        <Spinner message="Loading..." />
-                    ) : latestArtworks && latestArtworks.length ? (
-                        <div className={styles.latestAssets}>
-                            {latestArtworks.map((asset: any) => (
-                                <ArtworkTeaser
-                                    key={asset.id}
-                                    artwork={asset}
-                                    minimal
-                                    tokenSymbol= {this.context.tokenSymbol}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div>No artworks found.</div>
-                    )}
-                </div>
+                ) : (
+                    <div>No artworks found.</div>
+                )}
             </>
         )
     }

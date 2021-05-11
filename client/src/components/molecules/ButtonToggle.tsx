@@ -12,11 +12,12 @@ interface ButtonToggleProps {
 }
 
 export const ButtonToggle = ({ options }: ButtonToggleProps) => {
-    const [selected, setSelected] = useState(1)
+    const [selected, setSelected] = useState(0)
     return <>
         <div className={styles.buttonWrapper}>
             {options.map((option, index) => <div
                 className={cx(styles.button, { [styles.selectedButton]: selected === index })}
+                key={index}
                 onClick={() => {
                     setSelected(index)
                     option.onClick()
