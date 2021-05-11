@@ -2,19 +2,21 @@
 
 .latestAssetsWrap {
     width: 1304px;
-    margin: auto;
-    margin-top: 339px;
+    margin: 339px auto auto;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     background: $brand-white;
     border: 1px solid $brand-light;
+    position: relative;
 }
 
 .latestAssetsHeader {
     height: 32px;
     margin-top: 16px;
     margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .latestAssetsHeaderTitle {

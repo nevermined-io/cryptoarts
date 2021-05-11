@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.buttonWrapper {
+    display: flex;
+}
+
+.button {
+    border: 1px solid $brand-secondary;
+    color: $brand-secondary;
+    width: 120px;
+    text-align: center;
+}
+
+.selectedButton {
+    background: $brand-secondary;
+    color: $brand-white;
+}

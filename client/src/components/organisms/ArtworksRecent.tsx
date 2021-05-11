@@ -6,6 +6,7 @@ import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ArtworksRecent.module.scss'
 import axios from 'axios'
 import { serviceUri } from '../../config'
+import { ButtonToggle, ToggleOption } from '../molecules/ButtonToggle'
 
 
 interface ArtworksRecentState {
@@ -47,7 +48,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                 isLoadingLatest: false
             })
 
-            search.results.forEach( async (artwork: any) => {
+            search.results.map(async (artwork: any) => {
                 const { attributes } = artwork.findServiceByType('metadata')
                 const { compression } = attributes.main.files[0]
                 const filename = `${artwork.id}.${compression}`
@@ -68,6 +69,13 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
 
     public render() {
         const { latestArtworks: latestArtworks, isLoadingLatest } = this.state
+        const buttonToggleOptions: ToggleOption[] = [{
+            content: 'Recent',
+            onClick: () => alert('hey')
+        }, {
+            content: 'Categories',
+            onClick: () => alert('hey')
+        }]
         console.log(this.context)
 
         return (
@@ -75,7 +83,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                 <div className={styles.latestAssetsWrap}>
                     <div className={styles.latestAssetsHeader}>
                         <div className={styles.latestAssetsHeaderTitle}>Recent Artwork</div>
-
+                        <ButtonToggle options={buttonToggleOptions}/>
                     </div>
                     {isLoadingLatest ? (
                         <Spinner message="Loading..." />
