@@ -67,7 +67,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
     }
 
     public render() {
-        const { latestArtworks: latestArtworks, isLoadingLatest } = this.state
+        const { latestArtworks, isLoadingLatest } = this.state
         console.log(this.context)
 
         return (

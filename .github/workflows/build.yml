@@ -10,7 +10,10 @@ jobs:
   build:
 
     runs-on: ubuntu-16.04
-
+    env:
+      S3_ACCESS_KEY_ID: minioadmin
+      S3_SECRET_ACCESS_KEY: minioadmin
+      S3_ENDPOINT: http://127.0.0.1:9000
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -29,10 +32,13 @@ jobs:
         git clone https://github.com/nevermined-io/tools nevermined-tools
         cd nevermined-tools
         export KEEPER_OWNER_ROLE_ADDRESS="0xe2DD09d719Da89e5a3D0F2549c7E24566e947260"
+        export KEEPER_VERSION=v0.6.2
         rm -rf "${HOME}/.nevermined/nevermined-contracts/artifacts"
-        ./start_nevermined.sh --no-marketplace --latest &
+        ./start_nevermined.sh --no-marketplace &
         cd ..
         ./scripts/nevermined-tools.sh
+    - name: Run minio
+      run: docker run -d -p 9000:9000 minio/minio server ./data
     - name: Run linters
       run: npm run lint
     - name: Run tests
@@ -50,28 +56,28 @@ jobs:
       run: |
         ./scripts/test.sh
         ./scripts/build.sh
-    - name: Run e2e test
-      env:
-        REACT_APP_NODE_URI: "http://localhost:8545"
-        REACT_APP_METADATA_URI: "http://nevermined-metadata:5000"
-        REACT_APP_GATEWAY_URI: "http://localhost:8030"
-        REACT_APP_SECRET_STORE_URI: "http://localhost:12001"
-        REACT_APP_FAUCET_URI: "http://localhost:3001"
-        REACT_APP_GATEWAY_ADDRESS: "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
-        REACT_APP_IPFS_GATEWAY_URI: "https://ipfs.infura.io"
-        REACT_APP_IPFS_NODE_URI: ${{ secrets.ipfsNodeUri }}
-        IPFS_GATEWAY_URI: "https://ipfs.infura.io"
-        FAUCET_TIMESPAN: 0
-      uses: cypress-io/github-action@v2
-      with:
-        start: npm start
-        browser: chrome
-        wait-on: http://localhost:3000
-    - uses: actions/upload-artifact@v1
-      if: failure()
-      with:
-        name: e2e-screenshots
-        path: cypress/screenshots
-    - name: Print logs
-      if: always()
-      run: cat nevermined-tools/start_nevermined.log
+#    - name: Run e2e test
+#      env:
+#        REACT_APP_NODE_URI: "http://localhost:8545"
+#        REACT_APP_METADATA_URI: "http://nevermined-metadata:5000"
+#        REACT_APP_GATEWAY_URI: "http://localhost:8030"
+#        REACT_APP_SECRET_STORE_URI: "http://localhost:12001"
+#        REACT_APP_FAUCET_URI: "http://localhost:3001"
+#        REACT_APP_GATEWAY_ADDRESS: "0x068ed00cf0441e4829d9784fcbe7b9e26d4bd8d0"
+#        REACT_APP_IPFS_GATEWAY_URI: "https://ipfs.infura.io"
+#        REACT_APP_IPFS_NODE_URI: ${{ secrets.ipfsNodeUri }}
+#        IPFS_GATEWAY_URI: "https://ipfs.infura.io"
+#        FAUCET_TIMESPAN: 0
+#      uses: cypress-io/github-action@v2
+#      with:
+#        start: npm start
+#        browser: chrome
+#        wait-on: http://localhost:3000
+#    - uses: actions/upload-artifact@v1
+#      if: failure()
+#      with:
+#        name: e2e-screenshots
+#        path: cypress/screenshots
+#    - name: Print logs
+#      if: always()
+#      run: cat nevermined-tools/start_nevermined.log
