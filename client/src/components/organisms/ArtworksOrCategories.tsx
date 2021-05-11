@@ -1,17 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './ArtworksOrCategories.module.scss'
 import { ButtonToggle, ToggleOption } from '../molecules/ButtonToggle'
 import ArtworksRecent from './ArtworksRecent'
 import { Market } from '../../context'
+import { Categories } from './Categories'
+
+enum Selected {
+    'artworks',
+    'categories'
+}
 
 export const ArtworksOrCategories = () => {
     const market = useContext(Market)
+    const [selected, setSelected] = useState<Selected>(Selected.artworks)
     const buttonToggleOptions: ToggleOption[] = [{
         content: 'Recent',
-        onClick: () => alert('hey')
+        onClick: () => setSelected(Selected.artworks)
     }, {
         content: 'Categories',
-        onClick: () => alert('hey')
+        onClick: () => setSelected(Selected.categories)
     }]
 
     return <>
@@ -20,7 +27,10 @@ export const ArtworksOrCategories = () => {
                 <div className={styles.artworksOrCategoriesTitle}>Recent Artwork</div>
                 <ButtonToggle options={buttonToggleOptions}/>
             </div>
-            <ArtworksRecent categories={market.categories}/>
+            {selected === Selected.artworks ?
+                <ArtworksRecent categories={market.categories}/> :
+                <Categories/>
+            }
         </div>
     </>
 }

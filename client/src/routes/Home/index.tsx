@@ -1,19 +1,14 @@
 import React, { PureComponent, FormEvent } from 'react'
 import { History } from 'history'
 import { Market } from '../../context'
-import CategoryImage from '../../components/atoms/CategoryImage'
-import CategoryLink from '../../components/atoms/CategoryLink'
 import Route from '../../components/templates/Route'
 import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
-import Content from '../../components/atoms/Content'
-import ArtworksRecent from '../../components/organisms/ArtworksRecent'
-import ChannelTeaser from '../../components/organisms/ChannelTeaser'
 import Search from './Search'
 import withTracker from '../../hoc/withTracker'
-import { showChannels } from '../../config'
 import banner from '../../img/banner.svg'
+import { ArtworksOrCategories } from '../../components/organisms/ArtworksOrCategories'
 
 interface HomeProps {
     history: History
@@ -57,27 +52,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                     </div>
                 </div>
 
-
-                <ArtworksRecent categories={this.context.categories}/>
-
-
-                {/* <Content wide>
-                    <h2 className={styles.title}>Explore Categories</h2>
-                    <div className={styles.categories}>
-                        {this.context.categories
-                            .sort((a: any, b: any) => a.localeCompare(b)) // sort alphabetically
-                            .map((category: string) => (
-                                <CategoryLink
-                                    category={category}
-                                    key={category}
-                                    className={styles.category}
-                                >
-                                    <CategoryImage category={category} />
-                                    <h3>{category}</h3>
-                                </CategoryLink>
-                            ))}
-                    </div>
-                </Content> */}
+                <ArtworksOrCategories/>
             </Route>
         )
     }
