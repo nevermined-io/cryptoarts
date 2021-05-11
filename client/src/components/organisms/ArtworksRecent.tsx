@@ -1,6 +1,6 @@
-import React, { PureComponent, useContext } from 'react'
+import React, { PureComponent } from 'react'
 import { Logger } from '@nevermined-io/nevermined-sdk-js'
-import { Market, User } from '../../context'
+import { User } from '../../context'
 import Spinner from '../atoms/Spinner'
 import ArtworkTeaser from '../molecules/ArtworkTeaser'
 import styles from './ArtworksRecent.module.scss'
@@ -67,7 +67,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
     }
 
     public render() {
-        const { latestArtworks: latestArtworks, isLoadingLatest } = this.state
+        const { latestArtworks, isLoadingLatest } = this.state
         console.log(this.context)
 
         return (

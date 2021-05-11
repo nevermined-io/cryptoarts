@@ -1,18 +1,13 @@
 import React, { PureComponent, FormEvent } from 'react'
 import { History } from 'history'
 import { Market } from '../../context'
-import CategoryImage from '../../components/atoms/CategoryImage'
-import CategoryLink from '../../components/atoms/CategoryLink'
 import Route from '../../components/templates/Route'
 import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
-import Content from '../../components/atoms/Content'
 import ArtworksRecent from '../../components/organisms/ArtworksRecent'
-import ChannelTeaser from '../../components/organisms/ChannelTeaser'
 import Search from './Search'
 import withTracker from '../../hoc/withTracker'
-import { showChannels } from '../../config'
 import banner from '../../img/banner.svg'
 
 interface HomeProps {

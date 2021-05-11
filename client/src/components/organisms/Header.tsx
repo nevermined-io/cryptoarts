@@ -4,7 +4,6 @@ import AccountStatus from '../molecules/AccountStatus'
 import styles from './Header.module.scss'
 
 import menu from '../../data/menu'
-import meta from '../../data/meta.json'
 import logo from '../../img/logo.svg'
 import logoText from '../../img/logoText.svg'
 
