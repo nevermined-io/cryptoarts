@@ -24,6 +24,7 @@ const Ipfs = lazy(() => import('./Ipfs'))
 
 export interface FilePublish extends File {
     found: boolean // non-standard
+    tmpUrl?: string
 }
 
 interface FilesProps {
@@ -129,7 +130,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         }
     }
 
-    private addFile = async (url: string) => {
+    private addFile = async (url: string, filePublish?: FilePublish) => {
         // check for duplicate urls
         const duplicateFiles = this.props.files.filter(props =>
             url.includes(props.url)
@@ -139,11 +140,17 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
             return this.setState({
                 isBrowseShown: false,
                 isFormShown: false,
-                isIpfsFormShown: false
+                isIpfsFormShown: false,
+                isFilecoinShown: false
             })
         }
 
-        const file: FilePublish | undefined = await this.getFile(url)
+        // if (file === undefined) {
+        //     const file: FilePublish | undefined = await this.getFile(url)
+        // }
+        // file && this.props.files.push(file)
+
+        const file = filePublish ? filePublish : await this.getFile(url)
         file && this.props.files.push(file)
 
         const event = {

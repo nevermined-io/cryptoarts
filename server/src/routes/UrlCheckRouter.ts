@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import config from '../config'
 import axios from 'axios'
+import { getS3Url } from './FileStorageRouter'
 
 export class UrlCheckRouter {
     public router: Router
@@ -23,11 +24,6 @@ export class UrlCheckRouter {
         if (url.includes('ipfs://')) {
             const cid = url.split('ipfs://')[1]
             url = `${config.ipfsGatewayUri}/ipfs/${cid}`
-        }
-
-        if (url.includes('cid://')) {
-            const result = { found: true }
-            return res.send({ status: 'success', result})
         }
 
         try {

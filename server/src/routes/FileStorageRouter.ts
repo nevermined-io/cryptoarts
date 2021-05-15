@@ -156,6 +156,22 @@ export class FileStorageRouter {
 const fileStorageRoutes = new FileStorageRouter()
 fileStorageRoutes.init()
 
+export const getS3Url = async (filename: string): Promise<string> => {
+    const s3 = new S3({
+        accessKeyId: config.s3.accessKeyId,
+        secretAccessKey: config.s3.secretAccessKey,
+        endpoint: config.s3.endpoint,
+        s3ForcePathStyle: true,
+        signatureVersion: 'v4'
+    })
+
+    return s3.getSignedUrlPromise('getObject',
+        {
+            Bucket: 'bazaart',
+            Key: filename,
+        })
+}
+
 const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, Key, size: number) => {
     const resized = await sharp(fileContent)
         .resize({ width: size })
