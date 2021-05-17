@@ -24,7 +24,6 @@ const Ipfs = lazy(() => import('./Ipfs'))
 
 export interface FilePublish extends File {
     found: boolean // non-standard
-    tmpUrl?: string
 }
 
 interface FilesProps {

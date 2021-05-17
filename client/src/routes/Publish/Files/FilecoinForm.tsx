@@ -29,7 +29,6 @@ export default class BrowseForm extends Component<
             url: `${gatewayUri}/api/v1/gateway/services/upload/filecoin`,
             data: formData,
         })
-        console.log(responseFilecoin)
         this.props.addFile(responseFilecoin.data.url)
     }
 

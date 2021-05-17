@@ -276,12 +276,10 @@ class Publish extends Component<{}, PublishState> {
 
         // remove `found` attribute from all File objects
         // in a new array
-        // const files = this.state.files.map(
-        //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        //     ({ found, tmpUrl, ...keepAttrs }: { found: boolean; tmpUrl?: string }) => keepAttrs
-        // )
-        const [file] = this.state.files
-        const {found, tmpUrl, ...fileAsset} = file as any
+        const files = this.state.files.map(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            ({ found, tmpUrl, ...keepAttrs }: { found: boolean; tmpUrl?: string }) => keepAttrs
+        )
 
 
         const newAsset = {
@@ -298,7 +296,7 @@ class Publish extends Component<{}, PublishState> {
                 price: allowPricing
                     ? Web3.utils.toWei(this.state.price, 'ether')
                     : this.state.price,
-                files: [fileAsset]
+                files
             }),
             additionalInformation: Object.assign(
                 AssetModel.additionalInformation,
@@ -327,12 +325,11 @@ class Publish extends Component<{}, PublishState> {
                 action: `registerAsset-end ${asset.id}`
             })
 
-            const url = tmpUrl ? tmpUrl: (file as any).url
             const response = await axios({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 url: `${serviceUri}/api/v1/file`,
-                data: { url: url, did: asset.id, compression: (file as any).compression},
+                data: { url: (files[0] as any).url, did: asset.id, compression: (files[0] as any).compression},
             })
         } catch (error) {
             // make readable errors
