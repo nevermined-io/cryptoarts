@@ -57,7 +57,6 @@ export default class ItemForm extends PureComponent<
             await fetch(url).then(res => res.blob()).then(blob => {
                 fileType = blob.type
             })
-            console.log(fileType)
             if (image.width < 2048 && fileType !== 'image/gif') {
                 this.setState({ imageTooSmall: true })
             } else {

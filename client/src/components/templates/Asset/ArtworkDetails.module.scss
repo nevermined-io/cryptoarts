@@ -20,7 +20,7 @@
 .title {
     font-family: $font-family-base;
     font-style: normal;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     font-size: 40px;
     line-height: 40px;
     color: $brand-dark;
@@ -36,7 +36,7 @@
     span {
         font-family: $font-family-base;
         font-style: normal;
-        font-weight: 600;
+        font-weight: $font-weight-bold;
         font-size: 20px;
         line-height: 30px;
         color: $brand-dark;
@@ -46,7 +46,7 @@
 .description {
     font-family: $font-family-base;
     font-style: normal;
-    font-weight: normal;
+    font-weight: $font-weight-base;
     font-size: 20px;
     line-height: 30px;
     color: $brand-dark;
@@ -62,14 +62,14 @@
 .footerContent {
     font-family: $font-family-base;
     font-style: normal;
-    font-weight: normal;
+    font-weight: $font-weight-base;
     font-size: 20px;
     line-height: 30px;
     color: $brand-dark;
     min-width: 400px;
 
     span {
-        font-weight: 600;
+        font-weight: $font-weight-bold;
         display: inline-block;
         width: 80px;
     }

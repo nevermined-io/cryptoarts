@@ -14,9 +14,7 @@ interface RouteProps {
 const Route = ({
     title,
     description,
-    image,
     shareImage,
-    wide,
     children,
     className
 }: RouteProps) => {

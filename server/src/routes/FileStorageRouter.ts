@@ -1,13 +1,12 @@
 import { Request, Response, Router } from 'express'
-import sharp from 'sharp'
 import S3 from 'aws-sdk/clients/s3'
 import config from '../config'
 import fs from 'fs'
 import formidable from 'formidable'
-import { execFile } from 'child_process'
-import gifsicle from 'gifsicle'
 import axios from 'axios'
 import { getFileFromFilecoin } from './UrlCheckRouter'
+import { isGif } from '../helpers/isGif'
+import { resizeGifAndUpload, resizeImageAndUpload } from '../helpers/resizeAndUpload'
 
 export class FileStorageRouter {
     public router: Router
@@ -162,56 +161,5 @@ export class FileStorageRouter {
 // Create the MeRouter, and export its configured Express.Router
 const fileStorageRoutes = new FileStorageRouter()
 fileStorageRoutes.init()
-
-export const getS3Url = async (filename: string): Promise<string> => {
-    const s3 = new S3({
-        accessKeyId: config.s3.accessKeyId,
-        secretAccessKey: config.s3.secretAccessKey,
-        endpoint: config.s3.endpoint,
-        s3ForcePathStyle: true,
-        signatureVersion: 'v4'
-    })
-
-    return s3.getSignedUrlPromise('getObject',
-        {
-            Bucket: 'bazaart',
-            Key: filename,
-        })
-}
-
-const resizeImageAndUpload = async (fileContent: Buffer, s3: S3, Key, size: number) => {
-    const resized = await sharp(fileContent)
-        .resize({ width: size })
-        .composite([{ input: `src/assets/nevermined_logo_black_${size}.png`, gravity: 'southeast' }])
-        .toBuffer()
-
-    await s3.upload({
-        Bucket: 'bazaart',
-        Key,
-        Body: resized
-    }).promise()
-}
-
-const resizeGifAndUpload = async (path: string, s3: S3, Key, size: number) => {
-    execFile(gifsicle, ['-o', `/tmp/${Key}`, '--resize-fit-width', size.toString(), path])
-    await new Promise(r => setTimeout(r, 1000))
-    const gif = fs.readFileSync(`/tmp/${Key}`)
-
-    await s3.upload({
-        Bucket: 'bazaart',
-        Key,
-        Body: gif
-    }).promise()
-}
-
-export const isGif = (fileContent: Buffer): boolean => {
-    const uint = new Uint8Array(fileContent)
-    const bytes = []
-    uint.forEach((byte) => {
-        bytes.push(byte.toString(16))
-    })
-    const fileMagicNumbers = bytes.slice(0, 6).join('')
-    return fileMagicNumbers === '474946383761' || fileMagicNumbers === '474946383961'
-}
 
 export default fileStorageRoutes.router
