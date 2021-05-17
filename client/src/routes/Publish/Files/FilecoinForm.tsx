@@ -39,7 +39,7 @@ export default class BrowseForm extends Component<
                 <section className="container">
                     <div {...getRootProps({className: 'dropzone'})}>
                     <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
                     </div>
                     <aside>
                     <h4>Files</h4>

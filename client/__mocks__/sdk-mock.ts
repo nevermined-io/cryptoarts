@@ -19,10 +19,10 @@ const sdkMock = {
                 return {
                     results: [],
                     page: 1,
-                    /* eslint-disable @typescript-eslint/camelcase */
+                    /* eslint-disable @typescript-eslint/naming-convention */
                     total_pages: 1611,
                     total_results: 1611
-                    /* eslint-enable @typescript-eslint/camelcase */
+                    /* eslint-enable @typescript-eslint/naming-convention */
                 }
             },
             resolve: jest.fn(),
