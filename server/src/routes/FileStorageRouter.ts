@@ -7,6 +7,7 @@ import formidable from 'formidable'
 import { execFile } from 'child_process'
 import gifsicle from 'gifsicle'
 import axios from 'axios'
+import { getFileFromFilecoin } from './UrlCheckRouter'
 
 export class FileStorageRouter {
     public router: Router
@@ -43,8 +44,14 @@ export class FileStorageRouter {
         })
 
         try {
-            const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
-            const fileContent = fileContentResponse.data
+            // Filecoin
+            let fileContent: Buffer
+            if (url.includes('cid://')) {
+                fileContent = Buffer.from(await getFileFromFilecoin(url))
+            } else {
+                const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
+                fileContent = fileContentResponse.data
+            }
             await s3.upload({
                 Bucket: 'bazaart',
                 Key: `${did}.${compression}`,
@@ -199,7 +206,7 @@ const resizeGifAndUpload = async (path: string, s3: S3, Key, size: number) => {
 
 export const isGif = (fileContent: Buffer): boolean => {
     const uint = new Uint8Array(fileContent)
-    let bytes = []
+    const bytes = []
     uint.forEach((byte) => {
         bytes.push(byte.toString(16))
     })

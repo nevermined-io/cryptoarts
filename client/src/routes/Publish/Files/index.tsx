@@ -114,6 +114,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                 cancelToken: this.signal.token
             })
 
+            console.log(response)
             const { contentLength, contentType, found } = response.data.result
 
             if (contentLength) file.contentLength = contentLength
@@ -130,7 +131,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         }
     }
 
-    private addFile = async (url: string, filePublish?: FilePublish) => {
+    private addFile = async (url: string) => {
         // check for duplicate urls
         const duplicateFiles = this.props.files.filter(props =>
             url.includes(props.url)
@@ -145,12 +146,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
             })
         }
 
-        // if (file === undefined) {
-        //     const file: FilePublish | undefined = await this.getFile(url)
-        // }
-        // file && this.props.files.push(file)
-
-        const file = filePublish ? filePublish : await this.getFile(url)
+        const file =  await this.getFile(url)
         file && this.props.files.push(file)
 
         const event = {
