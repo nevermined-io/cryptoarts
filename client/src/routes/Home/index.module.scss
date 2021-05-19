@@ -81,11 +81,14 @@
 
 .categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    grid-gap: $spacer;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $spacer / 2;
 }
 
 .category {
+    border: 1px solid $brand-dark;
+    border-radius: 4px;
+    padding: 20px;
     h3 {
         font-size: $font-size-base;
         color: $brand-grey;

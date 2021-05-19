@@ -24,7 +24,12 @@ export const ArtworksOrCategories = () => {
     return <>
         <div className={styles.artworksOrCategoriesWrap}>
             <div className={styles.artworksOrCategoriesHeader}>
-                <div className={styles.artworksOrCategoriesTitle}>Recent Artwork</div>
+                <div className={styles.artworksOrCategoriesTitle}>
+                    {selected === Selected.artworks ?
+                        'Recent Artwork' :
+                        'Categories'
+                    }
+                </div>
                 <ButtonToggle options={buttonToggleOptions}/>
             </div>
             {selected === Selected.artworks ?

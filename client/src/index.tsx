@@ -9,9 +9,9 @@ function renderToDOM() {
 
     if (root !== null) {
         ReactDOM.render(
-            <UserProvider>
-                <App />
-            </UserProvider>,
+            // <UserProvider>
+                <App />,
+            // </UserProvider>,
             root
         )
     }
