@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@fontsource/titillium-web": "^4.1.0",
-    "@nevermined-io/nevermined-sdk-js": "0.10.2",
+    "@nevermined-io/nevermined-sdk-js": "0.10.3",
     "@oceanprotocol/art": "^2.2.0",
     "@oceanprotocol/typographies": "^0.1.0",
     "@sindresorhus/slugify": "^0.9.1",
@@ -67,6 +67,7 @@
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "eslint": "^7.23.0",
+    "jest-environment-jsdom": "25.0.0",
     "jest-mock-axios": "^3.2.0",
     "node-sass": "^4.14.1",
     "react-scripts": "^4.0.3",
