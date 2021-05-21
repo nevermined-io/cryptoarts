@@ -10,7 +10,11 @@
     "test:watch": "react-scripts test --coverage --env=./test/custom-env.js",
     "eject": "react-scripts eject",
     "coverage": "cat coverage/lcov.info | codacy-coverage --token 8801f827fe1144ffa85cd7da94f2bbf7",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "lint:css": "stylelint --ignore-path .styleignore './**/*.{css,scss}'",
+    "lint:js": "eslint --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint": "npm run lint:js && npm run lint:css"
   },
   "dependencies": {
     "@fontsource/titillium-web": "^4.1.0",
@@ -67,11 +71,21 @@
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "eslint": "^7.23.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-cypress": "^2.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.23.2",
     "jest-environment-jsdom": "25.0.0",
     "jest-mock-axios": "^3.2.0",
     "node-sass": "^4.14.1",
+    "prettier": "^1.19.1",
+    "prettier-stylelint": "^0.4.2",
     "react-scripts": "^4.0.3",
     "source-map-explorer": "^2.5.1",
+    "stylelint": "^13.8.0",
+    "stylelint-config-bigchaindb": "^1.2.2",
+    "stylelint-config-css-modules": "^2.1.0",
+    "stylelint-config-standard": "^19.0.0",
     "typescript": "^3.9.7"
   },
   "repository": {
