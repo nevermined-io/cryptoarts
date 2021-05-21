@@ -10,7 +10,10 @@
     "build": "tsc",
     "test": "jest --coverage --forceExit --runInBand",
     "test:watch": "jest --coverage --watch",
-    "coverage": "cat coverage/lcov.info | codacy-coverage --token 8801f827fe1144ffa85cd7da94f2bbf7"
+    "coverage": "cat coverage/lcov.info | codacy-coverage --token 8801f827fe1144ffa85cd7da94f2bbf7",
+    "lint:js": "eslint --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint": "npm run lint:js"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
