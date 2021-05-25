@@ -15,6 +15,7 @@ $popoverWidth: 18rem;
     animation: showPopup .2s ease-in forwards;
     white-space: initial;
     text-align: left;
+    z-index: 1;
 }
 
 @keyframes showPopup {

@@ -13,7 +13,7 @@ interface MarketProviderProps {
     nevermined: Nevermined
 }
 
-interface MarketProviderState {
+export interface MarketProviderState {
     totalAssets: number
     categories: string[]
     network: string
