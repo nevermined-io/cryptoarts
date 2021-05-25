@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
+import { Logger, File, Nevermined } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 
 import Route from '../../components/templates/Route'
@@ -15,6 +15,7 @@ import withTracker from '../../hoc/withTracker'
 import { serviceUri } from '../../config'
 import axios from 'axios'
 import styles from './index.module.scss'
+import AssetRewards from '@nevermined-io/nevermined-sdk-js/dist/node/models/AssetRewards'
 
 
 type AssetType = 'dataset' | 'algorithm' | 'container' | 'workflow' | 'other'
@@ -23,6 +24,7 @@ interface PublishState {
     name?: string
     dateCreated?: string
     price?: string
+    nftAmount?: number
     author?: string
     license?: string
     description?: string
@@ -40,16 +42,6 @@ interface PublishState {
     validationStatus?: any
 }
 
-// if (allowPricing) {
-//     ;(steps as any)[0].fields.price = {
-//         label: 'Price',
-//         placeholder: 'Price in tokens',
-//         type: 'string',
-//         required: true,
-//         help: 'Enter the price of assets in tokens.'
-//     }
-// }
-
 class Publish extends Component<{}, PublishState> {
     public static contextType = User
 
@@ -59,6 +51,7 @@ class Publish extends Component<{}, PublishState> {
         description: '',
         files: [],
         price: '0',
+        nftAmount: 1,
         author: '',
         type: 'dataset' as AssetType,
         license: '',
@@ -309,11 +302,27 @@ class Publish extends Component<{}, PublishState> {
         }
 
         try {
-            const asset = await this.context.sdk.assets
-                .create(newAsset as any, account[0])
-                .next((publishingStep: number) =>
-                    this.setState({ publishingStep })
-                )
+            // const asset = await this.context.sdk.assets
+            //     .create(newAsset as any, account[0])
+            //     .next((publishingStep: number) =>
+            //         this.setState({ publishingStep })
+            //     )
+
+            // Create NFT
+            const asset = await this.context.sdk.nfts.create(
+                newAsset as any,
+                account[0],
+                this.state.nftAmount,
+                0,
+                new AssetRewards(account[0].getId(), Number(this.state.price))
+            )
+            .next((publishingStep: number) => this.setState({ publishingStep }))
+
+            // Mint all NFTs
+            this.setState({ publishingStep: 8 })
+            await this.context.sdk.nfts.mint(asset.id, this.state.nftAmount, account[0])
+            this.setState({ publishingStep: 9 })
+
 
             this.setState({
                 publishedDid: asset.id,

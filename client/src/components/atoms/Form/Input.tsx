@@ -31,6 +31,7 @@ interface InputProps {
     group?: any
     multiple?: boolean
     pattern?: string
+    min?: number
 }
 
 interface InputState {
@@ -80,7 +81,7 @@ export default class Input extends PureComponent<InputProps, InputState> {
             name,
             required,
             onChange,
-            value
+            value,
         } = this.props
 
         const wrapClass = this.inputWrapClasses()

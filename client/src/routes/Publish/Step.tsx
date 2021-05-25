@@ -17,6 +17,7 @@ interface Fields {
     required?: boolean
     options?: string
     rows?: number
+    min?: number
 }
 
 interface StepProps {
@@ -135,6 +136,7 @@ export default class Step extends PureComponent<StepProps, {}> {
                                 options={value.options}
                                 onChange={inputChange}
                                 rows={value.rows}
+                                min={value.min}
                                 value={(state as any)[key]}
                             />
                         )

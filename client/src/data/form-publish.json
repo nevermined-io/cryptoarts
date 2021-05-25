@@ -101,6 +101,14 @@
           "placeholder": "Price in tokens",
           "type": "string",
           "required": true
+        },
+        "nftAmount": {
+          "label": "Number of NFTs",
+          "placeholder": "Number of nfts to mint",
+          "type": "number",
+          "min": 1,
+          "value": 1,
+          "required": true
         }
       }
     }
