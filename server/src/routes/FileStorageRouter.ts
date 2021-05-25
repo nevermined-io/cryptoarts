@@ -4,6 +4,7 @@ import config from '../config'
 import fs from 'fs'
 import formidable from 'formidable'
 import axios from 'axios'
+import { getFileFromFilecoin } from './UrlCheckRouter'
 import { isGif } from '../helpers/isGif'
 import { resizeGifAndUpload, resizeImageAndUpload } from '../helpers/resizeAndUpload'
 
@@ -42,8 +43,14 @@ export class FileStorageRouter {
         })
 
         try {
-            const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
-            const fileContent = Buffer.from(fileContentResponse.data)
+            // Filecoin
+            let fileContent: Buffer
+            if (url.includes('cid://')) {
+                fileContent = Buffer.from(await getFileFromFilecoin(url))
+            } else {
+                const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
+                fileContent = fileContentResponse.data
+            }
             await s3.upload({
                 Bucket: 'bazaart',
                 Key: `${did}.${compression}`,

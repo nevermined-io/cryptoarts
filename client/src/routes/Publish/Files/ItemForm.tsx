@@ -39,6 +39,12 @@ export default class ItemForm extends PureComponent<
             return
         }
 
+        // Filecoin
+        if (url.includes('cid://')) {
+            this.props.addFile(url)
+            return
+        }
+
         if (url && !url.includes('ipfs://') && !isUrl(url)) {
             this.setState({ noUrl: true })
             return
@@ -83,7 +89,7 @@ export default class ItemForm extends PureComponent<
                     placeholder={this.props.placeholder}
                     value={url}
                     onChange={this.onChangeUrl}
-                    help="Supported protocols are http(s):// and ipfs://"
+                    help="Supported protocols are http(s)://, ipfs:// and cid://"
                 />
 
                 <Button onClick={(e: Event) => this.handleSubmit(e)}>

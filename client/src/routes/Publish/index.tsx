@@ -278,8 +278,10 @@ class Publish extends Component<{}, PublishState> {
         // in a new array
         const files = this.state.files.map(
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ({ found, ...keepAttrs }: { found: boolean }) => keepAttrs
+            ({ found, tmpUrl, ...keepAttrs }: { found: boolean; tmpUrl?: string }) => keepAttrs
         )
+
+
         const newAsset = {
             main: Object.assign(AssetModel.main, {
                 type: this.state.type,
@@ -322,11 +324,12 @@ class Publish extends Component<{}, PublishState> {
                 category: 'Publish',
                 action: `registerAsset-end ${asset.id}`
             })
+
             const response = await axios({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 url: `${serviceUri}/api/v1/file`,
-                data: { url: (files as any)[0].url, did: asset.id, compression: (files as any)[0].compression},
+                data: { url: (files[0] as any).url, did: asset.id, compression: (files[0] as any).compression},
             })
         } catch (error) {
             // make readable errors

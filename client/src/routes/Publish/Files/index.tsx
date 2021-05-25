@@ -18,6 +18,7 @@ import { serviceUri } from '../../../config'
 import cleanupContentType from '../../../utils/cleanupContentType'
 import Spinner from '../../../components/atoms/Spinner'
 import BrowseForm from './BrowseForm'
+import FilecoinForm from './FilecoinForm'
 
 const Ipfs = lazy(() => import('./Ipfs'))
 
@@ -43,6 +44,7 @@ interface FilesStates {
     isBrowseShown: boolean
     isFormShown: boolean
     isIpfsFormShown: boolean
+    isFilecoinShown: boolean
 }
 
 const buttons = [
@@ -60,6 +62,11 @@ const buttons = [
         id: 'ipfs',
         title: '+ Add to IPFS',
         titleActive: '- Cancel'
+    },
+    {
+        id: 'filecoin',
+        title: '+ Add to Filecoin',
+        titleActive: '- Cancel',
     }
 ]
 
@@ -67,7 +74,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
     public state: FilesStates = {
         isBrowseShown: false,
         isFormShown: false,
-        isIpfsFormShown: false
+        isIpfsFormShown: false,
+        isFilecoinShown: false,
     }
 
     // for canceling axios requests
@@ -84,7 +92,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
             isBrowseShown: form === 'browse' ? !this.state.isBrowseShown : false,
             isFormShown: form === 'url' ? !this.state.isFormShown : false,
             isIpfsFormShown:
-                form === 'ipfs' ? !this.state.isIpfsFormShown : false
+                form === 'ipfs' ? !this.state.isIpfsFormShown : false,
+            isFilecoinShown: form == 'filecoin' ? !this.state.isFilecoinShown : false
         })
     }
 
@@ -104,6 +113,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                 cancelToken: this.signal.token
             })
 
+            console.log(response)
             const { contentLength, contentType, found } = response.data.result
 
             if (contentLength) file.contentLength = contentLength
@@ -130,11 +140,12 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
             return this.setState({
                 isBrowseShown: false,
                 isFormShown: false,
-                isIpfsFormShown: false
+                isIpfsFormShown: false,
+                isFilecoinShown: false
             })
         }
 
-        const file: FilePublish | undefined = await this.getFile(url)
+        const file =  await this.getFile(url)
         file && this.props.files.push(file)
 
         const event = {
@@ -148,7 +159,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         this.setState({
             isBrowseShown: false,
             isFormShown: false,
-            isIpfsFormShown: false
+            isIpfsFormShown: false,
+            isFilecoinShown: false
         })
 
         this.forceUpdate()
@@ -168,7 +180,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
 
     public render() {
         const { files, help, placeholder, name, onChange } = this.props
-        const { isBrowseShown, isFormShown, isIpfsFormShown } = this.state
+        const { isBrowseShown, isFormShown, isIpfsFormShown, isFilecoinShown } = this.state
 
         return (
             <>
@@ -200,7 +212,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                         const isActive =
                             (button.id === 'url' && isFormShown) ||
                             (button.id === 'ipfs' && isIpfsFormShown) ||
-                            (button.id === 'browse' && isBrowseShown)
+                            (button.id === 'browse' && isBrowseShown) ||
+                            (button.id === 'filecoin' && isBrowseShown)
 
                         return (
                             <Button
@@ -231,6 +244,11 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
                             <Ipfs addFile={this.addFile} />
                         </Suspense>
                     )}
+
+                    {isFilecoinShown && (
+                        <FilecoinForm addFile={this.addFile} />
+                    )}
+
                 </div>
             </>
         )
