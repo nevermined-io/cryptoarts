@@ -28,19 +28,7 @@ export const User = React.createContext({
 
 export const Market = React.createContext({
     totalAssets: 0,
-    categories: [
-        'Digital Photography',
-        'Digital Collage',
-        'Fine Art',
-        'Illustration',
-        'Digital Painting',
-        '3D Renders',
-        'AR',
-        'Sound Design',
-        'Generative Art',
-        'Mixed Media',
-        'VR Experience'
-    ],
+    categories: [],
     network: '',
     networkMatch: false
 })

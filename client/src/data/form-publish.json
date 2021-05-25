@@ -38,11 +38,17 @@
           "type": "select",
           "required": true,
           "options": [
-            "Abstract",
-            "Animation",
-            "Fantasy",
-            "Gaming",
-            "Other Art"
+            "Digital Photography",
+            "Digital Collage",
+            "Fine Art",
+            "Illustration",
+            "Digital Painting",
+            "3D Renders",
+            "AR",
+            "Sound Design",
+            "Generative Art",
+            "Mixed Media",
+            "VR Experience"
           ]
         },
         "dateCreated": {
