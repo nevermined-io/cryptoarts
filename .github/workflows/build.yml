@@ -21,8 +21,8 @@ jobs:
         node-version: '12.x'
     - name: Install dependencies
       run: |
-        npm i
         npm install -g npm
+        npm i
     - name: Run tools (network)
       run: |
         sudo chmod go+r /etc/hosts
