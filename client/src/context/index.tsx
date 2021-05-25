@@ -1,4 +1,5 @@
 import React from 'react'
+import { MarketProviderState } from './MarketProvider'
 
 export const User = React.createContext({
     isLogged: false,
@@ -26,7 +27,7 @@ export const User = React.createContext({
     tokenSymbol: ''
 })
 
-export const Market = React.createContext({
+export const Market = React.createContext<MarketProviderState>({
     totalAssets: 0,
     categories: [],
     network: '',

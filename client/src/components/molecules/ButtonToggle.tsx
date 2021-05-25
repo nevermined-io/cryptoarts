@@ -4,14 +4,14 @@ import cx from 'classnames'
 
 export type ToggleOption = {
     content: string
-    onClick: Function
+    onClick: () => void
 }
 
-interface ButtonToggleProps {
+interface IButtonToggleProps {
     options: ToggleOption[]
 }
 
-export const ButtonToggle = ({ options }: ButtonToggleProps) => {
+export const ButtonToggle = ({ options }: IButtonToggleProps) => {
     const [selected, setSelected] = useState(0)
     return <>
         <div className={styles.buttonWrapper}>
