@@ -22,7 +22,6 @@ jobs:
     - name: Install dependencies
       run: |
         npm install -g npm
-        npm install --verbose sharp
         npm i
     - name: Run tools (network)
       run: |
