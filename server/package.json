@@ -31,7 +31,7 @@
     "gifsicle": "^5.2.0",
     "morgan": "^1.9.1",
     "request": "^2.88.0",
-    "sharp": "^0.28.1"
+    "sharp": "^0.28.3"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.1",
