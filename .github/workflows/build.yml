@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-18.04
     env:
       S3_ACCESS_KEY_ID: minioadmin
       S3_SECRET_ACCESS_KEY: minioadmin
@@ -21,7 +21,6 @@ jobs:
         node-version: '12.x'
     - name: Install dependencies
       run: |
-        sudo apt-get install -y libvips-dev glib2.0-dev
         npm install -g npm
         npm i
     - name: Run tools (network)
