@@ -47,7 +47,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                 isLoadingLatest: false
             })
 
-            search.results.forEach( async (artwork: any) => {
+            search.results.map(async (artwork: any) => {
                 const { attributes } = artwork.findServiceByType('metadata')
                 const { compression } = attributes.main.files[0]
                 const filename = `${artwork.id}.${compression}`
@@ -72,28 +72,22 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
 
         return (
             <>
-                <div className={styles.latestAssetsWrap}>
-                    <div className={styles.latestAssetsHeader}>
-                        <div className={styles.latestAssetsHeaderTitle}>Recent Artwork</div>
-
+                {isLoadingLatest ? (
+                    <Spinner message="Loading..." />
+                ) : latestArtworks && latestArtworks.length ? (
+                    <div className={styles.latestAssets}>
+                        {latestArtworks.map((asset: any) => (
+                            <ArtworkTeaser
+                                key={asset.id}
+                                artwork={asset}
+                                minimal
+                                tokenSymbol= {this.context.tokenSymbol}
+                            />
+                        ))}
                     </div>
-                    {isLoadingLatest ? (
-                        <Spinner message="Loading..." />
-                    ) : latestArtworks && latestArtworks.length ? (
-                        <div className={styles.latestAssets}>
-                            {latestArtworks.map((asset: any) => (
-                                <ArtworkTeaser
-                                    key={asset.id}
-                                    artwork={asset}
-                                    minimal
-                                    tokenSymbol= {this.context.tokenSymbol}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div>No artworks found.</div>
-                    )}
-                </div>
+                ) : (
+                    <div>No artworks found.</div>
+                )}
             </>
         )
     }

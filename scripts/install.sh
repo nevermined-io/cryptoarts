@@ -1,4 +1,4 @@
-#/usr/bin/env/sh
+#!/usr/bin/env bash
 set -e
 
 components="server client"
@@ -6,9 +6,10 @@ components="server client"
 for component in $components
 do
     printf "\n\nInstalling dependencies: $component\n"
-    cd $component
-    npm install
-    cd ..
+    (cd $component && npm install)
+    # cd $component
+    # npm install
+    # cd ..
 done
 
 cp client/node_modules/jose/package.json client/node_modules/jose/package.json.old
