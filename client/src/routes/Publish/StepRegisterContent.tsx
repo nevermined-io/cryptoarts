@@ -5,14 +5,16 @@ import Button from '../../components/atoms/Button'
 import styles from './StepRegisterContent.module.scss'
 
 export const messages: any = {
-    0: '1/4<br />Encrypting files...',
-    1: '1/4<br />Successfully encrypted files.',
-    2: '2/4<br />Generating proof...',
-    3: '2/4<br />Successfully generated proof.',
-    4: '3/4<br /> Registering DID...',
-    5: '3/4<br /> Successfully registered DID.',
-    6: '4/4<br /> Storing DDO...',
-    7: '4/4<br /> Successfully stored DDO.'
+    0: '1/5<br />Encrypting files...',
+    1: '1/5<br />Successfully encrypted files.',
+    2: '2/5<br />Generating proof...',
+    3: '2/5<br />Successfully generated proof.',
+    4: '3/5<br /> Registering NFT...',
+    5: '3/5<br /> Successfully registered NFT.',
+    6: '4/5<br /> Storing DDO...',
+    7: '4/5<br /> Successfully stored DDO.',
+    8: '5/5<br /> Minting NFTs...',
+    9: '5/5<br /> Successfully minted the NFTs.'
 }
 
 interface StepRegisterContentProps {
