@@ -302,12 +302,6 @@ class Publish extends Component<{}, PublishState> {
         }
 
         try {
-            // const asset = await this.context.sdk.assets
-            //     .create(newAsset as any, account[0])
-            //     .next((publishingStep: number) =>
-            //         this.setState({ publishingStep })
-            //     )
-
             // Create NFT
             const asset = await this.context.sdk.nfts.create(
                 newAsset as any,
