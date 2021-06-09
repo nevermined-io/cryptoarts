@@ -9,16 +9,16 @@ import Modal from '../../atoms/Modal'
 
 export const messages: any = {
     99: 'Decrypting file URL...',
-    0: '1/3<br />Asking for agreement signature...',
-    1: '1/3<br />Agreement initialized.',
-    2: '2/3<br />Asking for two payment confirmations...',
-    3: '2/3<br />Payment confirmed. Requesting access...',
-    4: '3/3<br /> Access granted. Consuming file...'
+    0: '1/3<br />Checking balance...',
+    1: '2/3<br />Locking payment...',
+    2: '2/3<br />Payment confirmed. Requesting access...',
+    3: '3/3<br /> Access granted. Consuming file...'
 }
 
 interface ArtworkFileProps {
     file: File
     ddo: DDO
+    price: number
 }
 
 interface ArtworkFileState {
@@ -69,42 +69,23 @@ export default class ArtworkFile extends PureComponent<
 
         try {
             const accounts = await sdk.accounts.list()
-            // const service = ddo.findServiceByType('access')
 
-            // const agreements = await sdk.keeper.conditions.accessCondition.getGrantedDidByConsumer(
-            //     accounts[0].id
-            // )
-            // const agreement = agreements.find((element: any) => {
-            //     return element.did === ddo.id
-            // })
+            // check balance
+            this.setState({ step: 0 })
+            const balance = await accounts[0].getNeverminedBalance()
+            if (balance < this.props.price) {
+                throw Error(`Not Enough balance: ${balance}`)
+            }
 
-            // let agreementId
-
-            // if (agreement) {
-            //     ;({ agreementId } = agreement)
-            // } else {
-            //     agreementId = await sdk.assets
-            //         .order(ddo.id, service.index, accounts[0])
-            //         .next((step: number) => this.setState({ step }))
-            // }
-             await sdk.nfts
+            // order nft and lock payment
+            this.setState({ step: 1 })
+            await sdk.nfts
                 .order(ddo.id, 1, accounts[0])
-                .next((step: number) => this.setState({ step }))
 
-            // manually add another step here for better UX
-            this.setState({ step: 4 })
-
-            // const path = await sdk.assets.consume(
-            //     agreementId,
-            //     ddo.id,
-            //     service.index,
-            //     accounts[0],
-            //     undefined,
-            //     index,
-            //     false
-            // )
-
+            // requesting access
+            this.setState({ step: 2 })
             const path = await sdk.nfts.access(ddo.id, accounts[0])
+            this.setState({ step: 3 })
 
             Logger.log('path', path)
             ReactGA.event({

@@ -106,6 +106,7 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
             <ArtworkFile
                 ddo={ddo}
                 file={file}
+                price={Number(price)}
             />
         </div>
     )
