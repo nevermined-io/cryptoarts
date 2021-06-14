@@ -4,6 +4,7 @@ import { DDO, MetaData, File } from '@nevermined-io/nevermined-sdk-js'
 import styles from './ArtworkDetails.module.scss'
 import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
+import FullHeightView from '../../atoms/FullHeightView'
 import ArtworkFile from './ArtworkFile'
 
 interface ArtworkDetailsProps {
@@ -17,15 +18,6 @@ export function datafilesLine(files: File[]) {
     }
     return <span>{files.length} data files</span>
 }
-// Will we need this again?
-// const MetaFixedItem = ({ name, value }: { name: string; value: string }) => (
-//     <li>
-//         <span className={styles.metaLabel}>
-//             <strong>{name}</strong>
-//         </span>
-//         <span className={styles.metaValue}>{value}</span>
-//     </li>
-// )
 
 export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
     const { main, additionalInformation } = metadata
@@ -36,78 +28,81 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
     const file = main.files[0]
     const category = additionalInformation.categories[0]
 
-    // And this?
-    // const metaFixed = [
-    //     {
-    //         name: 'Author',
-    //         value: main.author,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'License',
-    //         value: main.license,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'DID',
-    //         value: ddo.id,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'Price',
-    //         value: `${price} NEVERMINED`,
-    //         show: price !== '0'
-    //     }
-    // ]
-
     return (
-        <div className={styles.main}>
-            <ArtworkImage
-                did={ddo.id}
-                file={file}
-            />
-
-            <div className={styles.information}>
-                <div className={styles.title}>
-                    {main.name}
+        <FullHeightView
+            main={(
+                <div className={styles.wrapper}>
+                    <div className={styles.imageWrapper}>
+                        <div className={styles.imageBar}>
+                            share / exit
+                        </div>
+                        <div className={styles.imageContainer}>
+                            <ArtworkImage
+                                did={ddo.id}
+                                file={file}
+                            />
+                        </div>
+                        <div className={styles.imageBar}>
+                            audio / fullscreen
+                        </div>
+                    </div>
                 </div>
-
-                <div className={styles.authorship}>
-                    <span>{category}</span>
-                    <span>
-                        <Moment
-                            date={main.dateCreated}
-                            format="L"
-                            interval={0}
-                        />
-                    </span>
-                    <span>{main.author}</span>
-                    <span>{additionalInformation.copyrightHolder}</span>
-                </div>
-
-                <div className={styles.description}>{additionalInformation.description}</div>
-            </div>
-
-            <div className={styles.footer}>
-                <div className={styles.footerContent}>
-                    <span>License</span>{main.license}
-                </div>
-                <div className={styles.footerContent}>
-                    <span>Price</span>{price}
-                </div>
-            </div>
-
-            <div className={styles.footer}>
-                <div className={styles.footerContent}>
-                    <span>DID</span>{ddo.id}
-                </div>
-            </div>
-
-            <ArtworkFile
-                ddo={ddo}
-                file={file}
-                price={Number(price)}
-            />
-        </div>
+            )}
+            sidebar={(
+                <span>{'Sidebar \n\n'.repeat(400)}</span>
+            )}
+        />
     )
 }
+
+// const s = () =>
+//     (
+//         <div className={styles.main}>
+//             <ArtworkImage
+//                 did={ddo.id}
+//                 file={file}
+//             />
+
+//             <div className={styles.information}>
+//                 <div className={styles.title}>
+//                     {main.name}
+//                 </div>
+
+//                 <div className={styles.authorship}>
+//                     <span>{category}</span>
+//                     <span>
+//                         <Moment
+//                             date={main.dateCreated}
+//                             format="L"
+//                             interval={0}
+//                         />
+//                     </span>
+//                     <span>{main.author}</span>
+//                     <span>{additionalInformation.copyrightHolder}</span>
+//                 </div>
+
+//                 <div className={styles.description}>{additionalInformation.description}</div>
+//             </div>
+
+//             <div className={styles.footer}>
+//                 <div className={styles.footerContent}>
+//                     <span>License</span>{main.license}
+//                 </div>
+//                 <div className={styles.footerContent}>
+//                     <span>Price</span>{price}
+//                 </div>
+//             </div>
+
+//             <div className={styles.footer}>
+//                 <div className={styles.footerContent}>
+//                     <span>DID</span>{ddo.id}
+//                 </div>
+//             </div>
+
+//             <ArtworkFile
+//                 ddo={ddo}
+//                 file={file}
+//                 price={Number(price)}
+//             />
+//         </div>
+//     )
