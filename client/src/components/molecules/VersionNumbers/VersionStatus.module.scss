@@ -23,11 +23,15 @@
 }
 
 .indicator {
-    composes: statusIndicator from '../AccountStatus/Indicator.module.scss';
+    display: block;
+    background: $red;
+    height: 24px;
+    width: 24px;
 }
 
 .indicatorActive {
-    composes: statusIndicatorActive from '../AccountStatus/Indicator.module.scss';
+    border-radius: 50%;
+    background: $green;
 }
 
 .indicatorLabel {
