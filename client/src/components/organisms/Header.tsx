@@ -5,7 +5,6 @@ import styles from './Header.module.scss'
 
 import menu from '../../data/menu'
 import logo from '../../img/logo.svg'
-import logoText from '../../img/logoText.svg'
 
 const MenuItem = ({ item }: { item: any }) => (
     <NavLink
@@ -23,28 +22,18 @@ export default class Header extends PureComponent {
         return (
             <header className={styles.header}>
                 <NavLink to="/">
-                    <div className={styles.headerContent}>
-                        <div
-                            className={styles.headerLogo}
-                            style={{ background: `url(${logo})` }}
-                        />
-
-                        <div
-                            className={styles.headerTitle}
-                            style={{ background: `url(${logoText})`}}
-                        />
-                    </div>
-
-                    <div className={styles.headerNav}>
-                        <nav className={styles.headerMenu}>
-                            {menu.map(item => (
-                                <MenuItem key={item.title} item={item} />
-                            ))}
-                        </nav>
-                        <AccountStatus className={styles.accountStatus} />
-
-                    </div>
+                    <img src={logo} />
                 </NavLink>
+
+                <div className={styles.headerNav}>
+                    <nav className={styles.headerMenu}>
+                        {menu.map(item => (
+                            <MenuItem key={item.title} item={item} />
+                        ))}
+                    </nav>
+                    <AccountStatus className={styles.accountStatus} />
+
+                </div>
             </header>
         )
     }
