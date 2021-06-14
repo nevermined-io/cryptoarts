@@ -1,4 +1,6 @@
 import React from 'react'
+import cx from 'classnames'
+
 import styles from './FullHeightView.module.scss'
 
 export const ContentRow = ({
@@ -14,9 +16,11 @@ export const ContentRow = ({
 }
 
 const FullHeightView = ({
+    fullscreen,
     main,
     sidebar
 }: {
+    fullscreen?: boolean
     main: React.ReactNode
     sidebar: React.ReactNode
 }) => {
@@ -25,7 +29,7 @@ const FullHeightView = ({
             <div className={styles.content}>
                 {main}
             </div>
-            <div className={styles.sidebar}>
+            <div className={cx(styles.sidebar, fullscreen ? styles.sidebarClosed : undefined)}>
                 {sidebar}
             </div>
         </div>

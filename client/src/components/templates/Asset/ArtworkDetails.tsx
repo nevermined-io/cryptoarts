@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Moment from 'react-moment'
 import { DDO, MetaData, File } from '@nevermined-io/nevermined-sdk-js'
 import styles from './ArtworkDetails.module.scss'
@@ -6,7 +6,7 @@ import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
 import FullHeightView, {ContentRow} from '../../atoms/FullHeightView'
 import ArtworkFile from './ArtworkFile'
-import { CloseIcon, ShareIcon } from '../../icons'
+import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
 
 interface ArtworkDetailsProps {
     metadata: MetaData
@@ -21,6 +21,8 @@ export function datafilesLine(files: File[]) {
 }
 
 export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
+    const [fullscreen, setFullscreen] = useState(false)
+
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
     if (!main.files || !additionalInformation || !additionalInformation.categories) {
@@ -31,6 +33,7 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
 
     return (
         <FullHeightView
+            fullscreen={fullscreen}
             main={(
                 <div className={styles.wrapper}>
                     <div className={styles.imageWrapper}>
@@ -45,7 +48,10 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                             />
                         </div>
                         <ContentRow>
-                            <span>audio / fullscreen</span>
+                            <span />
+                            <span onClick={() => setFullscreen(!fullscreen)} className={styles.clickable}>
+                                <FullscreenIcon size={20} />
+                            </span>
                         </ContentRow>
                     </div>
                 </div>

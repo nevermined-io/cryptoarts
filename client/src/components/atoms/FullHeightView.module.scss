@@ -7,14 +7,21 @@ $layout-border: 4px solid $nft-shadow;
     width: 100%;
     border-top: $layout-border;
     display: flex;
+    overflow: hidden;
 }
 
 .sidebar {
+    @include transition;
+
     width: 520px;
     background: $nft-background;
     border-left: $layout-border;
     padding: 40px;
     overflow: auto;
+    position: relative;
+}
+.sidebarClosed {
+    margin-right: -524px;
 }
 
 .content {
