@@ -30,7 +30,7 @@ export default class Header extends PureComponent {
                 <CircleButton className={styles.publishButton} to="/publish"><EditIcon /></CircleButton>
 
                 <div className={styles.accountWrapper}>
-                    <CircleButton secondary><AccountConnectedIcon /></CircleButton>
+                    <AccountStatus/>
                 </div>
                 <CircleButton><MenuIcon /></CircleButton>
 

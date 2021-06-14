@@ -1,0 +1,70 @@
+@import '../../styles/variables';
+
+$circle-size: 44px;
+
+.wrapper {
+    border-radius: $circle-size / 2;
+    position: relative;
+
+    &:hover .popup {
+        pointer-events: initial;
+        opacity: 1;
+    }
+}
+
+.popup {
+    @include transition(fast);
+
+    position: absolute;
+    width: 260px;
+    background: $nft-neutral;
+    border-radius: $circle-size / 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.button {
+    position: relative;
+    z-index: 2;
+}
+
+.row {
+    border-bottom: 3px solid $nft-light;
+    height: 56px;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+        margin: 0;
+    }
+
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.account {
+    padding: 12px;
+    height: auto;
+    padding-right: $circle-size + 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.accountImage {
+    height: $circle-size;
+    width: $circle-size;
+    background: $nft-dark;
+    border-radius: $circle-size / 2;
+}
+.accountAddress {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 12px;
+}
