@@ -29,7 +29,6 @@ const CircleButton = ({
     ...props
 }: CircleButtonProps) => {
     const classes = getClasses(secondary)
-    console.log({classes, secondary, styles})
 
     return to ? (
         <Link to={to} className={cx(classes, className)} {...props}>
