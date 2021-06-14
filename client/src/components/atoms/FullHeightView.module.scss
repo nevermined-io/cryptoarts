@@ -21,3 +21,14 @@ $layout-border: 4px solid $nft-shadow;
     flex: 1;
     background: $nft-light;
 }
+
+.contentRow {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & > svg {
+        margin: 0;
+    }
+}

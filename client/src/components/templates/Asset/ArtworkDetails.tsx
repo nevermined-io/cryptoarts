@@ -4,8 +4,9 @@ import { DDO, MetaData, File } from '@nevermined-io/nevermined-sdk-js'
 import styles from './ArtworkDetails.module.scss'
 import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
-import FullHeightView from '../../atoms/FullHeightView'
+import FullHeightView, {ContentRow} from '../../atoms/FullHeightView'
 import ArtworkFile from './ArtworkFile'
+import { CloseIcon, ShareIcon } from '../../icons'
 
 interface ArtworkDetailsProps {
     metadata: MetaData
@@ -33,18 +34,19 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
             main={(
                 <div className={styles.wrapper}>
                     <div className={styles.imageWrapper}>
-                        <div className={styles.imageBar}>
-                            share / exit
-                        </div>
+                        <ContentRow>
+                            <ShareIcon size={20} />
+                            <CloseIcon size={14} />
+                        </ContentRow>
                         <div className={styles.imageContainer}>
                             <ArtworkImage
                                 did={ddo.id}
                                 file={file}
                             />
                         </div>
-                        <div className={styles.imageBar}>
-                            audio / fullscreen
-                        </div>
+                        <ContentRow>
+                            <span>audio / fullscreen</span>
+                        </ContentRow>
                     </div>
                 </div>
             )}

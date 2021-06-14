@@ -1,12 +1,24 @@
 import React from 'react'
 import styles from './FullHeightView.module.scss'
 
+export const ContentRow = ({
+    children
+}: {
+    children: React.ReactNode
+}) => {
+    return (
+        <div className={styles.contentRow}>
+            {children}
+        </div>
+    )
+}
+
 const FullHeightView = ({
     main,
     sidebar
 }: {
-    main: JSX.Element
-    sidebar: JSX.Element
+    main: React.ReactNode
+    sidebar: React.ReactNode
 }) => {
     return (
         <div className={styles.wrapper}>
