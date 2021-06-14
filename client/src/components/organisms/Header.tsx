@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 import AccountStatus from '../molecules/AccountStatus'
+import CircleButton from '../atoms/CircleButton'
+import { EditIcon, AccountConnectedIcon, MenuIcon } from '../icons'
 import styles from './Header.module.scss'
 
 import menu from '../../data/menu'
@@ -25,6 +27,15 @@ export default class Header extends PureComponent {
                     <img src={logo} />
                 </NavLink>
 
+                <CircleButton className={styles.publishButton} to="/publish"><EditIcon /></CircleButton>
+
+                <div className={styles.accountWrapper}>
+                    <CircleButton secondary><AccountConnectedIcon /></CircleButton>
+                </div>
+                <CircleButton><MenuIcon /></CircleButton>
+
+
+{/*
                 <div className={styles.headerNav}>
                     <nav className={styles.headerMenu}>
                         {menu.map(item => (
@@ -33,7 +44,7 @@ export default class Header extends PureComponent {
                     </nav>
                     <AccountStatus className={styles.accountStatus} />
 
-                </div>
+                </div>*/}
             </header>
         )
     }
