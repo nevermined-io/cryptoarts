@@ -2,7 +2,6 @@ import React from 'react'
 import { IconProps } from './icons.interface'
 
 const Edit = ({color = 'currentColor', size = 24}: IconProps) => {
-
     return (
         <svg width={size} height={size} viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path

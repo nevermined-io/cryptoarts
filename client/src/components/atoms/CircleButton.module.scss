@@ -10,14 +10,33 @@ $size: 44px;
     color: $nft-light;
     border: 0;
     user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
 
     svg {
         max-width: 18px;
         max-height: 18px;
+    }
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+        text-decoration: none;
+        transform: none;
     }
 }
 
 .circleButtonSecondary {
     background: $nft-primary;
     color: $nft-dark;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-dark;
+    }
 }
