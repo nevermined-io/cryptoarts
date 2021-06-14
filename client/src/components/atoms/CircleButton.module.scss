@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+$size: 44px;
+
+.circleButton {
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    background: $nft-dark;
+    color: $nft-light;
+    border: 0;
+    user-select: none;
+
+    svg {
+        max-width: 18px;
+        max-height: 18px;
+    }
+}
+
+.circleButtonSecondary {
+    background: $nft-primary;
+    color: $nft-dark;
+}
