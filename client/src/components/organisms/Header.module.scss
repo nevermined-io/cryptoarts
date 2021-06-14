@@ -2,138 +2,18 @@
 
 .header {
     width: 1440px;
-    height: 80px;
+    height: 100px;
     background: #fff;
-
-    /* stylelint-disable-next-line */
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.headerContent {
+    padding: 0 30px;
     display: flex;
-    width: 212px;
-    height: 32px;
-    margin-left: 64px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-}
-
-.headerLogo {
-    width: 54px;
-    height: 32px;
-}
-
-.headerLogoImage {
-    width: 4rem;
-    height: 4rem;
-    fill: #fff;
-    margin: 0;
-}
-
-.headerTitle {
-    width: 146px;
-    height: 22px;
-    margin-left: auto;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-top: auto;
-
-    @media (min-width: $break-point--medium) {
-        display: inline-block;
-    }
-}
-
-.headerNav {
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    width: 488px;
-    height: 24px;
-    left: 888px;
-    top: 28px;
 }
 
-.headerMenu {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    position: static;
-    width: 440px;
-    height: 24px;
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 24px;
-
-    @media (min-width: $break-point--medium) {
-        padding-right: 0;
-        margin-right: 0;
-        margin-left: 0;
-        border-left: 0;
-        overflow: initial;
-    }
-
-    &::-webkit-scrollbar,
-    &::-moz-scrollbar {
-        display: none;
-    }
-
-    &::-webkit-scrollbar {
-        width: 3px;
-        height: 3px;
-        transition: opacity .2s ease-out;
-    }
+.publishButton {
+    margin: auto;
 }
 
-.link {
-    position: static;
-    width: 80px;
-    height: 24px;
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 24px;
-    align-items: center;
-    text-align: center;
-
-    /* 3. Shade/Bazaart.Dark */
-    color: $brand-dark;
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-
-    &:last-child {
-        margin-right: 0;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: $brand-primary;
-    }
-}
-
-.linkActive {
-    composes: link;
-    color: $brand-primary;
-    pointer-events: none;
-}
-
-.accountStatus {
-    position: static;
-    width: 24px;
-    height: 24px;
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+.accountWrapper {
+    position: relative;
+    margin-right: 12px;
 }

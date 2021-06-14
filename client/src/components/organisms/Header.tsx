@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
 import AccountStatus from '../molecules/AccountStatus'
+import CircleButton from '../atoms/CircleButton'
+import { EditIcon, AccountConnectedIcon, MenuIcon } from '../icons'
 import styles from './Header.module.scss'
 
 import menu from '../../data/menu'
 import logo from '../../img/logo.svg'
-import logoText from '../../img/logoText.svg'
 
 const MenuItem = ({ item }: { item: any }) => (
     <NavLink
@@ -23,28 +24,27 @@ export default class Header extends PureComponent {
         return (
             <header className={styles.header}>
                 <NavLink to="/">
-                    <div className={styles.headerContent}>
-                        <div
-                            className={styles.headerLogo}
-                            style={{ background: `url(${logo})` }}
-                        />
-
-                        <div
-                            className={styles.headerTitle}
-                            style={{ background: `url(${logoText})`}}
-                        />
-                    </div>
-
-                    <div className={styles.headerNav}>
-                        <nav className={styles.headerMenu}>
-                            {menu.map(item => (
-                                <MenuItem key={item.title} item={item} />
-                            ))}
-                        </nav>
-                        <AccountStatus className={styles.accountStatus} />
-
-                    </div>
+                    <img src={logo} />
                 </NavLink>
+
+                <CircleButton className={styles.publishButton} to="/publish"><EditIcon /></CircleButton>
+
+                <div className={styles.accountWrapper}>
+                    <AccountStatus/>
+                </div>
+                <CircleButton><MenuIcon /></CircleButton>
+
+
+{/*
+                <div className={styles.headerNav}>
+                    <nav className={styles.headerMenu}>
+                        {menu.map(item => (
+                            <MenuItem key={item.title} item={item} />
+                        ))}
+                    </nav>
+                    <AccountStatus className={styles.accountStatus} />
+
+                </div>*/}
             </header>
         )
     }
