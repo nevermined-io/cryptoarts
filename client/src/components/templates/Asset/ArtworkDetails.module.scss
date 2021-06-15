@@ -37,5 +37,48 @@
 }
 
 .spacer {
-    margin: 60px 0;
+    margin-bottom: 80px;
+}
+.buttonSpacer {
+    margin-bottom: 20px;
+}
+
+.infoRow {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    & + & {
+        margin-top: 12px;
+    }
+
+    strong {
+        margin-right: 20px;
+    }
+    span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+// Price section
+.priceTitleWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.priceWrapper {
+    padding: 24px 0;
+    text-transform: uppercase;
+
+    strong {
+        font-size: 35px;
+        margin-right: 20px;
+    }
+    span {
+        font-size: 28px;
+    }
 }

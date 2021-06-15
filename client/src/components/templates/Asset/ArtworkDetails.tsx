@@ -63,7 +63,7 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                     <div className={styles.cols}>
                         <div>
                             <h4 className={styles.upper}>Creator:</h4>
-                            <div>@someartist</div>
+                            <div>{additionalInformation.copyrightHolder}</div>
                         </div>
                         <div>
                             <h4 className={styles.upper}>Owner:</h4>
@@ -72,9 +72,7 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                     </div>
 
                     <p>
-                        Deserunt esse laboris ut voluptate cupidatat cillum do laborum
-                        aliquip et dolore aute do minim sunt in eiusmod reprehenderit
-                        laborum ullamco ut consectetur enim do ut voluptate ullamco eiusmod occaecat.
+                        {additionalInformation.description}
                     </p>
 
                     <div className={styles.spacer} />
@@ -90,60 +88,64 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
 
                     <Button secondary fullWidth>go to profile</Button>
 
+                    <div className={styles.spacer} />
+
+                    <h2>Additional information</h2>
+
+                    <div className={styles.infoRow}>
+                        <strong>Category:</strong>
+                        <span>{category}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>License:</strong>
+                        <span>{main.license}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>Creation:</strong>
+                        <span>
+                            <Moment
+                                date={main.dateCreated}
+                                format="LL"
+                                interval={0}
+                            />
+                        </span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>Author:</strong>
+                        <span>{main.author}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>Copyright holder:</strong>
+                        <span>{additionalInformation.copyrightHolder}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>DID:</strong>
+                        <span>{ddo.id}</span>
+                    </div>
                 </>
             )}
-        />
-    )
-}
-
-// const s = () =>
-//     (
-//         <div className={styles.main}>
-//             <ArtworkImage
-//                 did={ddo.id}
-//                 file={file}
-//             />
-
-//             <div className={styles.information}>
-//                 <div className={styles.title}>
-//                     {main.name}
-//                 </div>
-
-//                 <div className={styles.authorship}>
-//                     <span>{category}</span>
-//                     <span>
-//                         <Moment
-//                             date={main.dateCreated}
-//                             format="L"
-//                             interval={0}
-//                         />
-//                     </span>
-//                     <span>{main.author}</span>
-//                     <span>{additionalInformation.copyrightHolder}</span>
-//                 </div>
-
-//                 <div className={styles.description}>{additionalInformation.description}</div>
-//             </div>
-
-//             <div className={styles.footer}>
-//                 <div className={styles.footerContent}>
-//                     <span>License</span>{main.license}
-//                 </div>
-//                 <div className={styles.footerContent}>
-//                     <span>Price</span>{price}
-//                 </div>
-//             </div>
-
-//             <div className={styles.footer}>
-//                 <div className={styles.footerContent}>
-//                     <span>DID</span>{ddo.id}
-//                 </div>
-//             </div>
-
+            subsidebar={(
+                <>
+                    <div className={styles.priceTitleWrapper}>
+                        <strong>Current price</strong>
+                        <span>Edition N from N</span>
+                    </div>
+                    <div className={styles.priceWrapper}>
+                        <strong>{price} NVMD</strong>
+                        <span>$1200USD</span>
+                    </div>
+                    <Button primary fullWidth>Buy now</Button>
+{
 //             <ArtworkFile
 //                 ddo={ddo}
 //                 file={file}
 //                 price={Number(price)}
 //             />
-//         </div>
-//     )
+}
+                    <div className={styles.buttonSpacer} />
+                    <Button fullWidth>Download High-Res File</Button>
+                </>
+            )}
+        />
+    )
+}
