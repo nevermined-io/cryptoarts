@@ -4,6 +4,7 @@ import { DDO, MetaData, File } from '@nevermined-io/nevermined-sdk-js'
 import styles from './ArtworkDetails.module.scss'
 import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
+import Button from '../../atoms/Button'
 import FullHeightView, {ContentRow} from '../../atoms/FullHeightView'
 import ArtworkFile from './ArtworkFile'
 import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
@@ -57,7 +58,39 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                 </div>
             )}
             sidebar={(
-                <span>{'Sidebar \n\n'.repeat(400)}</span>
+                <>
+                    <h1>{main.name}</h1>
+                    <div className={styles.cols}>
+                        <div>
+                            <h4 className={styles.upper}>Creator:</h4>
+                            <div>@someartist</div>
+                        </div>
+                        <div>
+                            <h4 className={styles.upper}>Owner:</h4>
+                            <div>@someartist</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        Deserunt esse laboris ut voluptate cupidatat cillum do laborum
+                        aliquip et dolore aute do minim sunt in eiusmod reprehenderit
+                        laborum ullamco ut consectetur enim do ut voluptate ullamco eiusmod occaecat.
+                    </p>
+
+                    <div className={styles.spacer} />
+
+                    <h2>About the creator</h2>
+                    <h3>@someartist</h3>
+
+                    <p>
+                        Deserunt esse laboris ut voluptate cupidatat cillum do laborum
+                        aliquip et dolore aute do minim sunt in eiusmod reprehenderit
+                        laborum ullamco ut consectetur enim do ut voluptate ullamco eiusmod occaecat.
+                    </p>
+
+                    <Button secondary fullWidth>go to profile</Button>
+
+                </>
             )}
         />
     )

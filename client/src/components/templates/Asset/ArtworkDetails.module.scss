@@ -17,3 +17,25 @@
 .clickable {
     cursor: pointer;
 }
+
+.cols {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+    & > * {
+        margin-right: 24px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.spacer {
+    margin: 60px 0;
+}

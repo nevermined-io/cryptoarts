@@ -18,7 +18,6 @@
     text-transform: uppercase;
     transition: .2s ease-out;
     background: $brand-gray;
-    border-radius: 4px;
     box-shadow: 0 9px 18px 0 rgba(0, 0, 0, .1);
     min-height: 45px;
     user-select: none;
@@ -48,7 +47,20 @@
 
 .buttonPrimary {
     composes: button;
-    background: $brand-primary;
+    background: $nft-secondary;
+
+    // &:hover,
+    // &:focus {
+    //     background: $brand-primary;
+    // }
+
+    // &:active {
+    //     background: $brand-primary;
+    // }
+}
+.buttonSecondary {
+    composes: button;
+    background: $nft-primary;
 
     // &:hover,
     // &:focus {
@@ -75,4 +87,8 @@
     color: $brand-secondary;
     box-shadow: none;
     cursor: pointer;
+}
+
+.fullWidth {
+    width: 100%;
 }
