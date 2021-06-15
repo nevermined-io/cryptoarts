@@ -18,11 +18,13 @@ export const ContentRow = ({
 const FullHeightView = ({
     fullscreen,
     main,
-    sidebar
+    sidebar,
+    subsidebar
 }: {
     fullscreen?: boolean
     main: React.ReactNode
     sidebar: React.ReactNode
+    subsidebar?: React.ReactNode
 }) => {
     return (
         <div className={styles.wrapper}>
@@ -30,7 +32,12 @@ const FullHeightView = ({
                 {main}
             </div>
             <div className={cx(styles.sidebar, fullscreen ? styles.sidebarClosed : undefined)}>
-                {sidebar}
+                <div className={styles.sidebarContent}>
+                    {sidebar}
+                </div>
+                {subsidebar && (<div className={styles.subsidebar}>
+                    {subsidebar}
+                </div>)}
             </div>
         </div>
     )
