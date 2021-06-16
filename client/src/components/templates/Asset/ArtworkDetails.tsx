@@ -15,13 +15,6 @@ interface ArtworkDetailsProps {
     nftDetails: any
 }
 
-export function datafilesLine(files: File[]) {
-    if (files.length === 1) {
-        return <span>{files.length} data file</span>
-    }
-    return <span>{files.length} data files</span>
-}
-
 export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
     const [fullscreen, setFullscreen] = useState(false)
 
@@ -133,11 +126,11 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
                 <>
                     <div className={styles.priceTitleWrapper}>
                         <strong>Current price</strong>
-                        <span>Edition N from N</span>
+                        <span>Edition of {nftDetails.nftSupply}</span>
                     </div>
                     <div className={styles.priceWrapper}>
                         <strong>{price} NVMD</strong>
-                        <span>$1200USD</span>
+                        {/*<span>$1200USD</span>*/}
                     </div>
                     <Button primary fullWidth>Buy now</Button>
 {
