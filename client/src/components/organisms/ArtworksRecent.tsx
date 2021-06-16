@@ -70,6 +70,8 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
         const { latestArtworks, isLoadingLatest } = this.state
         console.log(this.context)
 
+        console.log(latestArtworks)
+
         return (
             <>
                 {isLoadingLatest ? (
@@ -80,8 +82,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                             <ArtworkTeaser
                                 key={asset.id}
                                 artwork={asset}
-                                minimal
-                                tokenSymbol= {this.context.tokenSymbol}
+                                cover
                             />
                         ))}
                     </div>

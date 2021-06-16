@@ -1,58 +1,48 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import cx from 'classnames'
-import styles from './ArtworkTeaser.module.scss'
-import ArtworkTeaserImage from '../atoms/ArtworkTeaserImage'
+import { DDO } from '@nevermined-io/nevermined-sdk-js'
+import Web3 from 'web3'
 
-import ArtworkTeaserDescription from '../atoms/ArtworkTeaserDescription'
+import { User } from '../../context'
+import styles from './ArtworkTeaser.module.scss'
 
 const ArtworkTeaser = ({
     artwork,
-    list,
-    minimal,
-    tokenSymbol
+    cover,
 }: {
-    artwork: any
-    list?: boolean
-    minimal?: boolean
-    tokenSymbol?: string
+    artwork: DDO & {url?: string}
+    cover?: boolean
+    // TODO: Remove following props
+    minimal?: any
+    tokenSymbol?: any
+    list?: any
 }) => {
-    const { attributes } = artwork.findServiceByType('metadata')
-    const { main, additionalInformation } = attributes
+    const {tokenSymbol} = useContext(User)
+    const { attributes: {main} } = artwork.findServiceByType('metadata')
 
     return list ? (
-        <article className={styles.assetList}>
-            <Link to={`/asset/${artwork.id}`}>
-                <h1>{main.name}</h1>
-                <div
-                    className={styles.date}
-                    title={`Published on ${main.datePublished}`}
-                >
-                    {moment(main.datePublished).fromNow()}
-                </div>
-            </Link>
-        </article>
-    ) : (
-        <article
-            className={
-                minimal ? cx(styles.asset, styles.minimal) : styles.asset
-            }
-        >
-            <Link to={`/asset/${artwork.id}`}>
-                <ArtworkTeaserImage
-                    url={artwork.url}
-                />
 
-                <ArtworkTeaserDescription
-                    name={main.name}
-                    description={additionalInformation.description}
-                    price={main.price}
-                    date={moment(main.datePublished).fromNow()}
-                    tokenSymbol={tokenSymbol}
-                />
-            </Link>
-        </article>
+    return (
+        <Link to={`/asset/${artwork.id}`}>
+            <article
+                className={styles.container}
+                style={{
+                    backgroundImage: `url(${artwork.url})`,
+                    backgroundSize: cover ? 'cover' : 'contain',
+                }}
+            >
+                {cover && <div className={styles.details}>
+                    <h3 className={styles.detailsTitle}>{main.name}</h3>
+                    <div className={styles.detailsSubtitle}>{main.author}</div>
+                    <div className={styles.detailsFooter}>
+                        <span>{Web3.utils.fromWei(main.price.toString())}{' '}{tokenSymbol}</span>
+                        <strong>See details</strong>
+                    </div>
+                </div>}
+            </article>
+        </Link>
     )
 }
 
