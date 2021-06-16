@@ -24,6 +24,7 @@ interface AssetState {
     metadata: MetaData
     error: string
     isLoading: boolean
+    nftDetails: any
 }
 
 class Asset extends Component<AssetProps, AssetState> {
@@ -33,7 +34,8 @@ class Asset extends Component<AssetProps, AssetState> {
         ddo: ({} as any) as DDO,
         metadata: ({ main: { name: '' } } as any) as MetaData,
         error: '',
-        isLoading: true
+        isLoading: true,
+        nftDetails: {} as any
     }
 
     public async componentDidMount() {
@@ -44,11 +46,13 @@ class Asset extends Component<AssetProps, AssetState> {
         try {
             const { sdk } = this.context
             const ddo = await sdk.assets.resolve(this.props.match.params.did)
+            const nftDetails = await sdk.nfts.details(this.props.match.params.did)
             const { attributes } = ddo.findServiceByType('metadata')
             this.setState({
                 ddo,
                 metadata: attributes,
-                isLoading: false
+                isLoading: false,
+                nftDetails
             })
         } catch (error) {
             Logger.error(error.message)
@@ -59,7 +63,7 @@ class Asset extends Component<AssetProps, AssetState> {
     }
 
     public render() {
-        const { metadata, ddo, error, isLoading } = this.state
+        const { metadata, ddo, error, isLoading, nftDetails } = this.state
         const { main, additionalInformation } = metadata
 
         const hasError = error !== ''
@@ -88,7 +92,7 @@ class Asset extends Component<AssetProps, AssetState> {
                 }
             >
                 <Content>
-                    <ArtworkDetails metadata={metadata} ddo={ddo} />
+                    <ArtworkDetails metadata={metadata} ddo={ddo} nftDetails={nftDetails} />
                 </Content>
             </Route>
         )
