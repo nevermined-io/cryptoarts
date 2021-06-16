@@ -7,6 +7,7 @@ interface CircleButtonProps {
     children?: JSX.Element | string
     className?: string
     secondary?: boolean
+    error?: boolean
     link?: boolean
     href?: string
     onClick?: any
@@ -15,12 +16,20 @@ interface CircleButtonProps {
     name?: string
 }
 
-function getClasses(secondary: boolean | undefined) {
-    return styles.circleButton + (secondary ? ` ${styles.circleButtonSecondary}` : '')
+function getClasses(secondary: boolean | undefined, error: boolean | undefined) {
+    const classes = [styles.circleButton]
+    if (secondary) {
+        classes.push(styles.circleButtonSecondary)
+    }
+    if (error) {
+        classes.push(styles.circleButtonError)
+    }
+    return classes.join(' ')
 }
 
 const CircleButton = ({
     secondary,
+    error,
     link,
     href,
     children,
@@ -28,7 +37,7 @@ const CircleButton = ({
     to,
     ...props
 }: CircleButtonProps) => {
-    const classes = getClasses(secondary)
+    const classes = getClasses(secondary, error)
 
     return to ? (
         <Link to={to} className={cx(classes, className)} {...props}>

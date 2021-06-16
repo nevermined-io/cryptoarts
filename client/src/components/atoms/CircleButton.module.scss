@@ -40,3 +40,16 @@ $size: 44px;
         color: $nft-dark;
     }
 }
+
+
+.circleButtonError {
+    background: $nft-error;
+    color: $nft-light;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+    }
+}

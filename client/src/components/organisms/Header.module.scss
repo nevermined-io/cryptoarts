@@ -1,12 +1,13 @@
 @import '../../styles/variables';
 
 .header {
-    width: 1440px;
     height: 100px;
-    background: #fff;
+    background: $nft-background;
     padding: 0 30px;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .publishButton {

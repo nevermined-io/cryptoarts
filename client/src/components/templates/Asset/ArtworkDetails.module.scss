@@ -1,76 +1,84 @@
 @import '../../../styles/variables';
 
-.main {
-    width: 880px;
+.wrapper {
+    height: 100%;
+}
+
+.imageWrapper {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding-top: 40px;
+}
+.imageContainer {
+    flex: 1;
+    margin: 0 50px;
 }
 
-.information {
+.clickable {
+    cursor: pointer;
+}
+
+.cols {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
-    width: 800px;
-}
+    margin-bottom: 20px;
 
-.title {
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: $font-weight-bold;
-    font-size: 40px;
-    line-height: 40px;
-    color: $brand-dark;
-}
+    & > * {
+        margin-right: 24px;
 
-.authorship {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-
-    span {
-        font-family: $font-family-base;
-        font-style: normal;
-        font-weight: $font-weight-bold;
-        font-size: 20px;
-        line-height: 30px;
-        color: $brand-dark;
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }
 
-.description {
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: $font-weight-base;
-    font-size: 20px;
-    line-height: 30px;
-    color: $brand-dark;
+.upper {
+    text-transform: uppercase;
 }
 
-.footer {
+.spacer {
+    margin-bottom: 80px;
+}
+.buttonSpacer {
+    margin-bottom: 20px;
+}
+
+.infoRow {
+    max-width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: nowrap;
+
+    & + & {
+        margin-top: 12px;
+    }
+
+    strong {
+        margin-right: 20px;
+    }
+    span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 
-.footerContent {
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: $font-weight-base;
-    font-size: 20px;
-    line-height: 30px;
-    color: $brand-dark;
-    min-width: 400px;
+// Price section
+.priceTitleWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.priceWrapper {
+    padding: 24px 0;
+    text-transform: uppercase;
 
+    strong {
+        font-size: 35px;
+        margin-right: 20px;
+    }
     span {
-        font-weight: $font-weight-bold;
-        display: inline-block;
-        width: 80px;
+        font-size: 28px;
     }
 }
