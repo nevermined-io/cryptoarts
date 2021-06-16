@@ -28,6 +28,31 @@ $size: 44px;
         transform: none;
     }
 }
+.circleButtonLarge {
+    $size: 60px;
+
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+
+    svg {
+        max-width: 34px;
+        max-height: 34px;
+    }
+}
+
+
+.circleButtonPrimary {
+    background: $nft-secondary;
+    color: $nft-light;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+    }
+}
 
 .circleButtonSecondary {
     background: $nft-primary;

@@ -6,6 +6,8 @@ import styles from './CircleButton.module.scss'
 interface CircleButtonProps {
     children?: JSX.Element | string
     className?: string
+    large?: boolean
+    primary?: boolean
     secondary?: boolean
     error?: boolean
     link?: boolean
@@ -16,39 +18,39 @@ interface CircleButtonProps {
     name?: string
 }
 
-function getClasses(secondary: boolean | undefined, error: boolean | undefined) {
+function getClasses({primary, secondary, error, large}: CircleButtonProps) {
     const classes = [styles.circleButton]
+    if (primary) {
+        classes.push(styles.circleButtonPrimary)
+    }
     if (secondary) {
         classes.push(styles.circleButtonSecondary)
     }
     if (error) {
         classes.push(styles.circleButtonError)
     }
+    if (large) {
+        classes.push(styles.circleButtonLarge)
+    }
     return classes.join(' ')
 }
 
-const CircleButton = ({
-    secondary,
-    error,
-    link,
-    href,
-    children,
-    className,
-    to,
-    ...props
-}: CircleButtonProps) => {
-    const classes = getClasses(secondary, error)
+const CircleButton = (props: CircleButtonProps) => {
+    const {href, children, className, to, ...restProps} = props
+    const classes = getClasses(props)
+
+    console.log(classes)
 
     return to ? (
-        <Link to={to} className={cx(classes, className)} {...props}>
+        <Link to={to} className={cx(classes, className)} {...restProps}>
             {children}
         </Link>
     ) : href ? (
-        <a href={href} className={cx(classes, className)} {...props}>
+        <a href={href} className={cx(classes, className)} {...restProps}>
             {children}
         </a>
     ) : (
-        <button className={cx(classes, className)} {...props}>
+        <button className={cx(classes, className)} {...restProps}>
             {children}
         </button>
     )

@@ -11,9 +11,11 @@ import styles from './ArtworkTeaser.module.scss'
 const ArtworkTeaser = ({
     artwork,
     cover,
+    className,
 }: {
     artwork: DDO & {url?: string}
     cover?: boolean
+    className?: string
     // TODO: Remove following props
     minimal?: any
     tokenSymbol?: any
@@ -25,23 +27,21 @@ const ArtworkTeaser = ({
     return list ? (
 
     return (
-        <Link to={`/asset/${artwork.id}`}>
-            <article
-                className={styles.container}
-                style={{
-                    backgroundImage: `url(${artwork.url})`,
-                    backgroundSize: cover ? 'cover' : 'contain',
-                }}
-            >
-                {cover && <div className={styles.details}>
-                    <h3 className={styles.detailsTitle}>{main.name}</h3>
-                    <div className={styles.detailsSubtitle}>{main.author}</div>
-                    <div className={styles.detailsFooter}>
-                        <span>{Web3.utils.fromWei(main.price.toString())}{' '}{tokenSymbol}</span>
-                        <strong>See details</strong>
-                    </div>
-                </div>}
-            </article>
+        <Link to={`/asset/${artwork.id}`}
+            className={cx(styles.container, className)}
+            style={{
+                backgroundImage: `url(${artwork.url})`,
+                backgroundSize: cover ? 'cover' : 'contain',
+            }}
+        >
+            {cover && <div className={styles.details}>
+                <h3 className={styles.detailsTitle}>{main.name}</h3>
+                <div className={styles.detailsSubtitle}>{main.author}</div>
+                <div className={styles.detailsFooter}>
+                    <span>{Web3.utils.fromWei(main.price.toString())}{' '}{tokenSymbol}</span>
+                    <strong>See details</strong>
+                </div>
+            </div>}
         </Link>
     )
 }

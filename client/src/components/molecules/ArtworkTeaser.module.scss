@@ -6,6 +6,7 @@
     background-position: center;
     position: relative;
     overflow: hidden;
+    display: inline-flex;
 
     &:hover .details {
         transform: translateY(0%);
