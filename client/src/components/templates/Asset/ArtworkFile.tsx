@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Logger, DDO, File } from '@nevermined-io/nevermined-sdk-js'
+import { Logger, DDO, File, Account } from '@nevermined-io/nevermined-sdk-js'
 import Button from '../../atoms/Button'
 import Spinner from '../../atoms/Spinner'
 import { User, Market } from '../../../context'
@@ -26,6 +26,7 @@ interface ArtworkFileState {
     error: string
     step: number
     isModalOpen: boolean
+    unsoldNfts: number
 }
 
 export default class ArtworkFile extends PureComponent<
@@ -38,7 +39,12 @@ export default class ArtworkFile extends PureComponent<
         isLoading: false,
         error: '',
         step: 99,
-        isModalOpen: false
+        isModalOpen: false,
+        unsoldNfts: 0,
+    }
+
+    public componentDidMount() {
+        this.getUnsoldNfts()
     }
 
     private handleToggleModal = () => {
@@ -54,8 +60,21 @@ export default class ArtworkFile extends PureComponent<
         this.setState({
             isLoading: true,
             error: '',
-            step: 99
+            step: 99,
         })
+
+    private getUnsoldNfts = async () => {
+        const { ddo } = this.props
+        const { sdk } = this.context
+        const { owner } = await sdk.nfts.details(ddo.id)
+        const account = new Account(owner)
+
+        sdk.nfts.balance(ddo.id, account)
+            .then((balance: string)  => {
+                this.setState({ unsoldNfts: Number(balance) })
+                console.log(balance)
+            })
+    }
 
     private purchaseAsset = async (ddo: DDO, index: number) => {
         this.resetState()
@@ -161,7 +180,7 @@ export default class ArtworkFile extends PureComponent<
     }
 
     public render() {
-        const { isLoading, step } = this.state
+        const { isLoading, step, unsoldNfts } = this.state
         const { isLogged } = this.context
 
         return (
@@ -172,10 +191,10 @@ export default class ArtworkFile extends PureComponent<
                             primary
                             className={styles.button}
                             onClick={this.handleToggleModal}
-                            disabled={!isLogged || !market.networkMatch}
+                            disabled={!isLogged || !market.networkMatch || unsoldNfts < 1}
                             name="Download"
                         >
-                            Purchase
+                            {unsoldNfts > 0 ? 'Purchase' : 'Sold Out'}
                         </Button>
                     )}
                 </Market.Consumer>
