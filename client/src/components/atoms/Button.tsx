@@ -4,7 +4,7 @@ import cx from 'classnames'
 import styles from './Button.module.scss'
 
 interface ButtonProps {
-    children: string
+    children: string | React.ReactNode
     className?: string
     fullWidth?: boolean
     primary?: boolean
