@@ -12,6 +12,7 @@ import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
 interface ArtworkDetailsProps {
     metadata: MetaData
     ddo: DDO
+    nftDetails: any
 }
 
 export function datafilesLine(files: File[]) {
@@ -21,7 +22,7 @@ export function datafilesLine(files: File[]) {
     return <span>{files.length} data files</span>
 }
 
-export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
+export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
     const [fullscreen, setFullscreen] = useState(false)
 
     const { main, additionalInformation } = metadata
@@ -121,6 +122,10 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                     <div className={styles.infoRow}>
                         <strong>DID:</strong>
                         <span>{ddo.id}</span>
+                    </div>
+                    <div className={styles.infoRow}>
+                        <strong>Royalties:</strong>
+                        <span>{nftDetails.royalties} %</span>
                     </div>
                 </>
             )}
