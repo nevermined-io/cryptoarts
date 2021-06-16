@@ -10,6 +10,7 @@ import styles from './index.module.scss'
 import withTracker from '../../../hoc/withTracker'
 import Web3message from '../../organisms/Web3message'
 import ArtworkDetails from './ArtworkDetails'
+import { NFTDetails } from './ArtworkDetails'
 
 interface AssetProps {
     match: {
@@ -19,11 +20,14 @@ interface AssetProps {
     }
 }
 
+
+
 interface AssetState {
     ddo: DDO
     metadata: MetaData
     error: string
     isLoading: boolean
+    nftDetails: NFTDetails
 }
 
 class Asset extends Component<AssetProps, AssetState> {
@@ -33,7 +37,12 @@ class Asset extends Component<AssetProps, AssetState> {
         ddo: ({} as any) as DDO,
         metadata: ({ main: { name: '' } } as any) as MetaData,
         error: '',
-        isLoading: true
+        isLoading: true,
+        nftDetails: {
+            owner: '',
+            royalties: 0,
+            mintCap: 0,
+        }
     }
 
     public async componentDidMount() {
@@ -44,9 +53,11 @@ class Asset extends Component<AssetProps, AssetState> {
         try {
             const { sdk } = this.context
             const ddo = await sdk.assets.resolve(this.props.match.params.did)
+            const nftDetails = await sdk.nfts.details(this.props.match.params.did)
             const { attributes } = ddo.findServiceByType('metadata')
             this.setState({
                 ddo,
+                nftDetails,
                 metadata: attributes,
                 isLoading: false
             })
@@ -59,7 +70,7 @@ class Asset extends Component<AssetProps, AssetState> {
     }
 
     public render() {
-        const { metadata, ddo, error, isLoading } = this.state
+        const { metadata, ddo, error, isLoading, nftDetails } = this.state
         const { main, additionalInformation } = metadata
 
         const hasError = error !== ''
@@ -88,7 +99,7 @@ class Asset extends Component<AssetProps, AssetState> {
                 }
             >
                 <Content>
-                    <ArtworkDetails metadata={metadata} ddo={ddo} />
+                    <ArtworkDetails metadata={metadata} ddo={ddo} nftDetails={nftDetails} />
                 </Content>
             </Route>
         )

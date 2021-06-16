@@ -25,6 +25,7 @@ interface PublishState {
     dateCreated?: string
     price?: string
     nftAmount?: number
+    royalty?: number
     author?: string
     license?: string
     description?: string
@@ -52,6 +53,7 @@ class Publish extends Component<{}, PublishState> {
         files: [],
         price: '0',
         nftAmount: 1,
+        royalty: 10,
         author: '',
         type: 'dataset' as AssetType,
         license: '',
@@ -307,7 +309,7 @@ class Publish extends Component<{}, PublishState> {
                 newAsset as any,
                 account[0],
                 this.state.nftAmount,
-                0,
+                this.state.royalty,
                 new AssetRewards(account[0].getId(), Number(this.state.price))
             )
             .next((publishingStep: number) => this.setState({ publishingStep }))

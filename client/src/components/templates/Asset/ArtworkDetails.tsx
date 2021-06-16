@@ -6,9 +6,17 @@ import Web3 from 'web3'
 import ArtworkImage from '../../atoms/ArtworkImage'
 import ArtworkFile from './ArtworkFile'
 
+
+export interface NFTDetails {
+    owner: string
+    royalties: number
+    mintCap: number
+}
+
 interface ArtworkDetailsProps {
     metadata: MetaData
     ddo: DDO
+    nftDetails: NFTDetails
 }
 
 export function datafilesLine(files: File[]) {
@@ -17,17 +25,8 @@ export function datafilesLine(files: File[]) {
     }
     return <span>{files.length} data files</span>
 }
-// Will we need this again?
-// const MetaFixedItem = ({ name, value }: { name: string; value: string }) => (
-//     <li>
-//         <span className={styles.metaLabel}>
-//             <strong>{name}</strong>
-//         </span>
-//         <span className={styles.metaValue}>{value}</span>
-//     </li>
-// )
 
-export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
+export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
     if (!main.files || !additionalInformation || !additionalInformation.categories) {
@@ -35,30 +34,6 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
     }
     const file = main.files[0]
     const category = additionalInformation.categories[0]
-
-    // And this?
-    // const metaFixed = [
-    //     {
-    //         name: 'Author',
-    //         value: main.author,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'License',
-    //         value: main.license,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'DID',
-    //         value: ddo.id,
-    //         show: true
-    //     },
-    //     {
-    //         name: 'Price',
-    //         value: `${price} NEVERMINED`,
-    //         show: price !== '0'
-    //     }
-    // ]
 
     return (
         <div className={styles.main}>
@@ -101,6 +76,11 @@ export default function ArtworkDetails({ metadata, ddo }: ArtworkDetailsProps) {
                 <div className={styles.footerContent}>
                     <span>DID</span>{ddo.id}
                 </div>
+            </div>
+            <div>
+                <p>{nftDetails.mintCap} Editions</p>
+                <p>Owner: {nftDetails.owner}</p>
+                <p>Royalties: {nftDetails.royalties} %</p>
             </div>
 
             <ArtworkFile
