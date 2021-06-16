@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
-import Button from '../../components/atoms/Button'
-import Form from '../../components/atoms/Form/Form'
-import Input from '../../components/atoms/Form/Input'
+import Button from '../atoms/Button'
+import Form from '../atoms/Form/Form'
+import Input from '../atoms/Form/Input'
 
 interface SearchProps {
     searchAssets: any

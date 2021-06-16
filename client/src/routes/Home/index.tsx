@@ -7,7 +7,6 @@ import Route from '../../components/templates/Route'
 import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
-import Search from './Search'
 import withTracker from '../../hoc/withTracker'
 import banner from '../../img/banner.svg'
 import { ArtworksOrCategories } from '../../components/organisms/ArtworksOrCategories'
@@ -56,25 +55,7 @@ class Home extends PureComponent<HomeProps, HomeState> {
                     </div>
                 </div>
 
-
-
-                <div className={styles.banner} style={{ backgroundImage: `url(${banner})` }}>
-                    <div className={styles.bannerContent}>
-                        <div className={styles.bannerText}>
-                            <div className={styles.bannerTitle}>
-                                {meta.title}
-                            </div>
-                            <div className={styles.bannerDescription}>
-                                {meta.description}
-                            </div>
-                        </div>
-                        <div className={styles.search}>
-                            <Search searchAssets={this.searchAssets} />
-                        </div>
-                    </div>
-                </div>
-
-                <ArtworksOrCategories/>
+                <ArtworksOrCategories searchAssets={this.searchAssets}/>
             </Route>
         )
     }

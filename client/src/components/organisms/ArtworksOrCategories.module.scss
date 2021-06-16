@@ -1,30 +1,6 @@
 @import '../../styles/variables';
 
 .artworksOrCategoriesWrap {
-    width: 1304px;
-    margin: 339px auto auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    background: $brand-white;
-    border: 1px solid $brand-light;
-    position: relative;
-}
-
-.artworksOrCategoriesHeader {
-    height: 32px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.artworksOrCategoriesTitle {
-    padding-top: 4px;
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: $font-weight-bold;
-    font-size: 24px;
-    line-height: 24px;
-    color: $brand-dark;
+    padding: 100px;
+    background: $nft-light;
 }

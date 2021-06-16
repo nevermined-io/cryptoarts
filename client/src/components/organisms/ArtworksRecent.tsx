@@ -30,7 +30,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
     private getLatestAssets = async () => {
         const { sdk } = this.context
         const searchQuery = {
-            offset: 15,
+            offset: 20,
             page: 1,
             query: {
                 categories: this.props.categories
@@ -47,7 +47,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                 isLoadingLatest: false
             })
 
-            search.results.map(async (artwork: any) => {
+            search.results.forEach(async (artwork: any) => {
                 const { attributes } = artwork.findServiceByType('metadata')
                 const { compression } = attributes.main.files[0]
                 const filename = `${artwork.id}.${compression}`
@@ -70,8 +70,6 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
         const { latestArtworks, isLoadingLatest } = this.state
         console.log(this.context)
 
-        console.log(latestArtworks)
-
         return (
             <>
                 {isLoadingLatest ? (
@@ -80,6 +78,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                     <div className={styles.latestAssets}>
                         {latestArtworks.map((asset: any) => (
                             <ArtworkTeaser
+                                className={styles.assets}
                                 key={asset.id}
                                 artwork={asset}
                                 cover

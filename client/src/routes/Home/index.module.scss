@@ -6,6 +6,7 @@
     padding: 100px;
     display: flex;
     flex-direction: column;
+    box-shadow: inset 0px (-6px + -30px) 28px -30px rgba($nft-dark, 0.5);
 }
 .topImage {
     flex: 1;

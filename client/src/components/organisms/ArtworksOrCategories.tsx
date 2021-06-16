@@ -4,13 +4,14 @@ import { ButtonToggle, ToggleOption } from '../molecules/ButtonToggle'
 import ArtworksRecent from './ArtworksRecent'
 import { Market } from '../../context'
 import { Categories } from './Categories'
+import Search from '../molecules/Search'
 
 enum Selected {
     'artworks',
     'categories'
 }
 
-export const ArtworksOrCategories = () => {
+export const ArtworksOrCategories = ({searchAssets}: {searchAssets: any}) => {
     const market = useContext(Market)
     const [selected, setSelected] = useState<Selected>(Selected.artworks)
     const buttonToggleOptions: ToggleOption[] = [{
@@ -24,14 +25,11 @@ export const ArtworksOrCategories = () => {
     return <>
         <div className={styles.artworksOrCategoriesWrap}>
             <div className={styles.artworksOrCategoriesHeader}>
-                <div className={styles.artworksOrCategoriesTitle}>
-                    {selected === Selected.artworks ?
-                        'Recent Artwork' :
-                        'Categories'
-                    }
-                </div>
                 <ButtonToggle options={buttonToggleOptions}/>
             </div>
+
+            <Search searchAssets={searchAssets} />
+
             {selected === Selected.artworks ?
                 <ArtworksRecent categories={market.categories}/> :
                 <Categories/>
