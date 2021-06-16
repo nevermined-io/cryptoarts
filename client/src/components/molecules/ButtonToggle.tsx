@@ -15,14 +15,14 @@ export const ButtonToggle = ({ options }: IButtonToggleProps) => {
     const [selected, setSelected] = useState(0)
     return <>
         <div className={styles.buttonWrapper}>
-            {options.map((option, index) => <div
+            {options.map((option, index) => <h3
                 className={cx(styles.button, { [styles.selectedButton]: selected === index })}
                 key={index}
                 onClick={() => {
                     setSelected(index)
                     option.onClick()
                 }}
-            >{option.content}</div>)}
+            >{option.content}</h3>)}
         </div>
     </>
 }
