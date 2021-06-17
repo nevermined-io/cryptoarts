@@ -26,6 +26,7 @@
     color: $nft-secondary;
     margin: 0 12px;
     font-weight: bold;
+    cursor: pointer;
 
     &:before {
         content: '+ ';
@@ -38,4 +39,8 @@
 
 .formField {
     margin: 24px 0 48px;
+}
+
+.formContent {
+    flex: 1;
 }
