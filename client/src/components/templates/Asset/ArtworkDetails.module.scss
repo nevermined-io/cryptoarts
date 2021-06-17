@@ -47,15 +47,21 @@
     max-width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: nowrap;
-
-    & + & {
-        margin-top: 12px;
-    }
+    height: 60px;
+    padding: 0 20px;
+    background: $nft-light;
+    margin-top: 20px;
 
     strong {
-        margin-right: 20px;
+        flex: 1;
     }
+    span {
+        max-width: 120px;
+        min-width: 120px;
+    }
+    strong,
     span {
         overflow: hidden;
         white-space: nowrap;
