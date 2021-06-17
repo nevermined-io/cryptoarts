@@ -36,6 +36,8 @@ $layout-border: 4px solid $nft-shadow;
 .content {
     flex: 1;
     background: $nft-light;
+    display: flex;
+    flex-direction: column;
 }
 
 .contentRow {
