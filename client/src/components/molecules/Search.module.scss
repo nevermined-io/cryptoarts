@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+
+.searchButton {
+    min-width: 66px;
+    max-width: 66px;
+    padding: 0;
+    color: currentColor;
+    background: $nft-neutral;
+}
+
+.inputLimit {
+    max-width: 720px;
+    margin: auto;
+    margin-top: 4px;
+
+    input {
+        &,
+        &::placeholder {
+            font-size: 24px;
+        }
+    }
+}

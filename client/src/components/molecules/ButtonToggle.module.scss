@@ -2,17 +2,17 @@
 
 .buttonWrapper {
     display: flex;
+    justify-content: center;
 }
 
 .button {
-    border: 1px solid $brand-secondary;
-    color: $brand-secondary;
+    margin: 0 10px;
+    border-bottom: 5px solid transparent;
+    padding-bottom: 6px;
     cursor: pointer;
-    width: 120px;
-    text-align: center;
 }
 
 .selectedButton {
-    background: $brand-secondary;
-    color: $brand-white;
+    color: $nft-secondary;
+    border-color: $nft-secondary;
 }

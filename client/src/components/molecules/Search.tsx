@@ -1,7 +1,9 @@
 import React, { ChangeEvent, FormEvent, PureComponent } from 'react'
-import Button from '../../components/atoms/Button'
-import Form from '../../components/atoms/Form/Form'
-import Input from '../../components/atoms/Form/Input'
+import styles from './Search.module.scss'
+import Button from '../atoms/Button'
+import Form from '../atoms/Form/Form'
+import Input from '../atoms/Form/Input'
+import { SearchIcon } from '../icons'
 
 interface SearchProps {
     searchAssets: any
@@ -36,12 +38,13 @@ export default class Search extends PureComponent<SearchProps, SearchState> {
                     type="search"
                     name="search"
                     label="Search for data sets"
-                    placeholder="e.g. shapes of plants"
+                    className={styles.inputLimit}
+                    placeholder="Search"
                     value={search}
                     onChange={this.inputChange}
                     group={
-                        <Button primary disabled={!search}>
-                            Search
+                        <Button className={styles.searchButton} disabled={!search}>
+                            <SearchIcon size={30} />
                         </Button>
                     }
                 />

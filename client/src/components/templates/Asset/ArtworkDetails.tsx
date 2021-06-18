@@ -63,6 +63,15 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
                             <h4 className={styles.upper}>Owner:</h4>
                             <div>@someartist</div>
                         </div>
+                        <div>
+                            <h4 className={styles.upper}>Created:</h4>
+                            <div>
+                                <Moment
+                                    date={main.dateCreated}
+                                    format="LL"
+                                    interval={0}/>
+                            </div>
+                        </div>
                     </div>
 
                     <p>
@@ -93,16 +102,6 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
                     <div className={styles.infoRow}>
                         <strong>License:</strong>
                         <span>{main.license}</span>
-                    </div>
-                    <div className={styles.infoRow}>
-                        <strong>Creation:</strong>
-                        <span>
-                            <Moment
-                                date={main.dateCreated}
-                                format="LL"
-                                interval={0}
-                            />
-                        </span>
                     </div>
                     <div className={styles.infoRow}>
                         <strong>Author:</strong>

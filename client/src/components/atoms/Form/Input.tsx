@@ -12,6 +12,7 @@ import styles from './Input.module.scss'
 interface InputProps {
     name: string
     label: string
+    className?: string
     placeholder?: string
     required?: boolean
     help?: string
@@ -82,9 +83,13 @@ export default class Input extends PureComponent<InputProps, InputState> {
             required,
             onChange,
             value,
+            className,
         } = this.props
 
-        const wrapClass = this.inputWrapClasses()
+
+        const wrapClass = cx(this.inputWrapClasses(), className)
+        const restProps = {...this.props}
+        delete restProps.className
 
         switch (type) {
             case 'select':
@@ -120,7 +125,7 @@ export default class Input extends PureComponent<InputProps, InputState> {
                             className={styles.input}
                             onFocus={this.toggleFocus}
                             onBlur={this.toggleFocus}
-                            {...this.props}
+                            {...restProps}
                         />
                     </div>
                 )
@@ -173,7 +178,7 @@ export default class Input extends PureComponent<InputProps, InputState> {
                                     className={styles.input}
                                     onFocus={this.toggleFocus}
                                     onBlur={this.toggleFocus}
-                                    {...this.props}
+                                    {...restProps}
                                 />
                                 {group}
                             </InputGroup>
@@ -184,11 +189,9 @@ export default class Input extends PureComponent<InputProps, InputState> {
                                 className={styles.input}
                                 onFocus={this.toggleFocus}
                                 onBlur={this.toggleFocus}
-                                {...this.props}
+                                {...restProps}
                             />
                         )}
-
-                        {type === 'search' && <SearchIcon />}
                     </div>
                 )
         }

@@ -1,30 +1,13 @@
 @import '../../styles/variables';
 
 .latestAssets {
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+    max-width: 1220px;
     display: grid;
-    grid-gap: 16px 16px;
+    grid-gap: 20px 20px;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-flow: row;
-
-    &::-webkit-scrollbar,
-    &::-moz-scrollbar {
-        display: none;
-    }
+    margin: auto;
 }
-
-.title {
-    font-family: $font-family-base;
-    font-style: normal;
-    font-weight: $font-weight-bold;
-    font-size: 24px;
-    line-height: 24px;
-
-    /* 3. Shade/Bazaart.Dark */
-    color: $brand-dark;
-
-    @media (min-width: $break-point--small) {
-        text-align: left;
-    }
+.assets {
+    aspect-ratio: 1;
 }
