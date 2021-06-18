@@ -6,6 +6,7 @@ import styles from './index.module.scss'
 import FullHeightView, {ContentRow} from '../../components/atoms/FullHeightView'
 import { CloseIcon } from '../../components/icons'
 import Button from '../../components/atoms/Button'
+import Steps, { Step } from '../../components/atoms/Steps'
 import Input from '../../components/atoms/MaterialForms/Input'
 import Select from '../../components/atoms/MaterialForms/Select'
 
@@ -19,6 +20,11 @@ function NewPublish() {
                         <span>PREVIEW</span>
                         <CloseIcon size={14} />
                     </ContentRow>
+                    <Steps className={styles.steps} step={2}>
+                        <Step>Essentials</Step>
+                        <Step>Authorship</Step>
+                        <Step>Price</Step>
+                    </Steps>
                     <div className={styles.dragDropContainer}>
 
                     </div>
