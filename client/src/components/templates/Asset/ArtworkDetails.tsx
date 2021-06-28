@@ -30,26 +30,24 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
         <FullHeightView
             fullscreen={fullscreen}
             main={(
-                <div className={styles.wrapper}>
-                    <div className={styles.imageWrapper}>
-                        <ContentRow>
-                            <ShareIcon size={20} />
-                            <CloseIcon size={14} />
-                        </ContentRow>
-                        <div className={styles.imageContainer}>
-                            <ArtworkImage
-                                did={ddo.id}
-                                file={file}
-                            />
-                        </div>
-                        <ContentRow>
-                            <span />
-                            <span onClick={() => setFullscreen(!fullscreen)} className={styles.clickable}>
-                                <FullscreenIcon size={20} />
-                            </span>
-                        </ContentRow>
+                <>
+                    <ContentRow>
+                        <ShareIcon size={20} />
+                        <CloseIcon size={14} />
+                    </ContentRow>
+                    <div className={styles.imageContainer}>
+                        <ArtworkImage
+                            did={ddo.id}
+                            file={file}
+                        />
                     </div>
-                </div>
+                    <ContentRow>
+                        <span />
+                        <span onClick={() => setFullscreen(!fullscreen)} className={styles.clickable}>
+                            <FullscreenIcon size={20} />
+                        </span>
+                    </ContentRow>
+                </>
             )}
             sidebar={(
                 <>

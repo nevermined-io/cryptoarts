@@ -6,6 +6,7 @@ import About from './routes/About'
 import Home from './routes/Home'
 import NotFound from './routes/NotFound'
 import Publish from './routes/Publish/'
+import NewPublish from './routes/NewPublish/'
 import Search from './routes/Search'
 import Faucet from './routes/Faucet'
 import History from './routes/History'
@@ -21,6 +22,7 @@ const Routes = () => (
         <Route component={Styleguide} path="/styleguide" />
         <Route component={About} path="/about" />
         <Route component={Publish} path="/publish" />
+        <Route component={NewPublish} path="/new-publish" />
         <Route component={Search} path="/search" />
         <Route component={Asset} path="/asset/:did" />
         <Route component={Faucet} path="/faucet" />

@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.dragDropContainer {
+    flex: 1;
+    background: #f99;
+}
+
+.preview {
+    text-align: center;
+    padding: 50px;
+
+    p {
+        font-size: 18px;
+    }
+}
+
+.steps {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.addButtonContainer {
+    padding-top: 40px;
+}
+.addButton {
+    color: $nft-secondary;
+    margin: 0 12px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:before {
+        content: '+ ';
+    }
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+.formField {
+    margin: 24px 0 48px;
+}
+
+.formContent {
+    flex: 1;
+}

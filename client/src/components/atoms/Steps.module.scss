@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+
+.wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.number {
+    $size: 40px;
+
+    height: $size;
+    width: $size;
+    border-radius: $size / 2;
+    background: $nft-secondary-contrast;
+    color: $nft-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.dash {
+    flex: 1;
+    height: 2px;
+    background: $nft-secondary-contrast;
+}
+
+.label + .number {
+    margin-right: 12px;
+}
+.dash + .label,
+.dash + .enabled + .label,
+.number + .dash {
+    margin-right: 10px;
+}
+
+.enabled {
+    ~ .number,
+    ~ .dash {
+        background: $nft-secondary;
+    }
+    ~ .label {
+        opacity: 1;
+    }
+}
