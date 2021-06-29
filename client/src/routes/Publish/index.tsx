@@ -9,7 +9,7 @@ import { User, Market } from '../../context'
 import Step from './Step'
 import Progress from './Progress'
 import ReactGA from 'react-ga'
-import { allowPricing } from '../../config'
+import { allowPricing, gatewayAddress, marketplaceFeePercentage } from '../../config'
 import { steps } from '../../data/form-publish.json'
 import withTracker from '../../hoc/withTracker'
 import { serviceUri } from '../../config'
@@ -303,14 +303,19 @@ class Publish extends Component<{}, PublishState> {
             )
         }
 
+        const rewardsMap = new Map()
+        rewardsMap.set(account[0].getId(), Number(this.state.price) * (1 - marketplaceFeePercentage / 100))
+        rewardsMap.set(gatewayAddress, Number(this.state.price) * marketplaceFeePercentage / 100)
+
         try {
+            console.log(new AssetRewards(rewardsMap))
             // Create NFT
             const asset = await this.context.sdk.nfts.create(
                 newAsset as any,
                 account[0],
                 this.state.nftAmount,
                 this.state.royalty,
-                new AssetRewards(account[0].getId(), Number(this.state.price))
+                new AssetRewards(rewardsMap)
             )
             .next((publishingStep: number) => this.setState({ publishingStep }))
 
