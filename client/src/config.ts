@@ -37,3 +37,4 @@ export const ipfsGatewayUri =
     process.env.REACT_APP_IPFS_GATEWAY_URI || 'https://gateway.ipfs.io'
 export const ipfsNodeUri =
     process.env.REACT_APP_IPFS_NODE_URI || 'https://ipfs.infura.io:5001'
+export const marketplaceFeePercentage = Number(process.env.MARKETPLACE_FEE_PERCENTAGE) || 2.5
