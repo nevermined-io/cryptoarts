@@ -3,14 +3,24 @@ import React, { useContext } from 'react'
 import withTracker from '../../hoc/withTracker'
 
 import styles from './index.module.scss'
-import FullHeightView, {ContentRow} from '../../components/atoms/FullHeightView'
+import FullHeightView, { ContentRow } from '../../components/atoms/FullHeightView'
 import { CloseIcon } from '../../components/icons'
 import Button from '../../components/atoms/Button'
 import Steps, { Step } from '../../components/atoms/Steps'
 import Input from '../../components/atoms/MaterialForms/Input'
 import Select from '../../components/atoms/MaterialForms/Select'
+import { useForm } from '../../hooks/UseForm'
 
 function NewPublish() {
+    const login = () => console.log('login')
+    const validate = () => console.log('validate')
+    const {
+        handleChange,
+        handleSelectChange,
+        handleSubmit,
+        values,
+        errors,
+    } = useForm(login, validate);
 
     return (
         <FullHeightView
@@ -18,7 +28,7 @@ function NewPublish() {
                 <>
                     <ContentRow>
                         <span>PREVIEW</span>
-                        <CloseIcon size={14} />
+                        <CloseIcon size={14}/>
                     </ContentRow>
                     <Steps className={styles.steps} step={2}>
                         <Step>Essentials</Step>
@@ -80,7 +90,7 @@ function NewPublish() {
                             multiline
                             label="Description"
                             placeholder="e.g. This will be the Mona Lisa of the modern generation"
-                            helperText="Add a thorough description with as much detail as possible." />
+                            helperText="Add a thorough description with as much detail as possible."/>
                     </div>
                     <Button secondary fullWidth>next</Button>
                 </>
