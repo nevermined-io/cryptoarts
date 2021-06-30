@@ -67,10 +67,17 @@ function NewPublish() {
                             className={styles.formField}
                             label="Title"
                             placeholder="e.g. The nexty Mona Lisa"
-                            helperText="Enter a unique title. You can tell us more in the description below too." />
+                            value={values.title || ''}
+                            name="title"
+                            onChange={handleChange}
+                            helperText="Enter a unique title. You can tell us more in the description below too."/>
                         <Select
                             className={styles.formField}
+                            name="category"
+                            defaultValue=""
+                            value={values.category || ''}
                             label="Art category"
+                            onChange={handleSelectChange}
                             helperText="Enter a unique title. You can tell us more in the description below too.">
 
                             <option value="3D Renders">3D Renders</option>
@@ -89,6 +96,9 @@ function NewPublish() {
                             className={styles.formField}
                             multiline
                             label="Description"
+                            value={values.description || ''}
+                            name="description"
+                            onChange={handleChange}
                             placeholder="e.g. This will be the Mona Lisa of the modern generation"
                             helperText="Add a thorough description with as much detail as possible."/>
                     </div>
