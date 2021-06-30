@@ -18,19 +18,16 @@ export const useForm = (callback: () => any, validate: ({}: any) => any) => {
         setIsSubmitting(true)
     }
 
-    function handleSelectChange (event: ChangeEvent<{ name?: string | undefined; value: unknown }>): void {
+    function handleChange (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void
+    function handleChange (event: ChangeEvent<{ name?: string | undefined; value: unknown }>): void
+    function handleChange (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<{ name?: string | undefined; value: unknown }>): void {
         event.persist()
         setValues((values: any) => ({ ...values, [event.target.name as any]: event.target.value }))
-    }
-    function handleChange (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
-        event.persist()
-        setValues((values: any) => ({ ...values, [event.target.name]: event.target.value }))
     }
 
     return {
         handleChange,
         handleSubmit,
-        handleSelectChange,
         values,
         errors,
     }
