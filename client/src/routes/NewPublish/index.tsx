@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import withTracker from '../../hoc/withTracker'
 
@@ -9,6 +9,7 @@ import Button from '../../components/atoms/Button'
 import Steps, { Step } from '../../components/atoms/Steps'
 import { useForm } from '../../hooks/UseForm'
 import { Essentials } from './Essentials'
+import { Authorship } from './Authorship'
 
 function NewPublish() {
     const login = () => console.log('login')
@@ -59,6 +60,7 @@ function NewPublish() {
                     <div className={styles.formContent}>
                         <h1>Create your own NFT</h1>
                         <Essentials handleChange={handleChange} step={step} values={values}/>
+                        <Authorship handleChange={handleChange} step={step} values={values}/>
                     </div>
                     <Button
                         fullWidth
