@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import withTracker from '../../hoc/withTracker'
 
@@ -13,6 +13,7 @@ import { Essentials } from './Essentials'
 function NewPublish() {
     const login = () => console.log('login')
     const validate = () => console.log('validate')
+    const [step, setStep] = useState(1)
     const {
         handleChange,
         handleSubmit,
@@ -28,7 +29,7 @@ function NewPublish() {
                         <span>PREVIEW</span>
                         <CloseIcon size={14}/>
                     </ContentRow>
-                    <Steps className={styles.steps} step={2}>
+                    <Steps className={styles.steps} step={step}>
                         <Step>Essentials</Step>
                         <Step>Authorship</Step>
                         <Step>Price</Step>
@@ -57,9 +58,13 @@ function NewPublish() {
                 <>
                     <div className={styles.formContent}>
                         <h1>Create your own NFT</h1>
-                        <Essentials values={values} handleChange={handleChange}/>
+                        <Essentials handleChange={handleChange} step={step} values={values}/>
                     </div>
-                    <Button secondary fullWidth>next</Button>
+                    <Button
+                        fullWidth
+                        onClick={() => setStep(step + 1)}
+                        secondary
+                    >next</Button>
                 </>
             )}
         />
