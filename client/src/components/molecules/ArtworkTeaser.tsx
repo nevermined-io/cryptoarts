@@ -24,8 +24,6 @@ const ArtworkTeaser = ({
     const {tokenSymbol} = useContext(User)
     const { attributes: {main} } = artwork.findServiceByType('metadata')
 
-    return list ? (
-
     return (
         <Link to={`/asset/${artwork.id}`}
             className={cx(styles.container, className)}

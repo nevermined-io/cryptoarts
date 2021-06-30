@@ -39,8 +39,6 @@ const CircleButton = (props: CircleButtonProps) => {
     const {href, children, className, to, ...restProps} = props
     const classes = getClasses(props)
 
-    console.log(classes)
-
     return to ? (
         <Link to={to} className={cx(classes, className)} {...restProps}>
             {children}

@@ -19,7 +19,6 @@ const Steps = ({
     children: React.ReactElement<StepProps>[]
     className?: string
 }) => {
-    console.log(styles)
     const length = children.length
     return (
         <div className={cx(styles.wrapper, className)}>
