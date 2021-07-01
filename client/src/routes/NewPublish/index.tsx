@@ -37,7 +37,10 @@ function NewPublish() {
                         <Step>Price</Step>
                     </Steps>
                     <div className={styles.dragDropContainer}>
-
+                        <div className={styles.dragDropDashedLine}>
+                            <h2>Drag & Drop</h2>
+                            <p>any audio or visual file...</p>
+                        </div>
                     </div>
                     <div className={styles.preview}>
                         <h2>Your NFT Title</h2>

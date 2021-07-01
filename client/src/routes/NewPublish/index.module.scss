@@ -7,10 +7,35 @@
 }
 .dragDropContainer {
     flex: 1;
-    background: #f99;
+    position: relative;
+    display: flex;
+    background-image: url(../../img/gradient_bg.png);
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 467px;
+    width: 100%;
 }
 
-.preview {
+.dragDropBackground {
+    position: absolute;
+}
+
+.dragDropDashedLine {
+    z-index: 2;
+    width: 688px;
+    height: 344px;
+    border: 2px dashed #FEFEFE;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #FEFEFE;
+
+}
+
+.preview, .dragDropContainer {
     text-align: center;
     padding: 50px;
 
@@ -62,7 +87,7 @@
     justify-content: end;
 }
 
-.addSplitButton {
+.addSplitButton, .dragDropContainer {
     cursor: pointer;
 }
 
