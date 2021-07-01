@@ -65,6 +65,7 @@ Then set [environment variables](#️-environment-variables) to use those local 
 Finally, you need to copy the generated contract artifacts out of the Docker container. To do this, execute this script in another terminal:
 
 ```bash
+cd client
 ./scripts/nevermined-tools.sh
 ```
 
