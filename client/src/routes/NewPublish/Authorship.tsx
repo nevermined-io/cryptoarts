@@ -29,6 +29,7 @@ const licenseOptions = [
 
 export const Authorship = ({ handleChange, step, values }: Props) => {
     if (step !== 2) return null
+
     return <>
         <h2>Authorship</h2>
         <p className={styles.subtitle}>
@@ -52,14 +53,16 @@ export const Authorship = ({ handleChange, step, values }: Props) => {
         />
         <Select
             name="license"
-            defaultValue=""
-            value={values.license || ''}
+            defaultValue="none"
+            style={{ color: values.license && values.license !== 'none' ? 'black' : '#9D9FA0', margin: '10px 0 48px' }}
+            value={values.license}
             label="License"
             onChange={handleChange}
         >
-            <MenuItem value="" disabled>All Rights Reserved</MenuItem>
+            <option value="none" disabled>
+                All Rights Reserved
+            </option>
             {licenseOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
         </Select>
-        <FormHelperText className={styles.selectHelperText}>All Rights Reserved</FormHelperText>
     </>
 }
