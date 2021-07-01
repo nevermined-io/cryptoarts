@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.wrapper {
+    width: 44px;
+    height: 22px;
+    border-radius: 22px;
+    background: $nft-secondary;
+    cursor: pointer;
+    position: relative;
+}
+
+.slider {
+    background: $nft-light;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 18px;
+    border-radius: 18px;
+    height: 18px;
+    -webkit-transition: .4s;
+    transition: transform .35s ease-in-out;
+}
+
+.active {
+    transform: translateX(22px);
+}
