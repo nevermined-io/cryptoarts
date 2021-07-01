@@ -55,7 +55,6 @@ export const Authorship = ({ handleChange, step, values }: Props) => {
             defaultValue=""
             value={values.license || ''}
             label="License"
-            labelId="licence-dropdown"
             onChange={handleChange}
         >
             <MenuItem value="" disabled>All Rights Reserved</MenuItem>

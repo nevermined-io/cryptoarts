@@ -48,6 +48,19 @@
     margin: 24px 0 48px;
 }
 
+.splitFormFieldWrapper {
+    display: flex;
+}
+
+.addSplitButtonWrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.addSplitButton {
+    cursor: pointer;
+}
+
 .selectHelperText {
     margin: 3px 0 48px;
 }

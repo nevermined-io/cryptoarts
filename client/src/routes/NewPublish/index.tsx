@@ -10,6 +10,7 @@ import Steps, { Step } from '../../components/atoms/Steps'
 import { useForm } from '../../hooks/UseForm'
 import { Essentials } from './Essentials'
 import { Authorship } from './Authorship'
+import { SetPrice } from './SetPrice'
 
 function NewPublish() {
     const login = () => console.log('login')
@@ -61,10 +62,11 @@ function NewPublish() {
                         <h1>Create your own NFT</h1>
                         <Essentials handleChange={handleChange} step={step} values={values}/>
                         <Authorship handleChange={handleChange} step={step} values={values}/>
+                        <SetPrice handleChange={handleChange} step={step} values={values}/>
                     </div>
                     <Button
                         fullWidth
-                        onClick={() => setStep(step + 1)}
+                        onClick={() => setStep(step >=2 ? 3 : step + 1)}
                         secondary
                     >next</Button>
                 </>
