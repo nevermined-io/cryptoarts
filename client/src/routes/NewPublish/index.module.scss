@@ -52,7 +52,12 @@
     display: flex;
 }
 
+.splitFormFieldWrapper > *:first-child {
+    margin-right: 11px;
+}
+
 .addSplitButtonWrapper {
+    margin: 11px 0 8px;
     display: flex;
     justify-content: end;
 }
@@ -62,7 +67,7 @@
 }
 
 .selectHelperText {
-    margin: 3px 0 48px;
+    margin: 5px 0 48px;
 }
 
 .formContent {

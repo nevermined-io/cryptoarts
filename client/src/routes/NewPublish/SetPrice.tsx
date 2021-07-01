@@ -14,7 +14,7 @@ type Props = {
 const editions = [...Array(21).keys()].slice(1)
 
 export const SetPrice = ({ handleChange, step, values }: Props) => {
-    const [splitActive, setSplitActive] = useState(true)
+    const [splitActive, setSplitActive] = useState(false)
     const [splitCount, setSplitCount] = useState(1)
     if (step !== 3) return null
     return <>
@@ -25,6 +25,7 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
         </p>
         <Select
             name="editionCount"
+            className={styles.formField}
             defaultValue=""
             value={values.editionCount || ''}
             label="Number of editions "
@@ -36,8 +37,8 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
             className={styles.formField}
             label="Price Tag"
             placeholder="Enter a price in USD"
-            value={values.author || ''}
-            name="author"
+            value={values.priceTag || ''}
+            name="priceTag"
             onChange={handleChange}
             helperText="Platform operation fee 2.5% You will receive 0 NVMD $0.00"
         />
@@ -51,13 +52,12 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
             helperText="Edit this percentage if you want to receive a different cut with every resell."
         />
         <ToggleSwitch active={splitActive} setActive={setSplitActive}/>
-        <FormHelperText className={styles.selectHelperText}>Toggle to add beneficiaries</FormHelperText>
+        <FormHelperText style={{ margin: '5px 0 15px' }}>Toggle to add beneficiaries</FormHelperText>
         {splitActive &&
         <Fragment>
             {[...Array(splitCount).keys()].map(el =>
                 <div className={styles.splitFormFieldWrapper} key={el}>
                     <Input
-                        className={styles.formField}
                         label="Wallet"
                         placeholder="0x7024dc438ee59a756d"
                         value={values[`wallet_${el}`] || ''}
@@ -65,7 +65,6 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
                         onChange={handleChange}
                     />
                     <Input
-                        className={styles.formField}
                         label="Split"
                         inputProps={{ min: 0, style: { textAlign: 'right' } }}
                         placeholder="%"
