@@ -8,7 +8,6 @@ import styles from './index.module.scss'
 
 import meta from '../../data/meta.json'
 import withTracker from '../../hoc/withTracker'
-import banner from '../../img/banner.svg'
 import { ArtworksOrCategories } from '../../components/organisms/ArtworksOrCategories'
 import ArtworkTeaser from '../../components/molecules/ArtworkTeaser'
 import CircleButton from '../../components/atoms/CircleButton'

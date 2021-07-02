@@ -11,8 +11,9 @@ import { useForm } from '../../hooks/UseForm'
 import { Essentials } from './Essentials'
 import { Authorship } from './Authorship'
 import { SetPrice } from './SetPrice'
+import { History } from 'history'
 
-function NewPublish() {
+function NewPublish({ history }: { history: History }) {
     const login = () => console.log('login')
     const validate = () => console.log('validate')
     const [step, setStep] = useState(1)
@@ -29,7 +30,7 @@ function NewPublish() {
                 <>
                     <ContentRow>
                         <span>PREVIEW</span>
-                        <CloseIcon size={14}/>
+                        <CloseIcon size={14} onClick={() => history.push('/')}/>
                     </ContentRow>
                     <Steps className={styles.steps} step={step}>
                         <Step>Essentials</Step>
