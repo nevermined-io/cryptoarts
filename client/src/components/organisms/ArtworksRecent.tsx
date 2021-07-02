@@ -42,12 +42,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
 
         try {
             const search = await sdk.assets.query(searchQuery)
-            this.setState({
-                latestArtworks: search.results,
-                isLoadingLatest: false
-            })
-
-            search.results.forEach(async (artwork: any) => {
+            await Promise.all(search.results.map(async (artwork: any) => {
                 const { attributes } = artwork.findServiceByType('metadata')
                 const { compression } = attributes.main.files[0]
                 const filename = `${artwork.id}.${compression}`
@@ -57,8 +52,11 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                     url: `${serviceUri}/api/v1/file/${filename}`,
                 })
 
-                console.log(response.data.url)
                 artwork.url = response.data.url
+            }))
+            this.setState({
+                latestArtworks: search.results,
+                isLoadingLatest: false
             })
         } catch (error) {
             Logger.error(error.message)

@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import cx from 'classnames'
 import { DDO } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
