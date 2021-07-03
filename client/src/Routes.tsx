@@ -15,6 +15,7 @@ import Styleguide from './routes/Styleguide'
 
 import Asset from './components/templates/Asset'
 import Channel from './components/templates/Channel'
+import Profile from './routes/Profile'
 
 const Routes = () => (
     <Switch>
@@ -23,6 +24,7 @@ const Routes = () => (
         <Route component={About} path="/about" />
         <Route component={Publish} path="/publish" />
         <Route component={NewPublish} path="/new-publish" />
+        <Route component={Profile} path="/profile" />
         <Route component={Search} path="/search" />
         <Route component={Asset} path="/asset/:did" />
         <Route component={Faucet} path="/faucet" />

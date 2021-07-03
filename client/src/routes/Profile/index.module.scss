@@ -1,0 +1,100 @@
+@import '../../styles/variables';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dragDropBackground {
+    position: absolute;
+}
+
+.dragDropDashedLine {
+    width: 688px;
+    height: 344px;
+    border: 2px dashed $nft-dark;
+    border-radius: 344px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.preview, .dragDropContainer {
+    text-align: center;
+    padding: 50px;
+
+    p {
+        font-size: 18px;
+    }
+    h1 {
+        font-size: 35px;
+        font-weight: 700;
+    }
+}
+
+.dragDropContainer {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 467px;
+    margin-top: 90px;
+    width: 100%;
+}
+
+.steps {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    margin-bottom: 80px;
+}
+
+.addButtonContainer {
+    padding-top: 40px;
+}
+.addButton {
+    color: $nft-secondary;
+    margin: 0 12px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:before {
+        content: '+ ';
+    }
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+.formField {
+    margin: 24px 0 48px;
+}
+
+.splitFormFieldWrapper {
+    display: flex;
+}
+
+.splitFormFieldWrapper > *:first-child {
+    margin-right: 11px;
+}
+
+.addSplitButtonWrapper {
+    margin: 11px 0 8px;
+    display: flex;
+    justify-content: end;
+}
+
+.addSplitButton, .dragDropDashedLine {
+    cursor: pointer;
+}
+
+.selectHelperText {
+    margin: 5px 0 48px;
+}
+
+.formContent {
+    flex: 1;
+}
