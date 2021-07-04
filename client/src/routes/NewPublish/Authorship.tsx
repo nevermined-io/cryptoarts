@@ -2,13 +2,19 @@ import styles from './index.module.scss'
 import Input from '../../components/atoms/MaterialForms/Input'
 import Select from '../../components/atoms/MaterialForms/Select'
 import React, { ChangeEvent } from 'react'
-import { MenuItem } from '@material-ui/core'
-import FormHelperText from '@material-ui/core/FormHelperText'
+import Button from '../../components/atoms/Button'
+
+export type AuthorshipFormValues = {
+    author?: string
+    coprHolder?: string
+    license?: string
+}
 
 type Props = {
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<{ name?: string | undefined; value: unknown }>) => void
-    values: any
+    setStep: (newStep: number) => void
     step: number
+    values: AuthorshipFormValues
 }
 
 const licenseOptions = [
@@ -27,7 +33,7 @@ const licenseOptions = [
     "CC BY-NC-ND: Attribution-NonCommercial-NoDerivatives 4.0 International"
 ]
 
-export const Authorship = ({ handleChange, step, values }: Props) => {
+export const Authorship = ({ handleChange, setStep, step, values }: Props) => {
     if (step !== 2) return null
 
     return <>
@@ -64,5 +70,11 @@ export const Authorship = ({ handleChange, step, values }: Props) => {
             </option>
             {licenseOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
         </Select>
+        <Button
+            disabled={!values.author || !values.coprHolder || !values.license}
+            fullWidth
+            onClick={() => setStep(3)}
+            secondary
+        >next</Button>
     </>
 }

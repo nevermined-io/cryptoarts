@@ -38,11 +38,11 @@
     //     box-shadow: 0 5px 18px 0 rgba(0, 0, 0, .1);
     // }
 
-    // &:disabled {
-    //     cursor: not-allowed;
-    //     pointer-events: none;
-    //     opacity: .5;
-    // }
+     &:disabled {
+         cursor: not-allowed;
+         pointer-events: none;
+         opacity: .5;
+     }
 }
 
 .buttonPrimary {

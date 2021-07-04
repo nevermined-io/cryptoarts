@@ -2,14 +2,22 @@ import styles from './index.module.scss'
 import Input from '../../components/atoms/MaterialForms/Input'
 import Select from '../../components/atoms/MaterialForms/Select'
 import React, { ChangeEvent } from 'react'
+import Button from '../../components/atoms/Button'
+
+export type EssentialsFormValues = {
+    title?: string
+    category?: string
+    description?: string
+}
 
 type Props = {
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<{ name?: string | undefined; value: unknown }>) => void
-    values: any
+    setStep: (newStep: number) => void
     step: number
+    values: EssentialsFormValues
 }
 
-export const Essentials = ({ handleChange, step, values }: Props) => {
+export const Essentials = ({ handleChange, setStep, step, values }: Props) => {
     if (step !== 1) return null
     return <>
         <h2>Essentials</h2>
@@ -54,5 +62,11 @@ export const Essentials = ({ handleChange, step, values }: Props) => {
             onChange={handleChange}
             placeholder="e.g. This will be the Mona Lisa of the modern generation"
             helperText="Add a thorough description with as much detail as possible."/>
+        <Button
+            disabled={!values.title || !values.category || !values.description}
+            fullWidth
+            onClick={() => setStep(2)}
+            secondary
+        >next</Button>
     </>
 }

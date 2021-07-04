@@ -12,6 +12,14 @@ import Input from '../../components/atoms/MaterialForms/Input'
 import Select from '../../components/atoms/MaterialForms/Select'
 import { InputAdornment } from '@material-ui/core'
 
+type FormValues = {
+    name: string
+    username: string
+    email: string
+    description: string
+    role: 'Artist' | 'Collector'
+}
+
 function Profile({ history }: { history: History }) {
     const login = () => console.log('login')
     const validate = () => console.log('validate')
@@ -20,7 +28,7 @@ function Profile({ history }: { history: History }) {
         handleSubmit,
         values,
         errors,
-    } = useForm(login, validate);
+    } = useForm<FormValues>(login, validate);
 
     return (
         <FullHeightView

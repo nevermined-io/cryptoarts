@@ -5,24 +5,40 @@ import withTracker from '../../hoc/withTracker'
 import styles from './index.module.scss'
 import FullHeightView, { ContentRow } from '../../components/atoms/FullHeightView'
 import { CloseIcon } from '../../components/icons'
-import Button from '../../components/atoms/Button'
 import Steps, { Step } from '../../components/atoms/Steps'
 import { useForm } from '../../hooks/UseForm'
-import { Essentials } from './Essentials'
-import { Authorship } from './Authorship'
-import { SetPrice } from './SetPrice'
+import { Essentials, EssentialsFormValues } from './Essentials'
+import { Authorship, AuthorshipFormValues } from './Authorship'
+import { SetPrice, SetPriceFormValues } from './SetPrice'
 import { History } from 'history'
+
+type FormValues = EssentialsFormValues & AuthorshipFormValues & SetPriceFormValues
+
+type Errors = {
+    split?: boolean
+}
 
 function NewPublish({ history }: { history: History }) {
     const login = () => console.log('login')
-    const validate = () => console.log('validate')
-    const [step, setStep] = useState(1)
+    const validate = () => {
+        const validationErrors: Errors = {}
+        const splitSum = Object.keys(values)
+            .filter(prop => prop.includes('split'))
+            .reduce((acc, curr) => acc + Number(values[curr]), 0)
+        if (splitSum !== 100) {
+            validationErrors.split = true
+        } else {
+            delete validationErrors.split
+        }
+        return validationErrors
+    }
+    const [step, setStep] = useState(3)
     const {
         handleChange,
         handleSubmit,
         values,
         errors,
-    } = useForm(login, validate);
+    } = useForm<FormValues>(login, validate);
 
     return (
         <FullHeightView
@@ -64,15 +80,10 @@ function NewPublish({ history }: { history: History }) {
                 <>
                     <div className={styles.formContent}>
                         <h1>Create your own NFT</h1>
-                        <Essentials handleChange={handleChange} step={step} values={values}/>
-                        <Authorship handleChange={handleChange} step={step} values={values}/>
-                        <SetPrice handleChange={handleChange} step={step} values={values}/>
+                        <Essentials handleChange={handleChange} setStep={setStep} step={step} values={values}/>
+                        <Authorship handleChange={handleChange} setStep={setStep} step={step} values={values}/>
+                        <SetPrice errors={errors} handleChange={handleChange} handleSubmit={handleSubmit} step={step} values={values}/>
                     </div>
-                    <Button
-                        fullWidth
-                        onClick={() => setStep(step >=2 ? 3 : step + 1)}
-                        secondary
-                    >next</Button>
                 </>
             )}
         />

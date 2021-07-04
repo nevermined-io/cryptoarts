@@ -4,20 +4,34 @@ import Select from '../../components/atoms/MaterialForms/Select'
 import React, { ChangeEvent, useState, Fragment } from 'react'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import { ToggleSwitch } from '../../components/atoms/ToggleSwitch'
+import Button from '../../components/atoms/Button'
+
+interface WalletSplit {
+    [key: string]: any
+}
+
+export type SetPriceFormValues = {
+    editionCount?: string
+    priceTag?: string
+    royalties?: string
+} & WalletSplit
+
 
 type Props = {
+    errors: any
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<{ name?: string | undefined; value: unknown }>) => void
-    values: any
+    handleSubmit: (event: React.SyntheticEvent) => void
+    values: SetPriceFormValues
     step: number
 }
 
 const editions = [...Array(21).keys()].slice(1)
 
-export const SetPrice = ({ handleChange, step, values }: Props) => {
+export const SetPrice = ({ errors, handleChange, handleSubmit, step, values }: Props) => {
     const [splitActive, setSplitActive] = useState(false)
     const [splitCount, setSplitCount] = useState(1)
     if (step !== 3) return null
-    return <>
+    return <Fragment>
         <h2>Set Your Price</h2>
         <p className={styles.subtitle}>
             Enter the number of editions, the price and how
@@ -66,7 +80,7 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
                     />
                     <Input
                         label="Split"
-                        inputProps={{ min: 0, style: { textAlign: 'right' } }}
+                        inputProps={{ min: 0, style: { textAlign: 'right' }, className:'digitsOnly' }}
                         placeholder="%"
                         value={values[`split_${el}`] || ''}
                         name={`split_${el}`}
@@ -80,7 +94,16 @@ export const SetPrice = ({ handleChange, step, values }: Props) => {
                     + add
                 </div>
             </div>
+            {errors.split && <div>
+                Please make sure the cuts sum up to 100%.
+            </div>}
         </Fragment>
         }
-    </>
+        <Button
+            disabled={!values.editionCount || !values.priceTag || !values.royalties}
+            fullWidth
+            onClick={handleSubmit}
+            secondary
+        >next</Button>
+    </Fragment>
 }

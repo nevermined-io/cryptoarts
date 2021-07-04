@@ -1,6 +1,11 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 
-export const useForm = (callback: () => any, validate: ({}: any) => any) => {
+export const useForm = <V extends unknown>(callback: () => any, validate: (values: V) => void): {
+    handleChange: any
+    handleSubmit: any
+    values: V
+    errors: any
+} => {
 
     const [values, setValues] = useState<any>({})
     const [errors, setErrors] = useState({})
@@ -14,7 +19,7 @@ export const useForm = (callback: () => any, validate: ({}: any) => any) => {
 
     const handleSubmit = (event: React.SyntheticEvent) => {
         if (event) event.preventDefault()
-        setErrors(validate(values))
+        setErrors(validate(values) as any)
         setIsSubmitting(true)
     }
 
