@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File, Nevermined } from '@nevermined-io/nevermined-sdk-js'
+import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 
 import Route from '../../components/templates/Route'
@@ -335,7 +335,7 @@ class Publish extends Component<{}, PublishState> {
                 action: `registerAsset-end ${asset.id}`
             })
 
-            const response = await axios({
+            await axios({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 url: `${serviceUri}/api/v1/file`,

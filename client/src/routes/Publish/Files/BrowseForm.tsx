@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
-import { serviceUri } from '../../../config'
+import { checkImageSize, serviceUri } from '../../../config'
 
 const acceptedTypes = [
     'image/png',
@@ -27,20 +27,13 @@ export default class BrowseForm extends Component<
         imageTooSmall: false
     }
     private onDrop = async (files: File[]) => {
-        this.setState({ imageTooSmall: false })
-        if (files[0].type !== 'image/gif') {
-            const image = new Image()
-            image.addEventListener('load', async () => {
-                if (image.width < 2048) {
-                    this.setState({ imageTooSmall: true })
-                } else {
-                    await this.upload(files[0])
-                }
-            })
-            image.src = URL.createObjectURL(files[0])
-        } else {
-            await this.upload(files[0])
+        if (checkImageSize) {
+            if (this.isImageTooSmall(files[0])) {
+                return
+            }
         }
+        await this.upload(files[0])
+
     }
 
     private async upload(file: File) {
@@ -56,7 +49,22 @@ export default class BrowseForm extends Component<
         this.props.addFile(response.data.url)
     }
 
-    public render() {
+    private isImageTooSmall = async (file: File): Promise<boolean> => {
+        this.setState({ imageTooSmall: false })
+        if (file.type !== 'image/gif') {
+            const image = new Image()
+            image.addEventListener('load', async () => {
+                if (image.width < 2048) {
+                    this.setState({ imageTooSmall: true })
+                    return true
+                }
+            })
+            image.src = URL.createObjectURL(file)
+        }
+        return true
+    }
+
+    public render(): JSX.Element {
         return (
             <Dropzone onDrop={this.onDrop} multiple={false} accept={acceptedTypes}>
                 {({getRootProps, getInputProps}) => (

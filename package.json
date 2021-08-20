@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "install": "./scripts/install.sh",
-    "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "start": "concurrently \"cd client && yarn start\" \"cd server && yarn start\"",
     "build": "./scripts/build.sh",
     "test": "npm run lint && scripts/test.sh && npm run test:e2e",
     "test:e2e": "start-test start http-get://localhost:3000 cypress:run",

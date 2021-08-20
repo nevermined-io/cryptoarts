@@ -20,6 +20,8 @@ export const nodeUri =
 export const secretStoreUri =
     process.env.REACT_APP_SECRET_STORE_URI || "http://localhost:12001"
 
+console.log('###############', metadataUri)
+
 //
 // APP CONFIG
 //
@@ -37,4 +39,6 @@ export const ipfsGatewayUri =
     process.env.REACT_APP_IPFS_GATEWAY_URI || 'https://gateway.ipfs.io'
 export const ipfsNodeUri =
     process.env.REACT_APP_IPFS_NODE_URI || 'https://ipfs.infura.io:5001'
+
 export const marketplaceFeePercentage = Number(process.env.MARKETPLACE_FEE_PERCENTAGE) || 2.5
+export const checkImageSize = process.env.CHECK_IMAGE_SIZE === 'true' || false
