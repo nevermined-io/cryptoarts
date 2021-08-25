@@ -7,6 +7,6 @@ for component in $components
 do
     echo "Building: $component"
     cd $component
-    npm run build
+    yarn build
     cd ..
 done
