@@ -6,7 +6,7 @@ components="server client"
 for component in $components
 do
     printf "\n\nInstalling dependencies: $component\n"
-    (cd $component && npm install)
+    (cd $component && yarn install)
     # cd $component
     # npm install
     # cd ..

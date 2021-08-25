@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@fontsource/titillium-web": "^4.1.0",
-    "@nevermined-io/nevermined-sdk-js": "0.11.0",
+    "@nevermined-io/nevermined-sdk-js": "0.13.5",
     "@oceanprotocol/art": "^2.2.0",
     "@oceanprotocol/typographies": "^0.1.0",
     "@sindresorhus/slugify": "^0.9.1",

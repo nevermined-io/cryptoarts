@@ -7,6 +7,6 @@ for component in $components
 do
     echo "Testing: $component"
     cd $component
-    npm test
+    yarn test
     cd ..
 done
