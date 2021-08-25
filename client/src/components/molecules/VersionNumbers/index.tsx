@@ -8,7 +8,7 @@ import axios from 'axios'
 import { version } from '../../../../package.json'
 import styles from './index.module.scss'
 
-import { nodeUri, faucetUri } from '../../../config'
+import { nodeUri, faucetUri, gatewayUri } from '../../../config'
 import { User, Market } from '../../../context'
 
 import VersionTable from './VersionTable'
@@ -43,7 +43,7 @@ export default class VersionNumbers extends PureComponent<
     public marketplaceVersion =
         process.env.NODE_ENV === 'production' ? version : `${version}-dev`
 
-    public marketplaceNetwork = faucetUri.includes('localhost')
+    public marketplaceNetwork = gatewayUri.includes('localhost') || gatewayUri.includes('172.17.0')
         ? 'Spree'
         : new URL(nodeUri).hostname.split('.')[0]
 
@@ -111,7 +111,7 @@ export default class VersionNumbers extends PureComponent<
         console.log(response    )
         const { sdk: _sdk, gateway, metadata, status } = response
 
-        
+
         this.setState({
             ...this.state,
             sdk: _sdk,

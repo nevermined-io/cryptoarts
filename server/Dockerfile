@@ -1,13 +1,20 @@
 FROM node:12-alpine
 LABEL maintainer="Nevermined <root@nevermined.io>"
 
-RUN apk add --no-cache autoconf automake alpine-sdk
+RUN apk add --update --no-cache \
+    autoconf \
+    automake \
+    alpine-sdk \
+    vips-dev \
+    fftw-dev \
+    build-base \
+    python3
 
 WORKDIR /app/backend/
 
 COPY . .
 
-RUN npm install && \
-    npm run build
+RUN yarn
+RUN yarn build
 
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["yarn", "serve"]
