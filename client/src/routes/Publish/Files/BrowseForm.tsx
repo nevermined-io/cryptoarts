@@ -1,7 +1,9 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
+import { FilePublish } from '.'
 import { checkImageSize, serviceUri } from '../../../config'
+import cleanupContentType from '../../../utils/cleanupContentType'
 
 const acceptedTypes = [
     'image/png',
@@ -12,7 +14,7 @@ const acceptedTypes = [
 ]
 
 interface BrowseFormProps {
-    addFile(url: string): void
+    addFile(url: string, file: FilePublish): void
 }
 
 interface BrowseFormState {
@@ -45,8 +47,16 @@ export default class BrowseForm extends Component<
             url: `${serviceUri}/api/v1/file/upload`,
             data: formData,
         })
-        console.log(response)
-        this.props.addFile(response.data.url)
+
+        const filePublish = {
+            found: true,
+            contentLenght: file.size,
+            contentType: file.type,
+            compression: cleanupContentType(file.type),
+            url: response.data.url,
+        }
+
+        this.props.addFile(response.data.url, filePublish)
     }
 
     private isImageTooSmall = async (file: File): Promise<boolean> => {

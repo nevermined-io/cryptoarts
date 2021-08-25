@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File } from '@nevermined-io/nevermined-sdk-js'
+import { Logger, File, Account } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 
 import Route from '../../components/templates/Route'
@@ -303,19 +303,14 @@ class Publish extends Component<{}, PublishState> {
             )
         }
 
-        const rewardsMap = new Map()
-        rewardsMap.set(account[0].getId(), Number(this.state.price) * (1 - marketplaceFeePercentage / 100))
-        rewardsMap.set(gatewayAddress, Number(this.state.price) * marketplaceFeePercentage / 100)
-
         try {
-            console.log(new AssetRewards(rewardsMap))
             // Create NFT
             const asset = await this.context.sdk.nfts.create(
                 newAsset as any,
                 account[0],
                 this.state.nftAmount,
                 this.state.royalty,
-                new AssetRewards(rewardsMap)
+                this.splitAssetRewards(account[0])
             )
             .next((publishingStep: number) => this.setState({ publishingStep }))
 
@@ -353,6 +348,21 @@ class Publish extends Component<{}, PublishState> {
         }
 
         this.setState({ isPublishing: false })
+    }
+
+    private splitAssetRewards(seller: Account): AssetRewards {
+        const priceDecimals = Number(Web3.utils.toWei(this.state.price, 'ether'))
+        const sellerFeePercentage = 100 - marketplaceFeePercentage
+
+        const sellerAmount = Math.floor((priceDecimals * sellerFeePercentage) / 100) + (priceDecimals * sellerFeePercentage) % 100
+        const marketAmount = Math.floor((priceDecimals * marketplaceFeePercentage) / 100)
+
+        return new AssetRewards(
+            new Map([
+                [seller.getId(), sellerAmount],
+                [gatewayAddress, marketAmount]
+            ])
+        )
     }
 
     public render() {
