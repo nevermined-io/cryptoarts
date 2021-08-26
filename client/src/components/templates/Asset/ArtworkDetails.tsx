@@ -10,11 +10,6 @@ import ArtworkFile from './ArtworkFile'
 import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
 
 
-// export interface NFTDetails {
-//     owner: string
-//     royalties: number
-//     mintCap: number
-// }
 
 interface ArtworkDetailsProps {
     metadata: MetaData
@@ -22,12 +17,6 @@ interface ArtworkDetailsProps {
     nftDetails: any
 }
 
-// export function datafilesLine(files: File[]) {
-//     if (files.length === 1) {
-//         return <span>{files.length} data file</span>
-//     }
-//     return <span>{files.length} data files</span>
-// }
 
 export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
     const [fullscreen, setFullscreen] = useState(false)
