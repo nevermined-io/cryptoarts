@@ -10,6 +10,7 @@ import styles from './index.module.scss'
 import withTracker from '../../../hoc/withTracker'
 import Web3message from '../../organisms/Web3message'
 import ArtworkDetails from './ArtworkDetails'
+import { NFTDetails } from './ArtworkDetails'
 
 interface AssetProps {
     match: {
@@ -19,12 +20,14 @@ interface AssetProps {
     }
 }
 
+
+
 interface AssetState {
     ddo: DDO
     metadata: MetaData
     error: string
     isLoading: boolean
-    nftDetails: any
+    nftDetails: NFTDetails
 }
 
 class Asset extends Component<AssetProps, AssetState> {
@@ -35,7 +38,11 @@ class Asset extends Component<AssetProps, AssetState> {
         metadata: ({ main: { name: '' } } as any) as MetaData,
         error: '',
         isLoading: true,
-        nftDetails: {} as any
+        nftDetails: {
+            owner: '',
+            royalties: 0,
+            mintCap: 0,
+        }
     }
 
     public async componentDidMount() {

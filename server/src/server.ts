@@ -31,10 +31,13 @@ function initializeS3Bucket(): void {
 
     s3.createBucket({ Bucket: "bazaart" }, (err, data) => {
         if (err) {
-            console.log('There was a problem connection to S3', err)
+            if (err.code !== 'BucketAlreadyOwnedByYou') {
+                console.log('There was a problem connection to S3', err)
+            }
         } else {
             console.log(data)
         }
+        console.log('Connected to S3.')
     })
 }
 

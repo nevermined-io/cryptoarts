@@ -47,15 +47,32 @@ export class FileStorageRouter {
             let fileContent: Buffer
             if (url.includes('cid://')) {
                 fileContent = Buffer.from(await getFileFromFilecoin(url))
+            }
+            else if (url.includes('s3://')) {
+                const filename = url.split('/').pop()
+                try {
+                    const fileContentResponse = await s3.getObject({
+                        Bucket: 'bazaart',
+                        Key: filename
+                    }).promise()
+                    fileContent = fileContentResponse.Body as Buffer
+                } catch (err) {
+                    console.log(err)
+                }
+
             } else {
                 const fileContentResponse = await axios.get<Buffer>(url, { responseType: 'arraybuffer' })
                 fileContent = fileContentResponse.data
             }
-            await s3.upload({
-                Bucket: 'bazaart',
-                Key: `${did}.${compression}`,
-                Body: fileContent
-            }).promise()
+            try {
+                await s3.upload({
+                    Bucket: 'bazaart',
+                    Key: `${did}.${compression}`,
+                    Body: fileContent
+                }).promise()
+            } catch(err) {
+                console.log(err)
+            }
 
             if (isGif(fileContent)) {
                 const filePath = `/tmp/${new Date().getTime()}.gif`
@@ -131,11 +148,7 @@ export class FileStorageRouter {
                         Body: fileContent
                     }).promise()
 
-                    const s3Url = s3.getSignedUrl('getObject',
-                        {
-                            Bucket: 'bazaart',
-                            Key: file.name,
-                        })
+                    const s3Url = `s3://bazaart/${file.name}`
                     return res.send({ status: 'success', url: s3Url })
 
                 } catch (error) {

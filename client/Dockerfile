@@ -13,17 +13,15 @@ RUN apk add --no-cache --update \
 
 COPY package*.json /app/frontend/
 WORKDIR /app/frontend
-RUN npm install -g npm serve \
-    && npm install \
-    && npm cache clean --force
+RUN yarn
 
 COPY . /app/frontend
 
 RUN cp -r /app/frontend/node_modules/jose/dist/browser/* /app/frontend/node_modules/jose
-RUN npm run build
+RUN yarn build
 
 # Default ENV values
 ENV LISTEN_ADDRESS='0.0.0.0'
 ENV LISTEN_PORT='3000'
 
-ENTRYPOINT ["npm", "run", "start"]
+ENTRYPOINT ["yarn", "start"]

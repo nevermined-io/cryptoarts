@@ -9,15 +9,27 @@ import FullHeightView, {ContentRow} from '../../atoms/FullHeightView'
 import ArtworkFile from './ArtworkFile'
 import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
 
+
+export interface NFTDetails {
+    owner: string
+    royalties: number
+    mintCap: number
+}
+
 interface ArtworkDetailsProps {
     metadata: MetaData
     ddo: DDO
-    nftDetails: any
+    nftDetails: NFTDetails
+}
+
+export function datafilesLine(files: File[]) {
+    if (files.length === 1) {
+        return <span>{files.length} data file</span>
+    }
+    return <span>{files.length} data files</span>
 }
 
 export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
-    const [fullscreen, setFullscreen] = useState(false)
-
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
     if (!main.files || !additionalInformation || !additionalInformation.categories) {
@@ -89,7 +101,16 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
 
                     <Button secondary fullWidth>go to profile</Button>
 
-                    <div className={styles.spacer} />
+            <div className={styles.footer}>
+                <div className={styles.footerContent}>
+                    <span>DID</span>{ddo.id}
+                </div>
+            </div>
+            <div>
+                <p>{nftDetails.mintCap} Editions</p>
+                <p>Owner: {nftDetails.owner}</p>
+                <p>Royalties: {nftDetails.royalties} %</p>
+            </div>
 
                     <h2>Additional information</h2>
 

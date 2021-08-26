@@ -130,7 +130,7 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
         }
     }
 
-    private addFile = async (url: string) => {
+    private addFile = async (url: string, file?: FilePublish) => {
         // check for duplicate urls
         const duplicateFiles = this.props.files.filter(props =>
             url.includes(props.url)
@@ -145,8 +145,8 @@ export default class Files extends PureComponent<FilesProps, FilesStates> {
             })
         }
 
-        const file =  await this.getFile(url)
-        file && this.props.files.push(file)
+        const filePublish = file ||  await this.getFile(url)
+        filePublish && this.props.files.push(filePublish)
 
         const event = {
             currentTarget: {

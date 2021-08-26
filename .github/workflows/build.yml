@@ -21,8 +21,7 @@ jobs:
         node-version: '12.x'
     - name: Install dependencies
       run: |
-        npm install -g npm
-        npm i
+        yarn
     - name: Run tools (network)
       run: |
         sudo chmod go+r /etc/hosts
@@ -40,6 +39,8 @@ jobs:
       run: docker run -d -p 9000:9000 minio/minio server ./data
     - name: Run linters
       run: npm run lint
+    - name: Build
+      run: ./scripts/build.sh
     - name: Run tests
       env:
         REACT_APP_NODE_URI: "http://localhost:8545"
@@ -54,7 +55,6 @@ jobs:
         FAUCET_TIMESPAN: 0
       run: |
         ./scripts/test.sh
-        ./scripts/build.sh
 #    - name: Run e2e test
 #      env:
 #        REACT_APP_NODE_URI: "http://localhost:8545"

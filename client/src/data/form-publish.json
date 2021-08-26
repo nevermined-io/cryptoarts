@@ -115,6 +115,15 @@
           "min": 1,
           "value": 1,
           "required": true
+        },
+        "royalty": {
+          "label": "Royalty",
+          "placeholder": "Royalty percentage",
+          "type": "number",
+          "min": 1,
+          "max": 100,
+          "value": 10,
+          "required": true
         }
       }
     }

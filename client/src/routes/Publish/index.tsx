@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, FormEvent } from 'react'
-import { Logger, File, Nevermined } from '@nevermined-io/nevermined-sdk-js'
+import { Logger, File, Account } from '@nevermined-io/nevermined-sdk-js'
 import Web3 from 'web3'
 
 import Route from '../../components/templates/Route'
@@ -9,7 +9,7 @@ import { User, Market } from '../../context'
 import Step from './Step'
 import Progress from './Progress'
 import ReactGA from 'react-ga'
-import { allowPricing } from '../../config'
+import { allowPricing, gatewayAddress, marketplaceFeePercentage } from '../../config'
 import { steps } from '../../data/form-publish.json'
 import withTracker from '../../hoc/withTracker'
 import { serviceUri } from '../../config'
@@ -25,6 +25,7 @@ interface PublishState {
     dateCreated?: string
     price?: string
     nftAmount?: number
+    royalty?: number
     author?: string
     license?: string
     description?: string
@@ -52,6 +53,7 @@ class Publish extends Component<{}, PublishState> {
         files: [],
         price: '0',
         nftAmount: 1,
+        royalty: 10,
         author: '',
         type: 'dataset' as AssetType,
         license: '',
@@ -307,8 +309,8 @@ class Publish extends Component<{}, PublishState> {
                 newAsset as any,
                 account[0],
                 this.state.nftAmount,
-                0,
-                new AssetRewards(account[0].getId(), Number(this.state.price))
+                this.state.royalty,
+                this.splitAssetRewards(account[0])
             )
             .next((publishingStep: number) => this.setState({ publishingStep }))
 
@@ -328,7 +330,7 @@ class Publish extends Component<{}, PublishState> {
                 action: `registerAsset-end ${asset.id}`
             })
 
-            const response = await axios({
+            await axios({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 url: `${serviceUri}/api/v1/file`,
@@ -346,6 +348,21 @@ class Publish extends Component<{}, PublishState> {
         }
 
         this.setState({ isPublishing: false })
+    }
+
+    private splitAssetRewards(seller: Account): AssetRewards {
+        const priceDecimals = Number(Web3.utils.toWei(this.state.price, 'ether'))
+        const sellerFeePercentage = 100 - marketplaceFeePercentage
+
+        const sellerAmount = Math.floor((priceDecimals * sellerFeePercentage) / 100) + (priceDecimals * sellerFeePercentage) % 100
+        const marketAmount = Math.floor((priceDecimals * marketplaceFeePercentage) / 100)
+
+        return new AssetRewards(
+            new Map([
+                [seller.getId(), sellerAmount],
+                [gatewayAddress, marketAmount]
+            ])
+        )
     }
 
     public render() {
