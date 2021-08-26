@@ -22,8 +22,8 @@ const Routes = () => (
         <Route component={Home} exact path="/" />
         <Route component={Styleguide} path="/styleguide" />
         <Route component={About} path="/about" />
-        <Route component={Publish} path="/publish" />
-        <Route component={NewPublish} path="/new-publish" />
+        <Route component={Publish} path="/old-publish" />
+        <Route component={NewPublish} path="/publish" />
         <Route component={Profile} path="/profile" />
         <Route component={Search} path="/search" />
         <Route component={Asset} path="/asset/:did" />

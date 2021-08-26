@@ -10,7 +10,6 @@ import styles from './index.module.scss'
 import withTracker from '../../../hoc/withTracker'
 import Web3message from '../../organisms/Web3message'
 import ArtworkDetails from './ArtworkDetails'
-import { NFTDetails } from './ArtworkDetails'
 
 interface AssetProps {
     match: {
@@ -20,14 +19,12 @@ interface AssetProps {
     }
 }
 
-
-
 interface AssetState {
     ddo: DDO
     metadata: MetaData
     error: string
     isLoading: boolean
-    nftDetails: NFTDetails
+    nftDetails: any
 }
 
 class Asset extends Component<AssetProps, AssetState> {

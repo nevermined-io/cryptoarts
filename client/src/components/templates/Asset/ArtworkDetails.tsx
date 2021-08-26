@@ -10,26 +10,28 @@ import ArtworkFile from './ArtworkFile'
 import { CloseIcon, ShareIcon, FullscreenIcon } from '../../icons'
 
 
-export interface NFTDetails {
-    owner: string
-    royalties: number
-    mintCap: number
-}
+// export interface NFTDetails {
+//     owner: string
+//     royalties: number
+//     mintCap: number
+// }
 
 interface ArtworkDetailsProps {
     metadata: MetaData
     ddo: DDO
-    nftDetails: NFTDetails
+    nftDetails: any
 }
 
-export function datafilesLine(files: File[]) {
-    if (files.length === 1) {
-        return <span>{files.length} data file</span>
-    }
-    return <span>{files.length} data files</span>
-}
+// export function datafilesLine(files: File[]) {
+//     if (files.length === 1) {
+//         return <span>{files.length} data file</span>
+//     }
+//     return <span>{files.length} data files</span>
+// }
 
 export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDetailsProps) {
+    const [fullscreen, setFullscreen] = useState(false)
+
     const { main, additionalInformation } = metadata
     const price = main.price && Web3.utils.fromWei(main.price.toString())
     if (!main.files || !additionalInformation || !additionalInformation.categories) {
