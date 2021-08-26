@@ -92,17 +92,6 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
 
                     <Button secondary fullWidth>go to profile</Button>
 
-            <div className={styles.footer}>
-                <div className={styles.footerContent}>
-                    <span>DID</span>{ddo.id}
-                </div>
-            </div>
-            <div>
-                <p>{nftDetails.mintCap} Editions</p>
-                <p>Owner: {nftDetails.owner}</p>
-                <p>Royalties: {nftDetails.royalties} %</p>
-            </div>
-
                     <h2>Additional information</h2>
 
                     <div className={styles.infoRow}>
@@ -139,16 +128,14 @@ export default function ArtworkDetails({ metadata, ddo, nftDetails }: ArtworkDet
                     </div>
                     <div className={styles.priceWrapper}>
                         <strong>{price} NVMD</strong>
-                        {/*<span>$1200USD</span>*/}
                     </div>
-                    <Button primary fullWidth>Buy now</Button>
-{
-//             <ArtworkFile
-//                 ddo={ddo}
-//                 file={file}
-//                 price={Number(price)}
-//             />
-}
+
+                    <ArtworkFile
+                        ddo={ddo}
+                        file={file}
+                        price={Number(price)}
+                    />
+
                     <div className={styles.buttonSpacer} />
                     <Button fullWidth>Download High-Res File</Button>
                 </>

@@ -189,12 +189,12 @@ export default class ArtworkFile extends PureComponent<
                     {market => (
                         <Button
                             primary
-                            className={styles.button}
+                            fullWidth
                             onClick={this.handleToggleModal}
                             disabled={!isLogged || !market.networkMatch || unsoldNfts < 1}
                             name="Download"
                         >
-                            {unsoldNfts > 0 ? 'Purchase' : 'Sold Out'}
+                            {unsoldNfts > 0 ? 'BUY NOW' : 'SOLD OUT'}
                         </Button>
                     )}
                 </Market.Consumer>

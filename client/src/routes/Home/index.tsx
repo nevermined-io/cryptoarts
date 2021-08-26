@@ -109,7 +109,6 @@ class Home extends PureComponent<HomeProps, HomeState> {
                             className={styles.topImage}
                             key={asset.id}
                             artwork={asset}
-                            cover
                         />
                 ) : (
                     <div>No artworks found.</div>
