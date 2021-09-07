@@ -1,7 +1,7 @@
 {
   "name": "nevermined-marketplace-server",
   "description": "Nevermined marketplace backend.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "Apache-2.0",
   "main": "dist/src/server.js",
   "scripts": {
