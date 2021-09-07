@@ -6,8 +6,8 @@ If you're a developer and want to contribute to, or want to utilize this code in
 
 - [Nevermined Cryptoarts](#nevermined-cryptoarts)
   - [Get Started](#get-started)
-    - [Using minio locally](#using-minio-locally)
     - [Use with Nevermined Tools](#use-with-nevermined-tools)
+    - [Run Bazaart](#run-bazaart)
     - [Environment Variables](#environment-variables)
       - [Client](#client)
       - [Server](#server)
@@ -25,51 +25,44 @@ If you're a developer and want to contribute to, or want to utilize this code in
 
 ## Get Started
 
-This repo contains a client and a server, both written in TypeScript:
-
-- **client**: React app setup with [Nevermined SDK JS](https://github.com/nevermined-io/sdk-js), bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-- **server**: Node.js app, utilizing [Express](https://expressjs.com). The server provides various microservices, like remote file checking. The endpoints are documented in [server Readme](server/).
-
-To spin up both, the client and the server in a watch mode for local development, execute:
-
-```bash
-npm install
-npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the client in the browser. The page will reload if you make edits to files in either `./client` or `./server`.
-
-### Using minio locally
-
-Start a minio instance with:
-```bash
-$ docker run -p 9000:9000 minio/minio server ./data
-```
-
-Restart the server (if already running) so that a new bucket is initialized.
-
 ### Use with Nevermined Tools
 
-If you prefer to run locally all the Nevermined stack, you can spin up [`Nevermined Tools`](https://github.com/nevermined-io/tools) and use a local network (named `Spree`):
+Nevermined Tools is a development requirement to run this project locally. You can spin up [`Nevermined Tools`](https://github.com/nevermined-io/tools) and use a local network (named `Spree`):
 
 ```bash
 git clone git@github.com:nevermined-io/tools.git nevermined-tools
 cd nevermined-tools
 
 # startup with local Spree node
-./start_nevermined.sh
+./start_nevermined.sh --latest --no-marketplace --spree-embedded-contracts --minio
 ```
 
-Then set [environment variables](#️-environment-variables) to use those local connections.
+### Run Bazaart
 
-Finally, you need to copy the generated contract artifacts out of the Docker container. To do this, execute this script in another terminal:
+This repo contains a client and a server, both written in TypeScript:
+
+- **client**: React app setup with [Nevermined SDK JS](https://github.com/nevermined-io/sdk-js), bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+- **server**: Node.js app, utilizing [Express](https://expressjs.com). The server provides various microservices, like remote file checking. The endpoints are documented in [server Readme](server/).
+
+Both client and server are configured by setting [environment variables](#️-environment-variables)
+
+You need to copy the generated contract artifacts out of the Docker container. To do this, execute this script in another terminal:
 
 ```bash
-cd client
 ./scripts/nevermined-tools.sh
 ```
 
 The script will wait for all contracts to be generated in the `nevermined-contracts` Docker container, then will copy the artifacts in place.
+
+Finally, to spin up both, the client and the server in a watch mode for local development, execute:
+
+```bash
+yarn
+yarn start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the client in the browser. The page will reload if you make edits to files in either `./client` or `./server`.
+
 
 If you are on macOS, you need to additionally tweak your `/etc/hosts` file so Gateway can connect to the Metadata api. This is only required on macOS and is a [known limitation of Docker for Mac](https://docs.docker.com/docker-for-mac/networking/#known-limitations-use-cases-and-workarounds):
 
@@ -118,19 +111,19 @@ vi server/.env
 
 Beside configuring the network endpopints, the client allows to activate some features with environment variables in `client/.env.local`:
 
-| Env Variable                           | Feature Description                                                                                                                                                      |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Env Variable                           | Feature Description                                                                                                                                              |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `REACT_APP_SHOW_CHANNELS`              | Show the channels feature which shows assets based on a certain tag in a prominent view. This is deeactivated by default and only activated in some deployments. |
-| `REACT_APP_SHOW_REQUEST_TOKENS_BUTTON` | Shows a second button on the `/faucet` route to request Nevermined Tokens in addition to Ether. Will only work in testnets.                                             |
-| `REACT_APP_ALLOW_PRICING`              | Activate pricing feature. Will show a price input during publish flow, and output prices for each data asset.                                                            |
+| `REACT_APP_SHOW_REQUEST_TOKENS_BUTTON` | Shows a second button on the `/faucet` route to request Nevermined Tokens in addition to Ether. Will only work in testnets.                                      |
+| `REACT_APP_ALLOW_PRICING`              | Activate pricing feature. Will show a price input during publish flow, and output prices for each data asset.                                                    |
 
 #### More Settings
 
-| Env Variable                                                          | Example                                | Feature Description                               |
-| --------------------------------------------------------------------- | -------------------------------------- | ------------------------------------------------- |
+| Env Variable                                                          | Example                         | Feature Description                               |
+| --------------------------------------------------------------------- | ------------------------------- | ------------------------------------------------- |
 | client: `REACT_APP_IPFS_GATEWAY_URI`<br /> server: `IPFS_GATEWAY_URI` | `"https://ipfs.infura.com"`     | The IPFS gateway URI.                             |
 | `REACT_APP_IPFS_NODE_URI`                                             | `"https://ipfs.infura.com:443"` | The IPFS node URI used to add files to IPFS.      |
-| `REACT_APP_REPORT_EMAIL`                                              | `"test@organization.com"`              | The email used for the _report an asset_ feature. |
+| `REACT_APP_REPORT_EMAIL`                                              | `"test@organization.com"`       | The email used for the _report an asset_ feature. |
 
 ## Testing
 
@@ -139,7 +132,7 @@ Test suite is setup with [Jest](https://jestjs.io) and [react-testing-library](h
 To run all linting, unit and integration tests in one go, run:
 
 ```bash
-npm test
+yarn test
 ```
 
 The endpoints the integration tests run against are defined by your [Environment Variables](#environment-variables), and Cypress-specific variables in `cypress.json`.
@@ -149,17 +142,17 @@ The endpoints the integration tests run against are defined by your [Environment
 For local development, you can start the test runners for client & server in a watch mode.
 
 ```bash
-npm run test:watch
+yarn test:watch
 ```
 
 This will work for daily development but it misses the full interactivity of the test runner. If you need that, you will need to run them in individual terminal sessions:
 
 ```bash
 cd client/
-npm run test:watch
+yarn test:watch
 
 cd server/
-npm run test:watch
+yarn test:watch
 ```
 
 ### End-to-End Integration Tests
@@ -167,7 +160,7 @@ npm run test:watch
 To run all integration tests in headless mode, run:
 
 ```bash
-npm run test:e2e
+yarn test:e2e
 ```
 
 This will automatically spin up all required resources to run the integrations tests, and then run them.
@@ -175,7 +168,7 @@ This will automatically spin up all required resources to run the integrations t
 You can also use the UI of Cypress to run and inspect the integration tests locally:
 
 ```bash
-npm run cypress:open
+yarn cypress:open
 ```
 
 ## Code Style
@@ -184,10 +177,10 @@ For linting and auto-formatting you can use from the root of the project:
 
 ```bash
 # auto format all ts & css with eslint & stylelint
-npm run lint
+yarn lint
 
 # auto format all ts & css with prettier, taking all configs into account
-npm run format
+yarn format
 ```
 
 ## Production
@@ -195,7 +188,7 @@ npm run format
 To create a production build of both, the client and the server, run from the root of the project:
 
 ```bash
-npm run build
+yarn build
 ```
 
 Builds the client for production to the `./client/build` folder, and the server into the `./server/dist` folder.
@@ -212,9 +205,9 @@ From a clean `master` branch you can run any release task doing the following:
 
 You can execute the script using {major|minor|patch} as first argument to bump the version accordingly:
 
-- To bump a patch version: `npm run release`
-- To bump a minor version: `npm run release minor`
-- To bump a major version: `npm run release major`
+- To bump a patch version: `yarn release`
+- To bump a minor version: `yarn release minor`
+- To bump a major version: `yarnrelease major`
 
 By creating the Git tag with these tasks, Travis will trigger a new Kubernetes live deployment automatically, after a successful tag build.
 

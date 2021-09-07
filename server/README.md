@@ -4,20 +4,21 @@
 
 This folder contains server component written in TypeScript using [Express](https://expressjs.com). The server provides various microservices.
 
-- [Get Started](#get-started)
-- [API Documentation](#-api-documentation)
-  - [Url Checker](#url-checker)
-  - [Report](#report)
-- [Attribution](#-attribution)
-- [License](#-license)
+- [Nevermined Marketplace Server](#nevermined-marketplace-server)
+  - [Get Started](#get-started)
+  - [API Documentation](#api-documentation)
+    - [Url Checker](#url-checker)
+    - [Report](#report)
+  - [Attribution](#attribution)
+  - [License](#license)
 
 ## Get Started
 
 To spin up the server in a watch mode for local development, execute:
 
 ```bash
-npm install
-npm start
+yarn
+yarn start
 ```
 
 ## API Documentation
