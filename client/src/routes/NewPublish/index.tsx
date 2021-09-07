@@ -11,12 +11,29 @@ import { Essentials, EssentialsFormValues } from './Essentials'
 import { Authorship, AuthorshipFormValues } from './Authorship'
 import { SetPrice, SetPriceFormValues } from './SetPrice'
 import { History } from 'history'
+import Dropzone from 'react-dropzone'
+import axios from 'axios'
+import { serviceUri } from '../../config'
+import cleanupContentType from '../../utils/cleanupContentType'
+import UserProvider from '../../context/UserProvider'
+import { useContext } from 'react'
+import { User } from '../../context'
 
 type FormValues = EssentialsFormValues & AuthorshipFormValues & SetPriceFormValues
 
 type Errors = {
     split?: boolean
 }
+
+const acceptedTypes = [
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/tiff',
+    'image/gif',
+]
+
+
 
 function NewPublish({ history }: { history: History }) {
     const login = () => console.log('login')
@@ -32,13 +49,36 @@ function NewPublish({ history }: { history: History }) {
         }
         return validationErrors
     }
-    const [step, setStep] = useState(3)
+
+    const onDrop =  async (files: File[]) => {
+        const formData = new FormData()
+        const [file] = files
+        formData.append('file', file)
+        const response = await axios({
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            url: `${serviceUri}/api/v1/file/upload`,
+            data: formData,
+        })
+
+        const filePublish = {
+            found: true,
+            contentLenght: file.size,
+            contentType: file.type,
+            compression: cleanupContentType(file.type),
+            url: response.data.url,
+        }
+        values.filePublish = filePublish
+    }
+
+    const [step, setStep] = useState(1)
+    const context = useContext(User)
     const {
         handleChange,
         handleSubmit,
         values,
         errors,
-    } = useForm<FormValues>(login, validate);
+    } = useForm<FormValues>(login, validate, context);
 
     return (
         <FullHeightView
@@ -55,9 +95,20 @@ function NewPublish({ history }: { history: History }) {
                     </Steps>
                     <div className={styles.dragDropContainer}>
                         <div className={styles.dragDropDashedLine}>
-                            <h2>Drag & Drop</h2>
-                            <p>any audio or visual file...</p>
+
+                            <Dropzone onDrop={onDrop} multiple={false} accept={acceptedTypes}>
+                                {({getRootProps, getInputProps}) => (
+                                <section className="container">
+                                    <div {...getRootProps({className: 'dropzone'})}>
+                                    <input {...getInputProps()} />
+                                    <h2>Drag & Drop</h2>
+                                    <p>any image file...</p>
+                                    </div>
+                                </section>
+                                )}
+                            </Dropzone>
                         </div>
+
                     </div>
                     <div className={styles.preview}>
                         <h2>Your NFT Title</h2>

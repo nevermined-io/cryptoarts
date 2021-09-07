@@ -8,6 +8,7 @@ export type EssentialsFormValues = {
     title?: string
     category?: string
     description?: string
+    filePublish?: any
 }
 
 type Props = {
