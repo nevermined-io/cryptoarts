@@ -52,7 +52,7 @@ export default class Web3message extends PureComponent<{ extended?: boolean }> {
 
                 {(!networkMatch || this.props.extended) && (
                     <div className={styles.text}>
-                        <AccountStatus className={styles.status} />
+                        <AccountStatus />
                         <this.Message />
                     </div>
                 )}

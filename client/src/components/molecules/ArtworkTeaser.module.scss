@@ -1,99 +1,44 @@
 @import '../../styles/variables';
 
-.asset {
-    width: 304px;
-    height: 360px;
+.container {
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
 
-
-    /* 3. Shade/White */
-    background: #fff;
-
-    /* 3. Shade/Gray */
-    border: 1px solid #a8b3bd;
-    box-sizing: border-box;
-    border-radius: 4px;
-
-
-}
-
-.minimal {
-    h1 {
-        margin-bottom: 0;
+    &:hover .details {
+        transform: translateY(0%);
     }
 }
 
-.assetList {
-    > a {
-        color: $brand-grey-dark;
-        border-bottom: 1px solid $brand-grey-lighter;
-        padding-top: $spacer / 2;
-        padding-bottom: $spacer / 2;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+.details {
+    @include transition;
 
-        &:hover,
-        &:focus {
-            color: $brand-pink;
-            transform: none;
-        }
-    }
-
-    h1 {
-        font-size: $font-size-base;
-        color: inherit;
-        margin: 0;
-    }
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 20px;
+    background: rgba($nft-light, 5 / 6);
+    color: $nft-dark;
+    transform: translateY(100%);
+    transition-timing-function: ease-out;
 }
 
-.description {
-    height: 164px;
-    width: 264px;
-    left: 20px;
-    top: 176px;
-    border: 1px solid #a8b3bd;
-
-
-    h1 {
-        font-size: $font-size-large;
-        margin-top: 0;
-        margin-bottom: $spacer / 4;
-    }
-
-    &,
-    p,
-    strong,
-    a,
-    h2,
-    h3,
-    h4,
-    h5 {
-        font-weight: $font-weight-base;
-        font-family: $font-family-base;
-        margin-bottom: 0;
-        font-size: $font-size-small;
-        color: $brand-grey;
-    }
+.detailsTitle {
+    text-transform: uppercase;
 }
-
-.date {
-    font-size: $font-size-small;
-    color: $brand-grey-light;
+.detailsSubtitle {
+    font-size: 15px;
+    margin-top: -8px;
+    margin-bottom: 12px;
 }
-
-.assetFooter {
-    margin-top: $spacer;
-    font-size: $font-size-small;
-    color: $brand-grey-light;
+.detailsFooter {
     display: flex;
     justify-content: space-between;
-}
 
-.price {
-    font-size: $font-size-mini;
-
-    span {
-        color: $brand-grey;
-        font-size: $font-size-small;
+    strong {
+        text-transform: uppercase;
     }
 }

@@ -3,9 +3,7 @@
 
 .inputWrap {
     background: #fff;
-    border: 1px solid $brand-secondary;
     box-sizing: border-box;
-    border-radius: 4px;
     display: flex;
     position: relative;
 
@@ -21,20 +19,6 @@
 
 .inputWrapSearch {
     composes: inputWrap;
-
-    .input {
-        padding-left: $spacer * 1.5;
-    }
-
-    svg {
-        position: absolute;
-        left: $spacer / 2;
-        width: 1.25rem;
-        height: 1.25rem;
-        top: 50%;
-        margin-top: -.6rem;
-        fill: rgba($brand-grey-light, .7);
-    }
 }
 
 .input {
@@ -45,13 +29,14 @@
     border: none;
     box-shadow: none;
     width: 100%;
-    background: $brand-white;
+    background: $nft-neutral;
     padding: $spacer / 3;
     margin: 0;
-    border-radius: $border-radius;
     transition: .2s ease-out;
-    min-height: 48px;
+    height: 66px;
     appearance: none;
+    -webkit-appearance: none;
+    padding-left: 30px;
 
     &:focus {
         border: none;
@@ -89,6 +74,12 @@
     //     box-shadow: 0 0 0 1000px $brand-black inset;
     //     transition: background-color 5000s ease-in-out 0s;
     // }
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+        display: none;
+    }
 }
 
 .select {

@@ -33,9 +33,7 @@ export default class ArtworkImage extends Component<{
             <div
                 style={{ backgroundImage: `url(${this.state.url})` }}
                 className={styles.image}
-            >
-                <img alt='artwork' src={this.state.url} style={{ visibility: 'hidden'}} />
-            </div>
+            ></div>
         )
     }
 }

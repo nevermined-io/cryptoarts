@@ -1,5 +1,28 @@
 @import '../../styles/variables';
 
+.topWrapper {
+    height: calc(100vh - 100px);
+    background: $nft-background;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0px (-6px + -30px) 28px -30px rgba($nft-dark, 0.5);
+}
+.topImage {
+    flex: 1;
+}
+.topMenu {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topMenuMiddle {
+    margin: 0 20px;
+}
+
+
+// OLD
 .home {
     display: block;
 
@@ -24,7 +47,7 @@
     position: absolute;
     width: 1440px;
     height: 479px;
-    top: 80px;
+    // top: 80px;
 }
 
 .bannerContent {

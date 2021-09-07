@@ -1,3 +1,19 @@
+// Global mixins
+@import 'transition';
+
+
+// New colors, needs to be refactorized
+$nft-dark: #132D43;
+$nft-light: #FFFFFF;
+$nft-primary: #55D6BE;
+$nft-primary-contrast: #ACFCD9;
+$nft-secondary: #775CFF;
+$nft-secondary-contrast: #B398FF;
+$nft-neutral: #DDDDDD;
+$nft-error: #FC6471;
+$nft-shadow: #F2F2F2;
+$nft-background: #F7FAFC;
+
 // Colors
 $brand-white: #fff;
 $brand-pink: #7834f9;
@@ -30,8 +46,8 @@ $brand-gradient: linear-gradient(to right bottom, $brand-purple, $brand-pink);
 $body-background: darken($brand-white, 1%);
 
 // Fonts
-$font-family-base: 'Titillium Web';
-$font-family-title: 'Sharp Sans Display', -apple-system, BlinkMacSystemFont,
+$font-family-base: 'Sora';
+$font-family-title: 'Sora', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Helvetica, Arial, sans-serif;
 $font-family-monospace: 'Fira Code', 'Fira Mono', Menlo, Monaco, Consolas,
     'Courier New', monospace;

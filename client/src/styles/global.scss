@@ -3,7 +3,7 @@
 @import 'variables';
 @import 'animations';
 @import '../../node_modules/@oceanprotocol/typographies/sass/ocean-typo.scss';
-@import '~@fontsource/titillium-web/index.css';
+@import '~@fontsource/sora/index.css';
 
 *,
 *:before,
@@ -15,7 +15,6 @@
 html,
 body,
 #root {
-    width: 1440px;
     margin: auto;
 }
 
@@ -52,7 +51,6 @@ a {
     &:focus {
         color: darken($brand-pink, 15%);
         text-decoration: none;
-        transform: translate3d(0, -.1rem, 0);
     }
 
     &:active {
@@ -166,22 +164,23 @@ h5 {
     color: inherit;
     line-height: 1.2;
     font-weight: $font-weight-bold;
+    margin: 0.5em 0;
 }
 
 h1 {
-    font-size: $font-size-h1;
+    font-size: 55px;
 }
 
 h2 {
-    font-size: $font-size-h2;
+    font-size: 28px;
 }
 
 h3 {
-    font-size: $font-size-h3;
+    font-size: 21px;
 }
 
 h4 {
-    font-size: $font-size-h4;
+    font-size: 16px;
 }
 
 h5 {

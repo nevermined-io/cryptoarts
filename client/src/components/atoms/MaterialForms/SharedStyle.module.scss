@@ -1,0 +1,43 @@
+@import '../../../styles/variables';
+
+.field,
+.wrapper {
+    width: 100%;
+}
+
+.title {
+    text-transform: uppercase;
+    margin-bottom: -4px;
+}
+
+.field {
+    :global(.MuiSelect-select),
+    input,
+    textarea {
+        padding: 10px 0px 11px 12px;
+        font-family: $font-family-base;
+
+        &:focus {
+            background: none;
+        }
+    }
+    textarea {
+        min-height: 60px;
+    }
+    :global(.MuiInput-root){
+        &:before {
+            border-bottom: 2px solid $nft-secondary !important;
+        }
+        &:after {
+            border-color: $nft-secondary-contrast !important;
+        }
+    }
+}
+:global(.MuiList-root) option {
+    padding: 8px 12px;
+    cursor: pointer;
+
+    &:hover {
+        background: $nft-background;
+    }
+}

@@ -1,0 +1,80 @@
+@import '../../styles/variables';
+
+$size: 44px;
+
+.circleButton {
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    background: $nft-dark;
+    color: $nft-light;
+    border: 0;
+    user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+        max-width: 18px;
+        max-height: 18px;
+    }
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+        text-decoration: none;
+        transform: none;
+    }
+}
+.circleButtonLarge {
+    $size: 60px;
+
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+
+    svg {
+        max-width: 34px;
+        max-height: 34px;
+    }
+}
+
+
+.circleButtonPrimary {
+    background: $nft-secondary;
+    color: $nft-light;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+    }
+}
+
+.circleButtonSecondary {
+    background: $nft-primary;
+    color: $nft-dark;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-dark;
+    }
+}
+
+
+.circleButtonError {
+    background: $nft-error;
+    color: $nft-light;
+
+    &:hover,
+    &:active,
+    &:focus,
+    a#{&} {
+        color: $nft-light;
+    }
+}

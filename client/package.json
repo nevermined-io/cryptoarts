@@ -17,7 +17,8 @@
     "lint": "npm run lint:js && npm run lint:css"
   },
   "dependencies": {
-    "@fontsource/titillium-web": "^4.1.0",
+    "@fontsource/sora": "^4.4.5",
+    "@material-ui/core": "^4.11.4",
     "@nevermined-io/nevermined-sdk-js": "0.13.6",
     "@oceanprotocol/art": "^2.2.0",
     "@oceanprotocol/typographies": "^0.1.0",

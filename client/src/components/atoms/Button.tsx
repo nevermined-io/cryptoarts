@@ -4,9 +4,11 @@ import cx from 'classnames'
 import styles from './Button.module.scss'
 
 interface ButtonProps {
-    children: string
+    children: string | React.ReactNode
     className?: string
+    fullWidth?: boolean
     primary?: boolean
+    secondary?: boolean
     link?: boolean
     href?: string
     onClick?: any
@@ -15,12 +17,14 @@ interface ButtonProps {
     name?: string
 }
 
-function getClasses(primary: boolean | undefined, link: boolean | undefined) {
-    return primary ? styles.buttonPrimary : link ? styles.link : styles.button
+function getClasses(primary: boolean | undefined, secondary: boolean | undefined, link: boolean | undefined) {
+    return primary ? styles.buttonPrimary : secondary ? styles.buttonSecondary : link ? styles.link : styles.button
 }
 
 const Button = ({
+    fullWidth,
     primary,
+    secondary,
     link,
     href,
     children,
@@ -28,7 +32,7 @@ const Button = ({
     to,
     ...props
 }: ButtonProps) => {
-    const classes = getClasses(primary, link)
+    const classes = cx(getClasses(primary, secondary, link), fullWidth ? styles.fullWidth : undefined)
 
     return to ? (
         <Link to={to} className={cx(classes, className)} {...props}>

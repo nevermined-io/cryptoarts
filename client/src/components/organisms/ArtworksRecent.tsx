@@ -30,7 +30,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
     private getLatestAssets = async () => {
         const { sdk } = this.context
         const searchQuery = {
-            offset: 15,
+            offset: 20,
             page: 1,
             query: {
                 categories: this.props.categories
@@ -42,12 +42,7 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
 
         try {
             const search = await sdk.assets.query(searchQuery)
-            this.setState({
-                latestArtworks: search.results,
-                isLoadingLatest: false
-            })
-
-            search.results.map(async (artwork: any) => {
+            await Promise.all(search.results.map(async (artwork: any) => {
                 const { attributes } = artwork.findServiceByType('metadata')
                 const { compression } = attributes.main.files[0]
                 const filename = `${artwork.id}.${compression}`
@@ -57,8 +52,11 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                     url: `${serviceUri}/api/v1/file/${filename}`,
                 })
 
-                console.log(response.data.url)
                 artwork.url = response.data.url
+            }))
+            this.setState({
+                latestArtworks: search.results,
+                isLoadingLatest: false
             })
         } catch (error) {
             Logger.error(error.message)
@@ -78,10 +76,10 @@ export default class ArtworksRecent extends PureComponent<{categories: string[]}
                     <div className={styles.latestAssets}>
                         {latestArtworks.map((asset: any) => (
                             <ArtworkTeaser
+                                className={styles.assets}
                                 key={asset.id}
                                 artwork={asset}
-                                minimal
-                                tokenSymbol= {this.context.tokenSymbol}
+                                cover
                             />
                         ))}
                     </div>
