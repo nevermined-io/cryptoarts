@@ -5,6 +5,7 @@
     "./node_modules/prettier-stylelint/config.js"
   ],
   "syntax": "scss",
+  "defaultSeverity": "warning",
   "rules": {
       "no-descending-specificity": null
   }

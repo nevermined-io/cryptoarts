@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import { provideNevermined, requestFromFaucet } from './nevermined'
 
 describe('nevermined', () => {
-    const web3 = new Web3(Web3.givenProvider)
+    const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"))
 
     it('provideNevermined can be called', async () => {
         const response = await provideNevermined(web3)

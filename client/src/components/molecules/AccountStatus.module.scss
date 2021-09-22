@@ -14,7 +14,6 @@ $circle-size: 44px;
 
 .popup {
     @include transition(fast);
-
     position: absolute;
     width: 260px;
     background: $nft-neutral;
@@ -34,7 +33,7 @@ $circle-size: 44px;
 .row {
     border-bottom: 3px solid $nft-light;
     height: 56px;
-    padding: 0px 20px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,12 +55,14 @@ $circle-size: 44px;
     align-items: center;
     flex-wrap: nowrap;
 }
+
 .accountImage {
     height: $circle-size;
     width: $circle-size;
     background: $nft-dark;
     border-radius: $circle-size / 2;
 }
+
 .accountAddress {
     text-overflow: ellipsis;
     white-space: nowrap;

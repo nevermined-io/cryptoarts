@@ -14,7 +14,6 @@
 
 .details {
     @include transition;
-
     position: absolute;
     bottom: 0;
     right: 0;
@@ -29,11 +28,13 @@
 .detailsTitle {
     text-transform: uppercase;
 }
+
 .detailsSubtitle {
     font-size: 15px;
     margin-top: -8px;
     margin-bottom: 12px;
 }
+
 .detailsFooter {
     display: flex;
     justify-content: space-between;
