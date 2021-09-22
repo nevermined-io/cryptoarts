@@ -30,6 +30,7 @@
 .spacer {
     margin-bottom: 80px;
 }
+
 .buttonSpacer {
     margin-bottom: 20px;
 }
@@ -48,10 +49,12 @@
     strong {
         flex: 1;
     }
+
     span {
         max-width: 120px;
         min-width: 120px;
     }
+
     strong,
     span {
         overflow: hidden;
@@ -67,6 +70,7 @@
     font-size: 14px;
     text-transform: uppercase;
 }
+
 .priceWrapper {
     padding: 24px 0;
     text-transform: uppercase;
@@ -75,6 +79,7 @@
         font-size: 35px;
         margin-right: 20px;
     }
+
     span {
         font-size: 28px;
     }

@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 100%;
 }
+
 .dragDropContainer {
     flex: 1;
     position: relative;
@@ -26,12 +27,12 @@
     z-index: 2;
     width: 688px;
     height: 344px;
-    border: 2px dashed #FEFEFE;
+    border: 2px dashed #fefefe;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    color: #FEFEFE;
+    color: #fefefe;
 
 }
 
@@ -54,6 +55,7 @@
 .addButtonContainer {
     padding-top: 40px;
 }
+
 .addButton {
     color: $nft-secondary;
     margin: 0 12px;
