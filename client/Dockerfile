@@ -14,6 +14,7 @@ RUN apk add --no-cache --update \
 COPY package*.json /app/frontend/
 WORKDIR /app/frontend
 RUN yarn
+RUN yarn global add serve
 
 COPY . /app/frontend
 
@@ -24,4 +25,4 @@ RUN yarn build
 ENV LISTEN_ADDRESS='0.0.0.0'
 ENV LISTEN_PORT='3000'
 
-ENTRYPOINT ["yarn", "start"]
+ENTRYPOINT ["serve", "-l", "tcp://0.0.0.0:3000", "build"]
