@@ -1821,10 +1821,10 @@
   resolved "https://registry.yarnpkg.com/@nevermined-io/contracts/-/contracts-1.1.7.tgz#1d0be22c7622b121913fcd495ee77305d10d0d99"
   integrity sha512-yxJ07+xTr91QKav7yp2ogXIZ9aLd+ZWWFkdiS+o4f4chOdil/sCHahF/an6GQWuNRpk9DCdzz8S59KGynZDreg==
 
-"@nevermined-io/nevermined-sdk-js@0.13.9":
-  version "0.13.9"
-  resolved "https://registry.yarnpkg.com/@nevermined-io/nevermined-sdk-js/-/nevermined-sdk-js-0.13.9.tgz#f14b7faaeb62f624736c3209238433130808ae27"
-  integrity sha512-dt5ijcwJu2CHJV011LXwnvyjNnTPQWodZIAylljYa2+RJ+roVZPOc/CKyG7vs3SUV/E+sXzjK006Q1l5rir6MA==
+"@nevermined-io/nevermined-sdk-js@0.13.10":
+  version "0.13.10"
+  resolved "https://registry.yarnpkg.com/@nevermined-io/nevermined-sdk-js/-/nevermined-sdk-js-0.13.10.tgz#ef9f93947f9fde820b19231abf4406a52f88d557"
+  integrity sha512-9U0Qf43Fh1R5PkOH8/hVxLaUt7YJBL/GF/PVEFSPqAD2mIJJkUAMPf4kY023xa/64Oh7pMYCs8opCtCGjkKP6A==
   dependencies:
     "@nevermined-io/contracts" "^1.1.7"
     "@nevermined-io/secret-store-client" "^0.0.16"
