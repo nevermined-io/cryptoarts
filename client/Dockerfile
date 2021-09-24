@@ -25,4 +25,4 @@ RUN yarn build
 ENV LISTEN_ADDRESS='0.0.0.0'
 ENV LISTEN_PORT='3000'
 
-ENTRYPOINT ["serve", "-l", "tcp://0.0.0.0:3000", "build"]
+ENTRYPOINT ["serve", "-s", "-l", "tcp://0.0.0.0:3000", "build"]
